@@ -2,6 +2,8 @@ package noyau.model;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import noyau.repositories.ModuleRepository;
 import noyau.repositories.UtilisateurRepository;
 
@@ -15,7 +17,9 @@ public class Noyau {
 	private ArrayList<Module> listeModules;
 	private ArrayList<Module> listeModulesActifs;
 	
+	@Autowired
 	private UtilisateurRepository utiRepo;
+	@Autowired
 	private ModuleRepository modRepo;
 	
 	private Noyau(){

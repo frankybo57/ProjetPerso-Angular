@@ -8,6 +8,7 @@ import java.util.List;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import noyau.model.Droit;
@@ -19,6 +20,7 @@ import noyau.model.Utilisateur;
  *
  */
 
+@Repository
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer> {
 	@Transactional(readOnly=true)
 	public Utilisateur findByLogin(String login);
