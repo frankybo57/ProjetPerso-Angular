@@ -1,0 +1,7 @@
+sgbd.driver=org.postgresql.Driver
+sgbd.url=jdbc:postgresql://localhost::5432/mabase
+sgbd.username=postgres
+sgbd.password=admin
+hb.dialect=org.hibernate.dialect.PostgreSQLDialect
+sgbd.min=1
+sgbd.max=10

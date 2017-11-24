@@ -16,7 +16,7 @@
 	<!-- Activation annotations et scan des classes du package -->
 	<context:component-scan base-package="noyau.repositories"/>
 
-	<context:property-placeholder location="classpath:sgbd.properties"/>
+	<context:property-placeholder location="classpath:sgbd.properties2"/>
 
 	<!-- Création d'une dataSource DBCP (Connection Pooling) -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
