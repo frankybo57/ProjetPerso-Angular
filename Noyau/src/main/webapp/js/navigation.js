@@ -1,112 +1,79 @@
-/**
- * 
- */
-
-var initNavigation = function(){
-	var div = $("#container");
+(function() {
 	
-	var ul = $("<ul>").addClass("nav nav-tabs");
-	div.append(ul);
+	var nav = angular.module("navigation", []);
 	
-	// Onglet acceuil
-	if(getEtatByNom("Noyau")=="Actif"){
-		var li = $("<li>").addClass("nav-item");
-		ul.append(li);
-		
-		li.attr("id","noyauTab");
-
-		var a = $("<a>").addClass("nav-link active");
-		li.append(a);
-		
-		a.attr("href","../../NoyauView/WebContent/noyauView.html");
-		a.text("Acceuil");
-	}
+	var modulesActifs = [
+		{
+			"id" : 1,
+			"nom" : "Noyau",
+			"header" : "Accueil",
+			"etat" : "Actif"
+		},
+		{
+			"id" : 2,
+			"nom" : "Admin",
+			"header" : "Admin",
+			"etat" : "Actif"
+		},
+		{
+			"id" : 3,
+			"nom" : "ModuleStock",
+			"header" : "Stock",
+			"etat" : "Actif"
+		},
+		{
+			"id" : 4,
+			"nom" : "ModuleRecette",
+			"header" : "Recettes",
+			"etat" : "Actif"
+		},
+		{
+			"id" : 5,
+			"nom" : "ModuleCourse",
+			"header" : "Courses",
+			"etat" : "Actif"
+		},
+		{
+			"id" : 6,
+			"nom" : "ModuleMenu",
+			"header" : "Menus",
+			"etat" : "Actif"
+		},
+		{
+			"id" : 7,
+			"nom" : "ModuleCalculatrice",
+			"header" : "Calculatrice",
+			"etat" : "Actif"
+		}
+	];
 	
-	// Onglet admin
-	if(getEtatByNom("Admin")=="Actif"){
-		var li = $("<li>").addClass("nav-item");
-		ul.append(li);
-		
-		li.attr("id","adminTab");
-
-		var a = $("<a>").addClass("nav-link active");
-		li.append(a);
-		
-		a.attr("href","../../ModuleAdminView/WebContent/adminView.html");
-		a.text("Admin");
-	}
+	nav.directive("header",function(){
+		return {
+			restrict:'E',
+			templateUrl:"header.html"
+		};
+	});
 	
-	// Onglet stock
-	if(getEtatByNom("ModuleStock")=="Actif"){
-		var li = $("<li>").addClass("nav-item");
-		li.attr("id","stockTab");
+	nav.controller("headerController",function(){
+		this.onglet = accueil;
 		
-		var a = $("<a>").addClass("nav-link");
-		a.attr("href","../../ModuleStockView/WebContent/stockView.html");
-		a.text("Gestion du stock");
+		this.setOnglet = function(onglet){
+			this.onglet = onglet;
+		};
 		
-		li.append(a);
-		ul.append(li);
-	}
-	
-	// Onglet recettes
-	if(getEtatByNom("ModuleRecette")=="Actif"){
-		var li = $("<li>").addClass("nav-item");
-		li.attr("id","recetteTab");
+		this.isOnglet = function(onglet){
+			return this.onglet === onglet;
+		};
 		
-		var a = $("<a>").addClass("nav-link");
-		a.attr("href","../../ModuleRecetteView/WebContent/recetteView.html");
-		a.text("Gestion des recettes");
+//		this.initialisation = function(){
+//			
+//		};	
 		
-		li.append(a);
-		ul.append(li);
-	}
-	
-	// Onglet courses
-	if(getEtatByNom("ModuleCourse")=="Actif"){
-		var li = $("<li>").addClass("nav-item");
-		li.attr("id","courseTab");
+//		var ouvrirCalculatrice = function(){
+//			var position = screen.width - 200;
+//			window.open("../../ModuleCalculatriceView/WebContent/calculatriceView.html","newwindow","width=500,height=620,left="+position);
+//		};
 		
-		var a = $("<a>").addClass("nav-link");
-		a.attr("href","../../ModuleCourseView/WebContent/courseView.html");
-		a.text("Gestion des courses");
-		
-		li.append(a);
-		ul.append(li);
-	}
-	
-	// Onglet menu
-	if(getEtatByNom("ModuleMenu")=="Actif"){
-		var li = $("<li>").addClass("nav-item");
-		li.attr("id","menuTab");
-		
-		var a = $("<a>").addClass("nav-link");
-		a.attr("href","../../ModuleMenuView/WebContent/menuView.html");
-		a.text("Gestion des menus");
-		
-		li.append(a);
-		ul.append(li);
-	}
-	
-	// Onglet menu
-	if(getEtatByNom("ModuleCalculatrice")=="Actif"){
-		var li = $("<li>").addClass("nav-item");
-		li.attr("id","calculatriceTab");
-		
-		var a = $("<a>").addClass("nav-link");
-		a.attr("onclick","ouvrirCalculatrice()");
-		a.text("Calculatrice");
-		
-		li.append(a);
-		ul.append(li);
-	}
-	
-	
-};
-
-var ouvrirCalculatrice = function(){
-	var position = screen.width - 200;
-	window.open("../../ModuleCalculatriceView/WebContent/calculatriceView.html","newwindow","width=500,height=620,left="+position);
-};
-
-initNavigation();
+	});
+				
+})();
