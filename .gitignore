@@ -12,3 +12,15 @@ Noyau/.settings/org.eclipse.wst.validation.prefs
 Noyau/.idea/modules.xml
 Noyau/.idea/Noyau.iml
 Noyau/.idea/workspace.xml
+/target/
+.classpath
+.project
+.settings/.jsdtscope
+*.prefs
+*.component
+*.container
+.settings/org.eclipse.wst.common.project.facet.core.xml
+.settings/org.eclipse.wst.jsdt.ui.superType.name
+Admin/.settings/.jsdtscope
+Admin/.settings/org.eclipse.wst.common.project.facet.core.xml
+Admin/.settings/org.eclipse.wst.jsdt.ui.superType.name

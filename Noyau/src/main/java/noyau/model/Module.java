@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Version;
+
 /**
  * @author Francois 2
  * @version 0.0.1-Snapshot
@@ -17,8 +19,12 @@ import javax.persistence.Table;
 public class Module {
 	@Id @GeneratedValue(generator = "sequenceModule")
 	private Integer id;
+	@Version
+	private int version;
 	@Column(name = "nom")
 	private String nom;
+	@Column(name="header")
+	private String header;
 	@Column(name = "etat")
 	private Etat etat;
 	
@@ -29,6 +35,13 @@ public class Module {
 	public Module(String nom){
 		this.nom = nom;
 		this.etat = Etat.Inactif;
+	}
+
+	public Module(String nom, String header, Etat etat) {
+		super();
+		this.nom = nom;
+		this.header = header;
+		this.etat = etat;
 	}
 
 	/**
@@ -45,6 +58,14 @@ public class Module {
 		this.id = id;
 	}
 
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
 	/**
 	 * @return the nom
 	 */
@@ -57,6 +78,14 @@ public class Module {
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public String getHeader() {
+		return header;
+	}
+
+	public void setHeader(String header) {
+		this.header = header;
 	}
 
 	/**

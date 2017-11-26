@@ -9,11 +9,11 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>frankybo57</groupId>
-	<artifactId>Noyau</artifactId>
+	<artifactId>Admin</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>Noyau</name>
-
+	<name>Admin</name>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.hibernate</groupId>

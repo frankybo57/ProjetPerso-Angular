@@ -12,6 +12,8 @@ public class ModuleRepositoryTest {
 	@Autowired
 	private static ModuleRepository modRepo;
 	
+	
+	
 	@Test
 	public void testfindAllByEtat(){
 		
