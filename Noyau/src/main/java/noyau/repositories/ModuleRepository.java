@@ -18,7 +18,6 @@ import noyau.model.Module;
  *
  */
 
-@Repository
 public interface ModuleRepository extends JpaRepository<Module, Integer> {
 	@Transactional(readOnly=true)
 	public Module findByNom(String nom);

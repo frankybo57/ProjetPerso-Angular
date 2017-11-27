@@ -20,10 +20,9 @@ import noyau.model.Utilisateur;
  *
  */
 
-@Repository
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer> {
 	@Transactional(readOnly=true)
 	public Utilisateur findByLogin(String login);
 	@Transactional(readOnly=true)
-	public List<Utilisateur> findAllByDroit(Droit droit);
+	public List<Utilisateur> findAllByDroits(Droit droits);
 }
