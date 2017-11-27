@@ -3,7 +3,7 @@
  */
 (function(){
 	
-	var app = angular.module('application', ['navigation','pageadmin']);
+	var app = angular.module('application', ['navigation','pageAdmin']);
 	
 	app.controller('ModuleController', function(){
 				this.onglet = "Accueil";
