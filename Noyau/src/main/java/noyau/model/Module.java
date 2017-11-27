@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import org.springframework.data.annotation.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 /**
  * @author Francois 2
  * @version 0.0.1-Snapshot
@@ -17,14 +19,19 @@ import org.springframework.data.annotation.Version;
 @Table(name = "modules")
 @SequenceGenerator(name = "sequenceModule", sequenceName = "SequenceModule")
 public class Module {
+	@JsonView(Views.Module.class)
 	@Id @GeneratedValue(generator = "sequenceModule")
 	private Integer id;
+	@JsonView(Views.Module.class)
 	@Version
 	private int version;
+	@JsonView(Views.Module.class)
 	@Column(name = "nom")
 	private String nom;
+	@JsonView(Views.Module.class)
 	@Column(name="header")
 	private String header;
+	@JsonView(Views.Module.class)
 	@Column(name = "etat")
 	private Etat etat;
 	

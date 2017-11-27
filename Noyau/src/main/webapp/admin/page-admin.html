@@ -25,7 +25,17 @@
 							<td>{{utilisateur.login}}</td>
 							<td>{{utilisateur.password}}</td>
 							<td>{{utilisateur.droits}}</td>
-						</tr>
+							<td>
+								<div class="btn-group">
+									<button class='btn btn-success btn-sm' ng-click="UtilisateurCtrl.edit(utilisateur.id)">
+										<span class='glyphicon glyphicon-pencil'></span>
+									</button>
+									<button class='btn btn-danger btn-sm' ng-click="UtilisateurCtrl.remove(utilisateur.id)">
+										<span class='glyphicon glyphicon-trash'></span>
+									</button>
+								</div>
+								
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -45,12 +55,59 @@
 						</tr>
 					</thead>
 					<tbody id="tableModules">
-						<tr ng-repeat="module in moduleCtrl.modulesActifs">
+						<tr ng-repeat="module in moduleCtrl.modules">
 							<td>{{module.nom}}</td>
 							<td>{{module.etat}}</td>
+							<td>
+								<div class="btn-group">
+									<button class='btn btn-success btn-sm' ng-click="moduleCtrl.edit(module.id)">
+										<span class='glyphicon glyphicon-pencil'></span>
+									</button>
+									<button class='btn btn-success btn-sm' ng-click="moduleCtrl.toggle(module.id)">
+										<span class='glyphicon glyphicon-refresh'></span>
+									</button>
+									<button class='btn btn-danger btn-sm' ng-click="moduleCtrl.remove(module.id)">
+										<span class='glyphicon glyphicon-trash'></span>
+									</button>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<button class='btn btn-success btn-sm' ng-click="moduleCtrl.add()">
+									<span class='glyphicon glyphicon-plus'></span>
+								</button>
+							</td>
 						</tr>	
 					</tbody>
 				</table>
+			<div class="panel panel-default" style="margin-top: 20px"
+					ng-show="moduleCtrl.module">
+				<div class="panel-heading">Edition du module</div>
+					<div class="panel-body">
+						<form name="moduleCtrl.moduleForm" ng-submit="moduleCtrl.moduleForm.$valid && moduleCtrl.save()" novalidate>
+							<input type="hidden" ng-model="moduleCtrl.module.id" /> 
+							<input type="hidden" ng-model="moduleCtrl.module.version" />
+							<div class="form-group">
+								<label for="nom">Module</label>
+								<input type="text" class="form-control" style="width: 400px"
+								ng-model="moduleCtrl.module.nom" required/>
+							</div>
+							<div class="form-group">
+								<label for="duree">Etat</label> 
+								<select class="form-control" style="width: 400px" ng-model="moduleCtrl.module.etat" required>
+									<option ng-repeat="etat in moduleCtrl.etats" value="{{etat}}">{{etat}}</option>	
+								</select>
+							</div>
+							<button class="btn btn-success" type="submit">
+								<span class="glyphicon glyphicon-ok"></span>
+							</button>
+							<button class="btn btn-warning" ng-click="moduleCtrl.cancel()">
+								<span class="glyphicon glyphicon-arrow-left"></span>
+							</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

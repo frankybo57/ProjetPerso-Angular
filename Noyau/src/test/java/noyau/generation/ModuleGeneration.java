@@ -22,7 +22,7 @@ public class ModuleGeneration {
 	public void generation() {
 		// TODO Auto-generated method stub
 		modRepo.save(new Module("Noyau","Accueil",Etat.Actif));
-		modRepo.save(new Module("Administration","Administration",Etat.Inactif));
+		modRepo.save(new Module("Administration","Administration",Etat.Actif));
 		modRepo.save(new Module("Stock","Stock",Etat.Inactif));
 		modRepo.save(new Module("Recettes","Recettes",Etat.Inactif));
 		modRepo.save(new Module("Courses","Courses",Etat.Inactif));

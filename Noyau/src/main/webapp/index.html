@@ -9,7 +9,7 @@
 <!-- <script type="text/javascript" src="lib/angular.min.js"></script> -->
 <script type="text/javascript" src="lib/angular.js"></script>
 
-<script type="text/javascript" src="js/modulesActifs.js"></script>
+<!-- <script type="text/javascript" src="js/modulesActifs.js"></script> -->
 <script type="text/javascript" src="js/application.js"></script>
 <script type="text/javascript" src="js/navigation.js"></script>
 
@@ -17,12 +17,12 @@
 
 <!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 </head>
-<body ng-app="application">
+<body ng-app="application" ng-controller="ModuleController as moduleCtrl">
 
 	<div id = "container" class="container">
 		<barre-navigation></barre-navigation>
 	
-		<page-admin ng-show="header.isOnglet('Admin')"></page-admin>
+		<page-admin ng-show="moduleCtrl.isOnglet('Administration')"></page-admin>
 		
 	
 	

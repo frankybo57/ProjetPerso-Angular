@@ -6,8 +6,8 @@
 		return{
 			restrict:'E',
 			templateUrl:'admin/page-admin.html',
-			controller:'ModuleController',
-			controllerAs:'moduleCtrl'
+//			controller:'ModuleController',
+//			controllerAs:'moduleCtrl'
 		};
 	});
 	
