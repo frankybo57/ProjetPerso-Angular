@@ -36,7 +36,7 @@
 				"identifiant" : 2,
 				"Label" : "Flammiche des corons",
 				"typePlat" : 16,
-				"Difficulté" : 1,
+				"Difficulté" : 2,
 				"Temps de préparation" : "20 min",
 				"Temps de cuisson" : "35 min",
 				"Nombre de couverts" : 8,

@@ -1,8 +1,50 @@
 <meta charset="UTF-8">
 	<div class="col-sm-2">
 		<ul class="nav nav-pills nav-stacked">
-			<li ng-repeat="typePlat in recettes.Ctrl.typePlats" class="nav-link" id={{typePlat.ancre}}>
-				<a href=#ancre+typePlat.ancre>typePlat.label</a>
+			<li ng-repeat="typePlat in recetteCtrl.typePlats" class="nav-link" id={{typePlat.ancre}}>
+				<a href=#ancre+typePlat.ancre>{{typePlat.label}}</a>
 			</li>
 		</ul>
 	</div>
+	<div class="panel panel-default col-sm-10">
+		<div class="panel-heading">
+			Liste des recettes
+		</div>
+		<table class="table table-striped" id="listeRecettes">
+			<thead>
+				<tr>
+					<td ng-repeat="champRecette in recetteCtrl.champsRecette" ng-if="champRecette.id > 7">
+						<label>{{champRecette.nom}}</label>
+					</td>
+					<td>
+						<label>Opérations</label>
+					</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat-start="typePlat in recetteCtrl.typePlats" id="ancre+typePlat.ancre">
+					<td colspan="recetteCtrl.champRecette.length-1">
+						<label>{{typePlat.label}}</label>
+					</td>
+				</tr>
+				<tr ng-repeat-end ng-repeat="recette in recetteCtrl.recettes" ng-if="recette.typePlat == typePlat.id">
+					<td>
+						<label style="padding-left:20px;font-weight:normal">{{recette.Label}}</label>
+					</td>
+					<td>
+						<span ng-reapeat="n in range()recette.Difficulte" class="glyphicon glyphicon-apple"></span>
+					</td>
+					<td>
+						<label style="font-weight:normal">
+							{{recette["Temps de préparation"] + recette["Temps de cuisson"]}}
+						</label>
+					</td>
+					<td>
+						<span ng-reapeat="n in recette.{recetteCtrl.champsRecette.11}" class="glyphicon glyphicon-cutlery"></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	
