@@ -3,7 +3,7 @@
  */
 (function(){
 	
-	var app = angular.module('application', ['navigation','pageAdmin','modules','utilisateurs']);
+	var app = angular.module('application', ['navigation','pageAdmin','modules','utilisateurs','recettes']);
 		
 })();
 

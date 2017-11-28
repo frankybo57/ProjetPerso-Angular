@@ -2,36 +2,7 @@
  * 
  */
 
-var recettes = [
-	{
-		"identifiant" : 1,
-		"Label" : "Escargots de bourgogne",
-		"typePlat" : 2,
-		"Difficulté" : 1,
-		"Temps de préparation" : "50 min",
-		"Temps de cuisson" : "5 min",
-		"Nombre de couverts" : 6,
-		"Coût" : 3,
-		"Ingrédients" : "",
-		"Instructions" : "",
-		"Conseils" : "",
-		"Image" : ""
-	},
-	{
-		"identifiant" : 2,
-		"Label" : "Flammiche des corons",
-		"typePlat" : 16,
-		"Difficulté" : 1,
-		"Temps de préparation" : "20 min",
-		"Temps de cuisson" : "35 min",
-		"Nombre de couverts" : 8,
-		"Coût" : 1,
-		"Ingrédients" : "",
-		"Instructions" : "",
-		"Conseils" : "",
-		"Image" : ""
-	}
-]
+
 
 var initVue = function(){
 	// Fonction d'initialisation de la vue principale du module de gestion des recettes
