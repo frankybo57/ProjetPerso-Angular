@@ -24,3 +24,4 @@ Noyau/.idea/workspace.xml
 Admin/.settings/.jsdtscope
 Admin/.settings/org.eclipse.wst.common.project.facet.core.xml
 Admin/.settings/org.eclipse.wst.jsdt.ui.superType.name
+Noyau/src/main/resources/sgbd.properties
