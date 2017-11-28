@@ -6,8 +6,6 @@
 		return {
 			restrict:'E',
 			templateUrl:'header.html',
-//			controller:'ModuleController',
-//			controllerAs:'header'
 		};
 	});
 				
