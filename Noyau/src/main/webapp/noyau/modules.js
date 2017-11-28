@@ -83,11 +83,11 @@
 				url : 'api/modules/'+id
 			}).then(function success(response) {
 				var temp  = response.data;
-				if(temp.etat==='actif'){
-					temp.etat = 'inactif';
+				if(temp.etat==='Actif'){
+					temp.etat = 'Inactif';
 				}
 				else{
-					temp.etat = 'actif';
+					temp.etat = 'Actif';
 				}
 				$http({
 					method : 'PUT',

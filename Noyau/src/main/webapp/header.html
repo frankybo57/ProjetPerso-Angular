@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
 
 <ul class="nav nav-pills">
-	<li ng-repeat="module in moduleCtrl.modulesActifs" ng-class="{active:moduleCtrl.isOnglet(module.header)}">
+	<li ng-repeat="module in moduleCtrl.modules" ng-class="{active:moduleCtrl.isOnglet(module.header)}" ng-show="module.etat==='Actif'">
 		<a ng-click="moduleCtrl.setOnglet(module.header)">{{module.header}}</a>
 	</li>
 </ul>
