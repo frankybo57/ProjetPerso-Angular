@@ -1,5 +1,8 @@
 <meta charset="UTF-8">
 	<div class="col-sm-2">
 		<ul class="nav nav-pills nav-stacked">
+			<li ng-repeat="typePlat in recettes.Ctrl.typePlats" class="nav-link" id={{typePlat.ancre}}>
+				<a href=#ancre+typePlat.ancre>typePlat.label</a>
+			</li>
 		</ul>
 	</div>
