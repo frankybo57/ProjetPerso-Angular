@@ -28,9 +28,6 @@ public class ModuleController {
 	@GetMapping("/modules-actifs")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<List<Module>> findAllModulesActifs() {
-		for(Module module : modRepo.findAllByEtat(Etat.Actif)) {
-			System.out.println(module.toString());
-		}
 		return new ResponseEntity<List<Module>>(modRepo.findAllByEtat(Etat.Actif), HttpStatus.OK);
 	}
 	
