@@ -1,8 +1,8 @@
-package repository;
+package modulerecettes.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.TypePlat;
+import modulerecettes.model.TypePlat;
 
 public interface TypePlatRepository extends JpaRepository<TypePlat, Short> {
 

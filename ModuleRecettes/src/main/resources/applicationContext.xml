@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
@@ -13,8 +13,10 @@
 	<!-- Activation des annotations standards (inutile si présence de <context:component-scan/> -->
 	<context:annotation-config/>
 	
+	<jpa:repositories base-package="modulerecettes.repositories"/>
+	
 	<!-- Activation annotations et scan des classes du package -->
-	<context:component-scan base-package="noyau.repositories"/>
+	<context:component-scan base-package="modulerecettes.repositories"/>
 
 	<context:property-placeholder location="classpath:sgbd.properties"/>
 
@@ -32,7 +34,7 @@
     <bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="noyau.model" />
+		<property name="packagesToScan" value="modulerecettes.model" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="databasePlatform" value="${hb.dialect}" />

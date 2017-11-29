@@ -1,4 +1,4 @@
-package model;
+package modulerecettes.model;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package repository;
+package modulerecettes.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.RecetteIngredient;
+import modulerecettes.model.RecetteIngredient;
 
 public interface RecetteIngredientRepository extends JpaRepository<RecetteIngredient, Long> {
 

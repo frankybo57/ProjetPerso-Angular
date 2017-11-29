@@ -1,4 +1,4 @@
-package model;
+package modulerecettes.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
