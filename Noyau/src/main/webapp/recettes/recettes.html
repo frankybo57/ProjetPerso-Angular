@@ -2,7 +2,7 @@
 	<div class="col-sm-2">
 		<ul class="nav nav-pills nav-stacked">
 			<li ng-repeat="typePlat in recetteCtrl.typePlats" class="nav-link" id={{typePlat.ancre}}>
-				<a href=#ancre+typePlat.ancre>{{typePlat.label}}</a>
+				<a ng-href=#ancre+typePlat.ancre>{{typePlat.label}}</a>
 			</li>
 		</ul>
 	</div>
@@ -32,15 +32,31 @@
 						<label style="padding-left:20px;font-weight:normal">{{recette.Label}}</label>
 					</td>
 					<td>
-						<span ng-reapeat="n in range()recette.Difficulte" class="glyphicon glyphicon-apple"></span>
+						<span ng-reapeat="n in Array.apply(recette.{recetteCtrl.champsRecette.9}).map(Number.call, Number)" class="glyphicon glyphicon-apple"></span>
 					</td>
 					<td>
 						<label style="font-weight:normal">
-							{{recette["Temps de préparation"] + recette["Temps de cuisson"]}}
+							{{recette["Temps de préparation"]}} + {{recette["Temps de cuisson"]}}
 						</label>
 					</td>
 					<td>
 						<span ng-reapeat="n in recette.{recetteCtrl.champsRecette.11}" class="glyphicon glyphicon-cutlery"></span>
+					</td>
+					<td>
+						<span ng-reapeat="n in recette.cout" class="glyphicon glyphicon-euro"></span>
+					</td>
+					<td>
+						<div clas="btn btn-group">
+							<button class="btn btn-success">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+							<button class="btn btn-info">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button>
+							<button class="btn btn-danger">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
+						</div>
 					</td>
 				</tr>
 			</tbody>
