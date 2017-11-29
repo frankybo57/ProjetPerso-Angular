@@ -14,6 +14,6 @@
 	<mvc:annotation-driven/>
 	
 	<!-- Scanne le package qui contient les controlleurs Spring -->
-	<context:component-scan base-package="noyau.api"/>
+	<context:component-scan base-package="noyau.api, modulerecettes.api"/>
 	
 </beans>
