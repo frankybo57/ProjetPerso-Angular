@@ -1,0 +1,50 @@
+<meta charset="UTF-8">
+
+<div class="panel panel-default col-sm-10">
+	<div class="panel-heading">Liste des recettes</div>
+	<table class="table table-striped" id="listeRecettes">
+		<thead>
+			<tr>
+				<td ng-repeat="champRecette in recetteCtrl.champsRecette"
+					ng-if="champRecette.id > 7"><label>{{champRecette.nom}}</label>
+				</td>
+				<td><label>Opérations</label></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat-start="typePlat in recetteCtrl.typePlats"
+				id="ancre+typePlat.ancre">
+				<td colspan="6"><label>{{typePlat.label}}</label></td>
+			</tr>
+			<tr ng-repeat-end ng-repeat="recette in recetteCtrl.recettes"
+				ng-if="recette.typePlat == typePlat.id">
+				<td><label style="padding-left: 20px; font-weight: normal">{{recette.Label}}</label>
+				</td>
+				<td><span
+					ng-reapeat="n in Array.apply(recette.{recetteCtrl.champsRecette.9}).map(Number.call, Number)"
+					class="glyphicon glyphicon-apple"></span></td>
+				<td><label style="font-weight: normal">
+						{{recette["Temps de préparation"]}} + {{recette["Temps de
+						cuisson"]}} </label></td>
+				<td><span
+					ng-reapeat="n in recette.{recetteCtrl.champsRecette.11}"
+					class="glyphicon glyphicon-cutlery"></span></td>
+				<td><span ng-reapeat="n in recette.cout"
+					class="glyphicon glyphicon-euro"></span></td>
+				<td>
+					<div clas="btn btn-group">
+						<button class="btn btn-success btn-sm">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+						<button class="btn btn-info btn-sm">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</button>
+						<button class="btn btn-danger btn-sm">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
