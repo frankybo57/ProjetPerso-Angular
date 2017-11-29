@@ -1,9 +1,9 @@
 <meta charset="UTF-8">
 
-<navigation-table-recettes></navigation-table-recettes>
-<!-- <navigation-edition-recette></navigation-edition-recette> -->
+<navigation-table-recettes ng-show="recetteCtrl.mode === 'table'"></navigation-table-recettes>
+<navigation-edition-recette ng-show="recetteCtrl.mode === 'edition'"></navigation-edition-recette>
 
-<table-recettes></table-recettes>
+<table-recettes ng-show="recetteCtrl.mode === 'table'"></table-recettes>
 
 
 

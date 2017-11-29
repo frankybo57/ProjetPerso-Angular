@@ -3,7 +3,7 @@
  */
 (function(){
 	
-	var rec = angular.module('recettes', ['navigationTableRecettes',]);
+	var rec = angular.module('recettes', ['navigationTableRecettes','tableRecettes']);
 	
 	rec.directive('pageRecettes',function(){
 		return {
@@ -16,6 +16,8 @@
 	
 	rec.controller('RecetteController', function($http){
 		var self = this;
+		
+		self.mode = "table";
 		
 		self.recettes = [
 			{

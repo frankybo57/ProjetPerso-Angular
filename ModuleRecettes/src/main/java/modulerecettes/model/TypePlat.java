@@ -1,9 +1,12 @@
 package modulerecettes.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
@@ -24,6 +27,9 @@ public class TypePlat {
 	
 	@Column(name="ancre")
 	private String ancre;
+	
+	@OneToMany(mappedBy="type_plat")
+	private List<Recette> listeRecettes;
 	
 	public TypePlat() {
 		super();
@@ -65,6 +71,14 @@ public class TypePlat {
 
 	public void setAncre(String ancre) {
 		this.ancre = ancre;
+	}
+
+	public List<Recette> getListeRecettes() {
+		return listeRecettes;
+	}
+
+	public void setListeRecettes(List<Recette> listeRecettes) {
+		this.listeRecettes = listeRecettes;
 	}
 	
 	
