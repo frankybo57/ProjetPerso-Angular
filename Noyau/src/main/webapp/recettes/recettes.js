@@ -3,7 +3,7 @@
  */
 (function(){
 	
-	var rec = angular.module('recettes', []);
+	var rec = angular.module('recettes', ['navigationTableRecettes',]);
 	
 	rec.directive('pageRecettes',function(){
 		return {

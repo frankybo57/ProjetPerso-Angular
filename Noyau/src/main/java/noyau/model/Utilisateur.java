@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Version;
 
 /**
  * @author Francois 2
@@ -15,6 +16,8 @@ import javax.persistence.SequenceGenerator;
 public class Utilisateur {
 	@Id @GeneratedValue(generator = "sequenceUtilisateur")
 	private Integer id;
+	@Version
+	private int version;
 	@Column(name="login")
 	private String login;
 	@Column(name="password")
@@ -42,6 +45,14 @@ public class Utilisateur {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	/**
