@@ -13,7 +13,7 @@ public class TypePlat {
 
 	@Id @GeneratedValue(generator="sequenceTypePlat")
 	@Column(name="id)")
-	private Integer id;
+	private Short id;
 	
 	@Version
 	@Column(name="version")
@@ -35,11 +35,11 @@ public class TypePlat {
 		this.ancre = ancre;
 	}
 
-	public Integer getId() {
+	public Short getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Short id) {
 		this.id = id;
 	}
 
