@@ -15,7 +15,7 @@ import javax.persistence.Version;
 public class TypePlat {
 
 	@Id @GeneratedValue(generator="sequenceTypePlat")
-	@Column(name="id)")
+	@Column(name="id")
 	private Short id;
 	
 	@Version
@@ -28,7 +28,7 @@ public class TypePlat {
 	@Column(name="ancre")
 	private String ancre;
 	
-	@OneToMany(mappedBy="type_plat")
+	@OneToMany(mappedBy="typeplat")
 	private List<Recette> listeRecettes;
 	
 	public TypePlat() {
