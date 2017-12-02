@@ -1,4 +1,4 @@
-package modulerecettes.generation;
+package noyau.generation;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
