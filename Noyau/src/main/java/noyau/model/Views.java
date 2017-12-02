@@ -5,11 +5,11 @@ public class Views {
 		
 	}
 	
-	public class Module{
+	public class Module extends Common{
 		
 	}
 	
-	public class Utilisateur{
+	public class Utilisateur extends Common{
 		
 	}
 }

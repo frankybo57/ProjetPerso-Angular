@@ -2,10 +2,16 @@ package noyau.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 /**
  * @author Francois 2
@@ -13,16 +19,25 @@ import javax.persistence.Version;
  */
 @Entity
 @SequenceGenerator(name = "sequenceUtilisateur",sequenceName="sequenceUtilisateur")
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "login"))
 public class Utilisateur {
 	@Id @GeneratedValue(generator = "sequenceUtilisateur")
+	@Column(name="id")
+	@JsonView(Views.Common.class)
 	private Integer id;
 	@Version
+	@Column(name="version")
+	@JsonView(Views.Common.class)
 	private int version;
 	@Column(name="login")
+	@JsonView(Views.Utilisateur.class)
 	private String login;
 	@Column(name="password")
+	@JsonView(Views.Utilisateur.class)
 	private String password;
 	@Column(name="droits")
+	@JsonView(Views.Utilisateur.class)
+	@Enumerated(EnumType.STRING)
 	private Droit droits;
 	
 	public Utilisateur(){
@@ -31,6 +46,13 @@ public class Utilisateur {
 	
 	public Utilisateur(String login, String password){
 		
+	}
+
+	public Utilisateur(String login, String password, Droit droits) {
+		super();
+		this.login = login;
+		this.password = password;
+		this.droits = droits;
 	}
 
 	/**

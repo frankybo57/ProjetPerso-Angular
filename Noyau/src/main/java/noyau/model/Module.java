@@ -19,16 +19,16 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Table(name = "modules")
 @SequenceGenerator(name = "sequenceModule", sequenceName = "SequenceModule")
 public class Module {
-	@JsonView(Views.Module.class)
+	@JsonView(Views.Common.class)
 	@Id @GeneratedValue(generator = "sequenceModule")
 	private Integer id;
-	@JsonView(Views.Module.class)
+	@JsonView(Views.Common.class)
 	@Version
 	private int version;
-	@JsonView(Views.Module.class)
+	@JsonView(Views.Common.class)
 	@Column(name = "nom")
 	private String nom;
-	@JsonView(Views.Module.class)
+	@JsonView(Views.Common.class)
 	@Column(name="header")
 	private String header;
 	@JsonView(Views.Module.class)

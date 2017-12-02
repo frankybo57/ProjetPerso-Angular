@@ -5,6 +5,16 @@ package noyau.model;
  * @version 0.0.1-Snapshot
  */
 public enum Droit {
-	Administrateur,
-	Utilisateur
+	Administrateur("Droit.Administrateur"),
+	Utilisateur("Droit.Utilisateur");
+	
+	private final String label;
+
+	private Droit(String label) {
+		this.label = label;
+	}
+
+	public String getLabel() {
+		return label;
+	}
 }

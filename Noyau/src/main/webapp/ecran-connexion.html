@@ -1,0 +1,56 @@
+<meta charset="UTF-8">
+
+<div class="panel panel-default">
+	<div class="panel panel-heading">
+		<label>Ecran de connexion</label>
+	</div>
+	<div class="panel panel-body">
+		<div ng-show="sessionCtrl.utilisateurNonTrouve">
+			<label style="color:red">Nom d'utilisateur / Mot de passe incorrects</label>
+		</div>
+		<form name="sessionCtrl.utilisateurForm"
+			ng-submit="sessionCtrl.utilisateurForm.$valid && sessionCtrl.connexion()" novalidate>
+			<div class="form-group">
+				<label for="login">Nom d'utilisateur</label>
+				<input type="text" class="form-control" style="width: 400px"
+					ng-model="sessionCtrl.utilisateurTemporaire.login" ng-readOnly="sessionCtrl.creation" required />
+			</div>
+			<div class="form-group">
+				<label for="password">Mot de passe</label>
+				<input type="password" class="form-control" style="width: 400px"
+					ng-model="sessionCtrl.utilisateurTemporaire.password" ng-readOnly="sessionCtrl.creation" required />
+			</div>
+			<button class="btn btn-success" type="submit">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+			<button class="btn btn-warning" ng-click="sessionCtrl.effacer()">
+				<span class="glyphicon glyphicon-erase"></span>
+			</button>
+		</form>
+		<button class="btn btn-info" ng-click="sessionCtrl.creerUtilisateur()">
+			<span>Créer un compte utilisateur</span>
+		</button>
+		<button class="btn btn-danger" ng-click="sessionCtrl.pasDBol()">
+			<span>Données de connexion oubliées</span>
+		</button>
+		<form name="sessionCtrl.utilisateurCreationForm" ng-show="sessionCtrl.creation"
+			ng-submit="sessionCtrl.utilisateurCreationForm.$valid && sessionCtrl.saveUtilisateur()" novalidate>
+			<div class="form-group">
+				<label for="login">Nom d'utilisateur</label>
+				<input type="text" class="form-control" style="width: 400px"
+					ng-model="sessionCtrl.utilisateurTemporaire.login" required />
+			</div>
+			<div class="form-group">
+				<label for="password">Mot de passe</label>
+				<input type="password" class="form-control" style="width: 400px"
+					ng-model="sessionCtrl.utilisateurTemporaire.password" required />
+			</div>
+			<button class="btn btn-success" type="submit">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+			<button class="btn btn-warning" ng-click="sessionCtrl.retourConnexion()">
+				<span class="glyphicon glyphicon-arrow-left"></span>
+			</button>
+		</form>
+	</div>
+</div>

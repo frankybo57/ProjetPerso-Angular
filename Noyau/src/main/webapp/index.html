@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="application">
+<html ng-app="application" ng-controller="SessionController as sessionCtrl">
 <head>
 <meta charset="UTF-8">
 <title>Noyau</title>
@@ -13,6 +13,7 @@
 <script type="text/javascript" src="noyau/modules.js"></script>
 <script type="text/javascript" src="noyau/utilisateurs.js"></script>
 <script type="text/javascript" src="js/navigation.js"></script>
+<script type="text/javascript" src="js/session.js"></script>
 
 <script type="text/javascript" src="recettes/recettes.js"></script>
 <script type="text/javascript" src="recettes/navigationTableRecettes.js"></script>
@@ -28,11 +29,14 @@
 <body ng-controller="ModuleController as moduleCtrl">
 
 	<div id = "container" class="container">
-		<barre-navigation></barre-navigation>
 	
-		<page-admin ng-show="moduleCtrl.isOnglet('Administration')"></page-admin>
+		<ecran-connexion ng-hide="sessionCtrl.droits"></ecran-connexion>
+	
+		<barre-navigation ng-show="sessionCtrl.droits"></barre-navigation>
+	
+		<page-admin ng-show="sessionCtrl.droits && moduleCtrl.isOnglet('Administration')"></page-admin>
 		
-		<page-recettes ng-show="moduleCtrl.isOnglet('Recettes')"></page-recettes>
+		<page-recettes ng-show="sessionCtrl.droits && moduleCtrl.isOnglet('Recettes')"></page-recettes>
 		
 	
 	
