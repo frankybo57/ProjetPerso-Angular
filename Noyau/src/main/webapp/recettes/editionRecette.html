@@ -1,0 +1,12 @@
+<meta charset="UTF-8">
+
+
+<form name="recetteCtrl.recetteForm" ng-submit="recetteCtrl.recetteForm.$valid && recetteCtrl.save()" novalidate>
+	<input type="hidden" ng-model="recetteCtrl.recetteTemp.id" /> 
+	<input type="hidden" ng-model="recetteCtrl.recetteTemp.version" />
+	<edition-recette-introduction ng-show="recetteCtrl.isOngletEdition('introduction')"></edition-recette-introduction>
+	<edition-recette-intitule ng-show="recetteCtrl.isOngletEdition('intitule')"></edition-recette-intitule>
+	<edition-recette-type-plat ng-show="recetteCtrl.isOngletEdition('typePlat')"></edition-recette-type-plat>
+</form>
+
+<vue-recette></vue-recette>

@@ -3,7 +3,7 @@
  */
 (function(){
 	
-	var rec = angular.module('recettes', ['navigationTableRecettes','tableRecettes','recettesScroll']);
+	var rec = angular.module('recettes', ['navigationTableRecettes','tableRecettes','recettesScroll','navigationEditionRecette','editionRecette']);
 	
 	rec.directive('pageRecettes',function(){
 		return {
@@ -14,24 +14,45 @@
 		};
 	});
 	
+	rec.directive('vueRecette',function(){
+		return {
+			restrict:'E',
+			templateUrl:'recettes/vueRecette.html'
+		};
+	});
+	
 	rec.controller('RecetteController', function($http){
 		var self = this;
 		
 		self.mode = "table";
 		self.typesPlats = [];
 		
+		self.editionTab = null;
+		
+		self.recetteTemp = {};
+		
 		self.listeTypesPlats = function() {
-			console.log("listeTypesPlats()");
 			$http({
 				method : 'GET',
 				url : 'api/typesPlats/'
 			}).then(function success(response) {
-				console.log(response.data);
 				self.typesPlats = response.data; 
 			}, function error(response) {
 
 			});
 		};
+		
+		self.setOngletEdition = function(tab){
+			self.editionTab = tab;
+		}
+		
+		self.isOngletEdition = function(tab){
+			return self.editionTab === tab;
+		}
+		
+		self.addRecette = function(){
+			self.recetteTemp = {};
+		}
 		
 		self.recettes = [
 			{

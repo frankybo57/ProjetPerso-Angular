@@ -1,0 +1,17 @@
+<meta charset="UTF-8">
+
+<div class="panel panel-default col-sm-10">
+	<div class="panel-heading">
+		<h1>Edition de la recette</h1>
+		<h2>Type de plat</h2>
+	</div>
+	<div class="panel-body">
+		<div class="form-group">
+			<label for="intitule">Type du plat</label>
+			<select class="form-control"ng-options="typePlat as typePlat.label for typePlat in recetteCtrl.typesPlats track by typePlat.id" style="width: 400px" ng-model="recetteCtrl.recetteTemp.typePlat" required></select>
+		</div>
+		<a class="btn btn-info pull-right" ng-click="recetteCtrl.setOngletEdition('typePlat')">
+			Suivant
+		</a>
+	</div>
+</div>	
