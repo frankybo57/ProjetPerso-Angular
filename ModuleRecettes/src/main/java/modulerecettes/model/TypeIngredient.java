@@ -15,11 +15,11 @@ import javax.persistence.Version;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
-@SequenceGenerator(name="sequenceTypePlat",sequenceName="SequenceTypePlat")
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "label"),@UniqueConstraint(columnNames = "ancre")})
-public class TypePlat {
+@SequenceGenerator(name="sequenceTypeIngredient",sequenceName="SequenceTypeIngredient")
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "label"))
+public class TypeIngredient {
 
-	@Id @GeneratedValue(generator="sequenceTypePlat")
+	@Id @GeneratedValue(generator="sequenceTypeIngredient")
 	@Column(name="id")
 	@JsonView(Views.Common.class)
 	private Short id;
@@ -33,22 +33,17 @@ public class TypePlat {
 	@JsonView(Views.Common.class)
 	private String label;
 	
-	@Column(name="ancre")
-	@JsonView(Views.Common.class)
-	private String ancre;
+	@OneToMany(mappedBy="typeIngredient")
+	@JsonView(Views.TypeIngredient.class)
+	private List<Ingredient> listeIngredients;
 	
-	@OneToMany(mappedBy="typeplat")
-	@JsonView(Views.TypePlat.class)
-	private List<Recette> listeRecettes;
-	
-	public TypePlat() {
+	public TypeIngredient() {
 		super();
 	}
 
-	public TypePlat(String label, String ancre) {
+	public TypeIngredient(String label) {
 		super();
 		this.label = label;
-		this.ancre = ancre;
 	}
 
 	public Short getId() {
@@ -75,20 +70,12 @@ public class TypePlat {
 		this.label = label;
 	}
 
-	public String getAncre() {
-		return ancre;
+	public List<Ingredient> getListeIngredients() {
+		return listeIngredients;
 	}
 
-	public void setAncre(String ancre) {
-		this.ancre = ancre;
-	}
-
-	public List<Recette> getListeRecettes() {
-		return listeRecettes;
-	}
-
-	public void setListeRecettes(List<Recette> listeRecettes) {
-		this.listeRecettes = listeRecettes;
+	public void setListeIngredients(List<Ingredient> listeIngredients) {
+		this.listeIngredients = listeIngredients;
 	}
 	
 	

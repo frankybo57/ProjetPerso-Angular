@@ -13,7 +13,7 @@ import javax.persistence.Version;
 
 @Entity
 @SequenceGenerator(name="sequenceRecetteIngredient",sequenceName="SequenceRecetteIngredient")
-@Table(name = "module_classroom", uniqueConstraints = @UniqueConstraint(columnNames = { "recette_id", "ingredient_id"}))
+@Table(name = "recette_ingredient", uniqueConstraints = @UniqueConstraint(columnNames = { "recette_id", "ingredient_id"}))
 public class RecetteIngredient {
 	
 	@Id @GeneratedValue(generator="sequenceRecetteIngredient")

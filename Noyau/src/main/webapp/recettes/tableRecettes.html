@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
 
 <div class="panel panel-default col-sm-10">
-	<div class="panel-heading">Liste des recettes</div>
+	<div class="panel-heading"><h1>Liste des recettes</h1></div>
 	<table class="table table-striped" id="listeRecettes">
 		<thead>
 			<tr>
@@ -12,8 +12,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat-start="typePlat in recetteCtrl.typePlats"
-				id="ancre+typePlat.ancre">
+			<tr ng-repeat-start="typePlat in recetteCtrl.typesPlats"
+				id="anchor{{typePlat.ancre}}">
 				<td colspan="6"><label>{{typePlat.label}}</label></td>
 			</tr>
 			<tr ng-repeat-end ng-repeat="recette in recetteCtrl.recettes"
