@@ -7,10 +7,35 @@
 	</div>
 	<div class="panel-body">
 		<div>
-			<label class="text-left">Difficulté</label>
-			<label class="text-center">Couverts</label>
-			<label class="text-right">Coût</label>
+			<div class="col-sm-4">
+				<label>Difficulté : </label>
+				<span class="glyphicon glyphicon-apple"
+				ng-repeat="n in recetteCtrl.creerCollection(recetteCtrl.recetteTemp.difficulte)"></span>
+			</div>
+			<div class="col-sm-4">
+				<label>Nombre de couverts : {{recetteCtrl.recetteTemp.nombreCouverts}}</label>
+				<span ng-if="recetteCtrl.recetteTemp.nombreCouverts > 0" class="glyphicon glyphicon-cutlery"></span>
+			</div>
+			<div class="col-sm-3 pull-right">
+				<label>Coût :</label>
+				<span class="glyphicon glyphicon-euro"
+				ng-repeat="n in recetteCtrl.creerCollection(recetteCtrl.recetteTemp.cout)"></span>
+			</div>
 		</div>
-		
+		<div>
+			<div class="col-sm-5">
+				<label>Temps de préparation : {{recetteCtrl.recetteTemp.tempsPreparation}}</label>
+			</div>
+			<div class="col-sm-5">
+				<label>Temps de cuisson : {{recetteCtrl.recetteTemp.tempsCuisson}}</label>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<label>Ingrédients :</label>
+			<ul>
+				<li></li>
+			</ul>
+		</div>
+		<div class="col-sm-4 border">Image</div>
 	</div>
 </div>	

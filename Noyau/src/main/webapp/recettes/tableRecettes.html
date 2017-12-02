@@ -5,8 +5,20 @@
 	<table class="table table-striped" id="listeRecettes">
 		<thead>
 			<tr>
-				<td ng-repeat="champRecette in recetteCtrl.champsRecette"
-					ng-if="champRecette.id > 7"><label>{{champRecette.nom}}</label>
+				<td>
+					<label>Label</label>
+				</td>
+				<td>
+					<label>Difficulté</label>
+				</td>
+				<td>
+					<label>Temps de préparation</label>
+				</td>
+				<td>
+					<label>Nombre de couverts</label>
+				</td>
+				<td>
+					<label>Coût</label>
 				</td>
 				<td><label>Opérations</label></td>
 			</tr>
@@ -18,18 +30,15 @@
 			</tr>
 			<tr ng-repeat-end ng-repeat="recette in recetteCtrl.recettes"
 				ng-if="recette.typePlat == typePlat.id">
-				<td><label style="padding-left: 20px; font-weight: normal">{{recette.Label}}</label>
+				<td><label style="padding-left: 20px; font-weight: normal">{{recette.label}}</label>
 				</td>
-				<td><span
-					ng-reapeat="n in Array.apply(recette.{recetteCtrl.champsRecette.9}).map(Number.call, Number)"
+				<td><span ng-repeat="n in recetteCtrl.creerCollection(recette.difficulte)"
 					class="glyphicon glyphicon-apple"></span></td>
 				<td><label style="font-weight: normal">
-						{{recette["Temps de préparation"]}} + {{recette["Temps de
-						cuisson"]}} </label></td>
-				<td><span
-					ng-reapeat="n in recette.{recetteCtrl.champsRecette.11}"
-					class="glyphicon glyphicon-cutlery"></span></td>
-				<td><span ng-reapeat="n in recette.cout"
+						{{recette.tempsPreparation}} + {{recette.tempsCuisson}} </label></td>
+				<td>{{recette.nombreCouverts}}<span ng-if="recette.nombreCouverts > 0" 
+				class="glyphicon glyphicon-cutlery"></span></td>
+				<td><span ng-repeat="n in recetteCtrl.creerCollection(recette.cout)"
 					class="glyphicon glyphicon-euro"></span></td>
 				<td>
 					<div clas="btn btn-group">

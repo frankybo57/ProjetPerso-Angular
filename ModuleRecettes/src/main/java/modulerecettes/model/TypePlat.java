@@ -37,7 +37,7 @@ public class TypePlat {
 	@JsonView(Views.Common.class)
 	private String ancre;
 	
-	@OneToMany(mappedBy="typeplat")
+	@OneToMany(mappedBy="typePlat")
 	@JsonView(Views.TypePlat.class)
 	private List<Recette> listeRecettes;
 	

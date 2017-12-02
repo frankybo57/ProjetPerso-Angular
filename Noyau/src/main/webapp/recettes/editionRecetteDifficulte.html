@@ -1,0 +1,17 @@
+<meta charset="UTF-8">
+
+<div class="panel panel-default col-sm-10">
+	<div class="panel-heading">
+		<h1>Edition de la recette</h1>
+		<h2>Difficulté de réalisation</h2>
+	</div>
+	<div class="panel-body">
+		<div class="form-group">
+			<label for="difficulte">Difficulté</label>
+			<select class="form-control" ng-options="n as n for n in [1,2,3,4,5] track by n" style="width: 400px" ng-model="recetteCtrl.recetteTemp.difficulte" required></select>
+		</div>
+		<a class="btn btn-info pull-right" ng-click="recetteCtrl.setOngletEdition('nombreCouverts')">
+			Suivant
+		</a>
+	</div>
+</div>	

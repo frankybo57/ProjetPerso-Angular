@@ -56,32 +56,36 @@
 		
 		self.recettes = [
 			{
-				"identifiant" : 1,
-				"Label" : "Escargots de bourgogne",
+				"id" : 1,
+				"version" : 0,
+				"label" : "Escargots de bourgogne",
 				"typePlat" : 2,
-				"Difficulté" : 1,
-				"Temps de préparation" : "50 min",
-				"Temps de cuisson" : "5 min",
-				"Nombre de couverts" : 6,
-				"Coût" : 3,
-				"Ingrédients" : "",
-				"Instructions" : "",
-				"Conseils" : "",
-				"Image" : ""
+				"difficulte" : 1,
+				"tempsPreparation" : "50 min",
+				"tempsCuisson" : "5 min",
+				"nombreCouverts" : 6,
+				"cout" : 3,
+				"listeRecetteIngredients" : [],
+				"instructions" : "",
+				"conseils" : "",
+				"image" : "",
+				"video" : ""
 			},
 			{
-				"identifiant" : 2,
-				"Label" : "Flammiche des corons",
+				"id" : 2,
+				"version" : 0,
+				"label" : "Flammiche des corons",
 				"typePlat" : 16,
-				"Difficulté" : 2,
-				"Temps de préparation" : "20 min",
-				"Temps de cuisson" : "35 min",
-				"Nombre de couverts" : 8,
-				"Coût" : 1,
-				"Ingrédients" : "",
-				"Instructions" : "",
-				"Conseils" : "",
-				"Image" : ""
+				"difficulte" : 1,
+				"tempsPreparation" : "20 min",
+				"tempsCuisson" : "35 min",
+				"nombreCouverts" : 8,
+				"cout" : 1,
+				"listeRecetteIngredients" : "",
+				"instructions" : "",
+				"conseils" : "",
+				"image" : "",
+				"video" : ""
 			}
 		];
 		
@@ -135,6 +139,14 @@
 				"nom" : "Coût"
 			}
 		];
+		
+		self.creerCollection = function(entier){
+			var collection = [];
+			for(var i=1;i<=entier;i++){
+				collection.push(i);
+			}
+			return collection;
+		}
 		
 		self.listeTypesPlats();
 	});

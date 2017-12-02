@@ -28,7 +28,7 @@ public class Recette {
 	
 	@ManyToOne
 	@JoinColumn(name="type_plat_id")
-	private TypePlat typeplat;
+	private TypePlat typePlat;
 	
 	@Column(name="difficulte")
 	private Short difficulte;
@@ -89,11 +89,11 @@ public class Recette {
 	}
 
 	public TypePlat getTypePlat() {
-		return typeplat;
+		return typePlat;
 	}
 
 	public void setTypePlat(TypePlat typePlat) {
-		this.typeplat = typePlat;
+		this.typePlat = typePlat;
 	}
 
 	public Short getDifficulte() {

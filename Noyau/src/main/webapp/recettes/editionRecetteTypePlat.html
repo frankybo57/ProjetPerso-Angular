@@ -7,10 +7,10 @@
 	</div>
 	<div class="panel-body">
 		<div class="form-group">
-			<label for="intitule">Type du plat</label>
+			<label for="typePlat">Type du plat</label>
 			<select class="form-control"ng-options="typePlat as typePlat.label for typePlat in recetteCtrl.typesPlats track by typePlat.id" style="width: 400px" ng-model="recetteCtrl.recetteTemp.typePlat" required></select>
 		</div>
-		<a class="btn btn-info pull-right" ng-click="recetteCtrl.setOngletEdition('typePlat')">
+		<a class="btn btn-info pull-right" ng-click="recetteCtrl.setOngletEdition('difficulte')">
 			Suivant
 		</a>
 	</div>
