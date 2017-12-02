@@ -13,7 +13,7 @@ import modulerecettes.repository.TypePlatRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
-public class Generation {
+public class GenerationRecettes {
 	@Autowired
 	private RecetteRepository recRepo;
 	
