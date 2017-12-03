@@ -11,7 +11,7 @@ import modulerecettes.model.Recette;
 import modulerecettes.model.TypeIngredient;
 
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
-	@Query("select distinct i from Ingredient left join fetch i.listeRecetteIngredient r where r.recette = :recette")
+	@Query("select distinct i from Ingredient i left join fetch i.listeRecetteIngredient r where r.recette = :recette")
 	public List<Ingredient> findAllIngredientByRecette(@Param("recette") Recette recette);
 	
 	public List<Ingredient> findAllIngredientByTypeIngredient(TypeIngredient ti);

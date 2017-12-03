@@ -27,9 +27,6 @@ public class Ingredient {
 	@Column(name="label")
 	private String label;
 	
-	@Column(name="quantite")
-	private String quantite;
-	
 	@OneToMany(mappedBy="ingredient")
 	private List<RecetteIngredient> listeRecetteIngredient;
 	
@@ -44,13 +41,11 @@ public class Ingredient {
 	public Ingredient(String label, String quantite) {
 		super();
 		this.label = label;
-		this.quantite = quantite;
 	}
 
 	public Ingredient(String label, String quantite, TypeIngredient typeIngredient) {
 		super();
 		this.label = label;
-		this.quantite = quantite;
 		this.typeIngredient = typeIngredient;
 	}
 
@@ -76,14 +71,6 @@ public class Ingredient {
 
 	public void setLabel(String label) {
 		this.label = label;
-	}
-
-	public String getQuantite() {
-		return quantite;
-	}
-
-	public void setQuantite(String quantite) {
-		this.quantite = quantite;
 	}
 
 	public List<RecetteIngredient> getListeRecetteIngredient() {

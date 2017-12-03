@@ -28,14 +28,15 @@
 				id="anchor{{typePlat.ancre}}">
 				<td colspan="6"><label>{{typePlat.label}}</label></td>
 			</tr>
-			<tr ng-repeat-end ng-repeat="recette in recetteCtrl.recettes"
-				ng-if="recette.typePlat == typePlat.id">
-				<td><label style="padding-left: 20px; font-weight: normal">{{recette.label}}</label>
+			<tr ng-repeat-end ng-repeat="recette in recetteCtrl.listeRecettesComplete"
+				ng-if="recette.typePlat.id == typePlat.id">
+				<td><label style="padding-left: 20px; font-weight: normal">{{console.log(recette)}}{{recette.label}}</label>
 				</td>
 				<td><span ng-repeat="n in recetteCtrl.creerCollection(recette.difficulte)"
 					class="glyphicon glyphicon-apple"></span></td>
-				<td><label style="font-weight: normal">
-						{{recette.tempsPreparation}} + {{recette.tempsCuisson}} </label></td>
+				<td>
+					<label style="font-weight: normal">{{recetteCtrl.calculTempsTotal(recette)}} </label>
+				</td>
 				<td>{{recette.nombreCouverts}}<span ng-if="recette.nombreCouverts > 0" 
 				class="glyphicon glyphicon-cutlery"></span></td>
 				<td><span ng-repeat="n in recetteCtrl.creerCollection(recette.cout)"

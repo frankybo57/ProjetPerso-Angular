@@ -12,52 +12,72 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @SequenceGenerator(name="sequenceRecette",sequenceName="SequenceRecette")
 public class Recette {
 	@Id @GeneratedValue(generator="sequenceRecette")
 	@Column(name="id")
+	@JsonView(Views.Common.class)
 	private Integer id;
 	
 	@Version
 	@Column(name="version")
+	@JsonView(Views.Common.class)
 	private int version;
 	
 	@Column(name="label")
+	@JsonView(Views.Common.class)
 	private String label;
 	
 	@ManyToOne
 	@JoinColumn(name="type_plat_id")
+	@JsonView(Views.Common.class)
 	private TypePlat typePlat;
 	
 	@Column(name="difficulte")
+	@JsonView(Views.Common.class)
 	private Short difficulte;
 	
 	@Column(name="temps_preparation")
-	private Integer tempsPreparation;
+	@JsonView(Views.Common.class)
+	private String tempsPreparation;
+	
+	@Column(name="temps_repos")
+	@JsonView(Views.Common.class)
+	private String tempsRepos;
 	
 	@Column(name="temps_cuisson")
-	private Integer tempsCuisson;
+	@JsonView(Views.Common.class)
+	private String tempsCuisson;
 	
 	@Column(name="nombre_couverts")
+	@JsonView(Views.Common.class)
 	private Short nombreCouverts;
 	
 	@Column(name="cout")
+	@JsonView(Views.Common.class)
 	private Short cout;
 	
 	@OneToMany(mappedBy="recette")
+	@JsonView(Views.Recette.class)
 	private List<RecetteIngredient> listeRecetteIngredient;
 	
 	@Column(name="instructions")
+	@JsonView(Views.Recette.class)
 	private String instructions;
 	
 	@Column(name="conseils")
+	@JsonView(Views.Recette.class)
 	private String conseils;
 	
 	@Column(name="image")
+	@JsonView(Views.Recette.class)
 	private byte[] image;
 	
 	@Column(name="video")
+	@JsonView(Views.Recette.class)
 	private byte[] video;
 	
 	public Recette(){
@@ -104,19 +124,27 @@ public class Recette {
 		this.difficulte = difficulte;
 	}
 
-	public Integer getTempsPreparation() {
+	public String getTempsPreparation() {
 		return tempsPreparation;
 	}
 
-	public void setTempsPreparation(Integer tempsPreparation) {
+	public void setTempsPreparation(String tempsPreparation) {
 		this.tempsPreparation = tempsPreparation;
 	}
 
-	public Integer getTempsCuisson() {
+	public String getTempsRepos() {
+		return tempsRepos;
+	}
+
+	public void setTempsRepos(String tempsRepos) {
+		this.tempsRepos = tempsRepos;
+	}
+
+	public String getTempsCuisson() {
 		return tempsCuisson;
 	}
 
-	public void setTempsCuisson(Integer tempsCuisson) {
+	public void setTempsCuisson(String tempsCuisson) {
 		this.tempsCuisson = tempsCuisson;
 	}
 
