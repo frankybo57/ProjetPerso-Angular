@@ -44,6 +44,13 @@
 		};
 	});
 	
+	edi.directive('editionRecetteTempsRepos',function(){
+		return{
+			restrict:'E',
+			templateUrl:'recettes/editionRecetteTempsRepos.html'
+		};
+	});
+	
 	edi.directive('editionRecetteTempsCuisson',function(){
 		return{
 			restrict:'E',
