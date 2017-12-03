@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<meta charset="UTF-8">
 
-</body>
-</html>
+<div class="panel panel-default col-sm-10">
+	<div class="panel-heading">
+		<h1>Edition de la recette</h1>
+		<h2>Vidéo</h2>
+	</div>
+	<div class="panel-body">
+		<div class="form-group">
+			<label for="tempsCuisson">Vidéo de la recette</label>
+			<input type="text" class="form-control" style="width: 400px" ng-model="recetteCtrl.recetteTemp.video" required/>
+		</div>
+		<a class="btn btn-info pull-right" ng-click="recetteCtrl.setOngletEdition('ingredients')">
+			Suivant
+		</a>
+	</div>
+</div>	

@@ -6,6 +6,10 @@ public class Views {
 		
 	}
 	
+	public class Recette extends Common {
+
+	}
+	
 	public static class TypePlat extends Common{
 		
 	}

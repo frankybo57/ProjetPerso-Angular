@@ -16,7 +16,8 @@
 		self.droits = null;
 		
 		self.utilisateur = {};
-		self.utilisateurTemporaire = null;
+		self.utilisateurTemporaireLogin = null;
+		self.utilisateurTemporaireCreation = null;
 		
 		self.utilisateurNonTrouve = false;
 		
@@ -26,7 +27,7 @@
 		self.creerUtilisateur = function(){
 			if(!self.creation){
 				self.creation = true;
-				self.utilisateurTemporaire = {};
+				self.utilisateurTemporaireCreation = {};
 				self.utilisateurCreationForm.$setPristine();
 			}
 			else{
@@ -38,11 +39,11 @@
 			$http({
 				method : 'POST',
 				url : 'api/utilisateur/code/',
-				data : self.utilisateurTemporaire
+				data : self.utilisateurTemporaireCreation
 			}).then(function success(response) {
 				self.utilisateur = response.data;
 				self.droits = self.utilisateur.droits;
-				self.utilisateurTemporaire = null;
+				self.utilisateurTemporaireCreation = null;
 				self.utilisateurNonTrouve = false;			
 			}, function error(response) {
 				self.utilisateurNonTrouve = true;
@@ -54,7 +55,7 @@
 		};
 		
 		self.effacer = function(){
-			self.utilisateurTemporaire = {};
+			self.utilisateurTemporaireLogin = {};
 			self.utilisateurForm.$setPristine();
 			self.utilisateurNonTrouve = false;
 		};
@@ -63,42 +64,42 @@
 			$http({
 				method : 'GET',
 				url : 'api/utilisateur/code/'
-					+ self.utilisateurTemporaire.login
+					+ self.utilisateurTemporaireLogin.login
 					+ ':'
-					+ self.utilisateurTemporaire.password
+					+ self.utilisateurTemporaireLogin.password
 			}).then(function success(response) {
 				self.utilisateur = response.data;
 				self.droits = self.utilisateur.droits;
 				self.utilisateurNonTrouve = false;
-				self.utilisateurTemporaire = null;
+				self.utilisateurTemporaireLogin = null;
 			}, function error(response) {
 				self.utilisateurNonTrouve = true;
 			});
 		};
 		
-		self.changerLogin = function(){
-			self.cgLogin = true;
-			self.cgMdp = false;
-			$http({
-				method : 'GET',
-				url : 'api/utilisateur_login/'+self.utilisateur.login
-			}).then(function success(response) {
-				self.utilisateurTemporaire = response.data; 
-			}, function error(response) {
-			});
-		};
-		
-		self.changerMdp = function(){
-			self.cgLogin = false;
-			self.cgMdp = true;
-			$http({
-				method : 'GET',
-				url : 'api/utilisateur_login/'+self.utilisateur.login
-			}).then(function success(response) {
-				self.utilisateurTemporaire = response.data; 
-			}, function error(response) {
-			});
-		};
+//		self.changerLogin = function(){
+//			self.cgLogin = true;
+//			self.cgMdp = false;
+//			$http({
+//				method : 'GET',
+//				url : 'api/utilisateur_login/'+self.utilisateur.login
+//			}).then(function success(response) {
+//				self.utilisateurTemporaire = response.data; 
+//			}, function error(response) {
+//			});
+//		};
+//		
+//		self.changerMdp = function(){
+//			self.cgLogin = false;
+//			self.cgMdp = true;
+//			$http({
+//				method : 'GET',
+//				url : 'api/utilisateur_login/'+self.utilisateur.login
+//			}).then(function success(response) {
+//				self.utilisateurTemporaire = response.data; 
+//			}, function error(response) {
+//			});
+//		};
 		
 //		self.save = function(){
 //			$http({
@@ -137,14 +138,16 @@
 		
 		self.retourConnexion = function(){
 			self.creation = false;
-			self.utilisateurTemporaire = null;
+			self.utilisateurTemporaireCreation = null;
+			self.utilisateurTemporaireCreation = {};
 			self.utilisateurForm.$setPristine();
 			self.utilisateurCreationForm.$setPristine();
 		};
 		
 		self.deconnexion = function(){
 			self.utilisateur = null;
-			self.utilisateurTemporaire = null;
+			self.utilisateurTemporaireCreation = null;
+			self.utilisateurTemporaireLogin = null;
 			self.droits = null;
 			self.utilisateurForm.$setPristine();
 			self.utilisateurCreationForm.$setPristine();
