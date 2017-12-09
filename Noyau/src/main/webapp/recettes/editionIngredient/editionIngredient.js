@@ -5,56 +5,56 @@
 	edi.directive('editionIngredient', function(){
 		return{
 			restrict:'E',
-			templateUrl:'Ingredients/editionIngredient/editionIngredient.html'
+			templateUrl:'recettes/editionIngredient/editionIngredient.html'
 		};
 	});	
 	
 	edi.directive('editionIngredientIntroduction',function(){
 		return{
 			restrict:'E',
-			templateUrl:'Ingredients/editionIngredient/editionIngredientIntroduction.html'
+			templateUrl:'recettes/editionIngredient/editionIngredientIntroduction.html'
 		};
 	});
 	
 	edi.directive('editionIngredientIntitule',function(){
 		return{
 			restrict:'E',
-			templateUrl:'Ingredients/editionIngredient/editionIngredientIntitule.html'
+			templateUrl:'recettes/editionIngredient/editionIngredientIntitule.html'
 		};
 	});
 	
 	edi.directive('editionIngredientTypePlat',function(){
 		return{
 			restrict:'E',
-			templateUrl:'Ingredients/editionIngredient/editionIngredientTypeIngredient.html'
+			templateUrl:'recettes/editionIngredient/editionIngredientTypeIngredient.html'
 		};
 	});
 	
 	edi.directive('editionIngredientCout',function(){
 		return{
 			restrict:'E',
-			templateUrl:'Ingredients/editionIngredient/editionIngredientCout.html'
+			templateUrl:'recettes/editionIngredient/editionIngredientCout.html'
 		};
 	});
 	
 	edi.directive('editionIngredientImage',function(){
 		return{
 			restrict:'E',
-			templateUrl:'Ingredients/editionIngredient/editionIngredientImage.html'
+			templateUrl:'recettes/editionIngredient/editionIngredientImage.html'
 		};
 	});
 	
 	edi.directive('editionIngredientConseils',function(){
 		return{
 			restrict:'E',
-			templateUrl:'Ingredients/editionIngredient/editionIngredientConseils.html'
+			templateUrl:'recettes/editionIngredient/editionIngredientConseils.html'
 		};
 	});
 	
 	edi.directive('editionIngredientFinalisation',function(){
 		return{
 			restrict:'E',
-			templateUrl:'Ingredients/editionIngredient/editionIngredientFinalisation.html'
+			templateUrl:'recettes/editionIngredient/editionIngredientFinalisation.html'
 		};
 	});
 })();
