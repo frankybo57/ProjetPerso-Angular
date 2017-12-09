@@ -5,112 +5,112 @@
 	edi.directive('editionRecette', function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecette.html'
+			templateUrl:'recettes/editionRecette/editionRecette.html'
 		};
 	});	
 	
 	edi.directive('editionRecetteIntroduction',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteIntroduction.html'
+			templateUrl:'recettes/editionRecette/editionRecetteIntroduction.html'
 		};
 	});
 	
 	edi.directive('editionRecetteIntitule',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteIntitule.html'
+			templateUrl:'recettes/editionRecette/editionRecetteIntitule.html'
 		};
 	});
 	
 	edi.directive('editionRecetteTypePlat',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteTypePlat.html'
+			templateUrl:'recettes/editionRecette/editionRecetteTypePlat.html'
 		};
 	});
 	
 	edi.directive('editionRecetteDifficulte',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteDifficulte.html'
+			templateUrl:'recettes/editionRecette/editionRecetteDifficulte.html'
 		};
 	});
 	
 	edi.directive('editionRecetteTempsPreparation',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteTempsPreparation.html'
+			templateUrl:'recettes/editionRecette/editionRecetteTempsPreparation.html'
 		};
 	});
 	
 	edi.directive('editionRecetteTempsRepos',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteTempsRepos.html'
+			templateUrl:'recettes/editionRecette/editionRecetteTempsRepos.html'
 		};
 	});
 	
 	edi.directive('editionRecetteTempsCuisson',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteTempsCuisson.html'
+			templateUrl:'recettes/editionRecette/editionRecetteTempsCuisson.html'
 		};
 	});
 	
 	edi.directive('editionRecetteNombreCouverts',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteNombreCouverts.html'
+			templateUrl:'recettes/editionRecette/editionRecetteNombreCouverts.html'
 		};
 	});
 	
 	edi.directive('editionRecetteCout',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteCout.html'
+			templateUrl:'recettes/editionRecette/editionRecetteCout.html'
 		};
 	});
 	
 	edi.directive('editionRecetteImage',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteImage.html'
+			templateUrl:'recettes/editionRecette/editionRecetteImage.html'
 		};
 	});
 	
 	edi.directive('editionRecetteVideo',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteVideo.html'
+			templateUrl:'recettes/editionRecette/editionRecetteVideo.html'
 		};
 	});
 	
 	edi.directive('editionRecetteIngredients',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteIngredients.html'
+			templateUrl:'recettes/editionRecette/editionRecetteIngredients.html'
 		};
 	});
 	
 	edi.directive('editionRecetteInstructions',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteInstructions.html'
+			templateUrl:'recettes/editionRecette/editionRecetteInstructions.html'
 		};
 	});
 	
 	edi.directive('editionRecetteConseils',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteConseils.html'
+			templateUrl:'recettes/editionRecette/editionRecetteConseils.html'
 		};
 	});
 	
 	edi.directive('editionRecetteFinalisation',function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/editionRecetteFinalisation.html'
+			templateUrl:'recettes/editionRecette/editionRecetteFinalisation.html'
 		};
 	});
 })();

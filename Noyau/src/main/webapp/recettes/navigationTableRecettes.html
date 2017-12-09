@@ -1,8 +1,11 @@
 <meta charset="UTF-8">
 <div class="col-sm-2">
 	<ul class="nav nav-pills nav-stacked">
-		<li ng-click="(recetteCtrl.mode='edition')&&(recetteCtrl.setOngletEdition('introduction'))&&(recetteCtrl.addRecette())" class="nav-link">
+		<li ng-click="(recetteCtrl.mode='edition_recette')&&(recetteCtrl.setOngletEdition('introduction'))&&(recetteCtrl.addRecette())" class="nav-link">
 			<a>Ajouter une recette</a>
+		</li>
+		<li ng-click="(recetteCtrl.mode='edition_ingredient')&&(recetteCtrl.setOngletEdition('introduction'))&&(recetteCtrl.addRecette())" class="nav-link">
+			<a>Ajouter un ingrédient</a>
 		</li>
 		<li ng-repeat="typePlat in recetteCtrl.typesPlats" class="nav-link" id={{typePlat.ancre}}>
 			<a href="" ng-click="gotoAnchor(typePlat.ancre)">{{typePlat.label}}</a>

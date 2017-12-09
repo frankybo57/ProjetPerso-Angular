@@ -1,10 +1,12 @@
 <meta charset="UTF-8">
 <div ng-controller="recetteScrollController">
 <navigation-table-recettes ng-show="recetteCtrl.mode === 'table'"></navigation-table-recettes>
-<navigation-edition-recette ng-show="recetteCtrl.mode === 'edition'"></navigation-edition-recette>
+<navigation-edition-recette ng-show="recetteCtrl.mode === 'edition_recette'"></navigation-edition-recette>
+<navigation-edition-ingredient ng-show="recetteCtrl.mode === 'edition_ingredient'"></navigation-edition-ingredient>
 
 <table-recettes ng-show="recetteCtrl.mode === 'table'"></table-recettes>
-<edition-recette ng-show="recetteCtrl.mode === 'edition'"></edition-recette>
+<edition-recette ng-show="recetteCtrl.mode === 'edition_recette'"></edition-recette>
+<edition-ingredient ng-show="recetteCtrl.mode === 'edition_ingredient'"></edition-ingredient>
 </div>
 
 
