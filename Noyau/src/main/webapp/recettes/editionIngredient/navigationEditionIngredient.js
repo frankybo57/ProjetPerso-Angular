@@ -5,7 +5,7 @@
 	nav.directive('navigationEditionIngredient', function(){
 		return{
 			restrict:'E',
-			templateUrl:'recettes/navigationEditionIngredient.html'
+			templateUrl:'recettes/editionIngredient/navigationEditionIngredient.html'
 		}
 	});	
 })();

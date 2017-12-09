@@ -1,6 +1,6 @@
 (function(){
 	
-	var rec = angular.module('recettes', ['navigationTableRecettes','tableRecettes','recettesScroll','navigationEditionRecette','editionRecette']);
+	var rec = angular.module('recettes', ['navigationTableRecettes','tableRecettes','recettesScroll','navigationEditionRecette','editionRecette','navigationEditionIngredient','editionIngredient']);
 	
 	rec.directive('pageRecettes',function(){
 		return {

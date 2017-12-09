@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import noyau.Verrou;
 import noyau.model.Droit;
 import noyau.model.Utilisateur;
 import noyau.model.Views;
@@ -37,12 +38,7 @@ public class UtilisateurController {
 	@GetMapping("/utilisateur/code/{login}:{password}")
 	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> findOneCode(@PathVariable("login") String login, @PathVariable("password") String password) {
-		String passwordCode = "";
-		for(int i = 0; i < password.length(); i++) {
-			passwordCode = passwordCode + (i+1) + password.charAt(i);
-		}
-		System.out.println(login + passwordCode);
-		Utilisateur tmp = utiRepo.findOneByLoginAndByPassword(login,passwordCode);
+		Utilisateur tmp = utiRepo.findOneByLoginAndByPassword(login,Verrou.cryptage(password));
 		System.out.println(tmp);
 		if (tmp != null) {
 			tmp.setPassword("");
@@ -73,12 +69,7 @@ public class UtilisateurController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-		String password = obj.getPassword();
-		String passwordCode = "";
-		
-		for(int i = 0; i < password.length(); i++) {
-			passwordCode = passwordCode + (i+1) + password.charAt(i);
-		}
+		String passwordCode = Verrou.cryptage(obj.getPassword());
 		
 		obj.setPassword(passwordCode);
 		obj.setDroits(Droit.Utilisateur);
