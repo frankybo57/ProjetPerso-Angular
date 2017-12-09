@@ -4,13 +4,13 @@
 <form name="recetteCtrl.recetteForm" ng-submit="recetteCtrl.recetteForm.$valid && recetteCtrl.save()" novalidate>
 	<input type="hidden" ng-model="recetteCtrl.recetteTemp.id" /> 
 	<input type="hidden" ng-model="recetteCtrl.recetteTemp.version" />
-	<edition-ingredient-introduction ng-show="recetteCtrl.isOngletEdition('introduction')"></edition-ingredient-introduction>
-	<edition-ingredient-intitule ng-show="recetteCtrl.isOngletEdition('intitule')"></edition-ingredient-intitule>
-	<edition-ingredient-type-ingredient ng-show="recetteCtrl.isOngletEdition('typePlat')"></edition-ingredient-type-ingredient>
-	<edition-ingredient-cout ng-show="recetteCtrl.isOngletEdition('cout')"></edition-ingredient-cout>
-	<edition-ingredient-image ng-show="recetteCtrl.isOngletEdition('image')"></edition-ingredient-image>
-	<edition-ingredient-conseils ng-show="recetteCtrl.isOngletEdition('conseils')"></edition-ingredient-conseils>
-	<edition-ingredient-finalisation ng-show="recetteCtrl.isOngletEdition('validation')"></edition-ingredient-finalisation>
+	<edition-ingredient-introduction ng-show="recetteCtrl.isOngletEdition('introductionIngredient')"></edition-ingredient-introduction>
+	<edition-ingredient-intitule ng-show="recetteCtrl.isOngletEdition('intituleIngredient')"></edition-ingredient-intitule>
+	<edition-ingredient-type-ingredient ng-show="recetteCtrl.isOngletEdition('typeIngredient')"></edition-ingredient-type-ingredient>
+	<edition-ingredient-cout ng-show="recetteCtrl.isOngletEdition('coutIngredient')"></edition-ingredient-cout>
+	<edition-ingredient-image ng-show="recetteCtrl.isOngletEdition('imageIngredient')"></edition-ingredient-image>
+	<edition-ingredient-conseils ng-show="recetteCtrl.isOngletEdition('conseilsIngredient')"></edition-ingredient-conseils>
+	<edition-ingredient-finalisation ng-show="recetteCtrl.isOngletEdition('validationIngredient')"></edition-ingredient-finalisation>
 </form>
 
 <vue-ingredient></vue-ingredient>

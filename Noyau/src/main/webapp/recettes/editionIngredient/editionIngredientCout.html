@@ -1,0 +1,17 @@
+<meta charset="UTF-8">
+
+<div class="panel panel-default col-sm-10">
+	<div class="panel-heading">
+		<h1>Edition de l'ingrédient</h1>
+		<h2>Coût</h2>
+	</div>
+	<div class="panel-body">
+		<div class="form-group">
+			<label for="cout">Coût</label>
+			<select class="form-control" ng-options="n as n for n in [1,2,3,4,5] track by n" style="width: 400px" ng-model="recetteCtrl.recetteTemp.cout" required></select>
+		</div>
+		<a class="btn btn-info pull-right" ng-click="recetteCtrl.setOngletEdition('imageIngredient')">
+			Suivant
+		</a>
+	</div>
+</div>	
