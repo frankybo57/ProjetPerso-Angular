@@ -31,19 +31,19 @@ public class GenerationRecettes {
 	
 	@Test
 	public void generationTypePlat() {
-		TypePlat typePlat = new TypePlat("Entrée froide","entree_froide");
+		TypePlat typePlat = new TypePlat("EntrÃ©e froide","entree_froide");
 		tpRepo.save(typePlat);
-		typePlat = new TypePlat("Entrée chaude","entree_chaude");
+		typePlat = new TypePlat("EntrÃ©e chaude","entree_chaude");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Soupe","soupe");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Cake / Terrine","cake_terrine");
 		tpRepo.save(typePlat);
-		typePlat = new TypePlat("Légumes / Gratin","légumes_gratin");
+		typePlat = new TypePlat("LÃ©gumes / Gratin","legumes_gratin");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Oeufs / Fromage","oeufs_fromage");
 		tpRepo.save(typePlat);
-		typePlat = new TypePlat("Pâtes / Riz / Pommes de terre","pates_riz_pdt");
+		typePlat = new TypePlat("PÃ¢tes / Riz / Pommes de terre","pates_riz_pdt");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Poisson / Fruits de mer","poisson_fdm");
 		tpRepo.save(typePlat);
@@ -57,11 +57,11 @@ public class GenerationRecettes {
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Gibier","gibier");
 		tpRepo.save(typePlat);
-		typePlat = new TypePlat("Crème / Flanc / Glace","creme_flanc_glace");
+		typePlat = new TypePlat("CrÃªme / Flanc / Glace","creme_flanc_glace");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Fruits","fruits");
 		tpRepo.save(typePlat);
-		typePlat = new TypePlat("Gâteau","gateau");
+		typePlat = new TypePlat("GÃ¢teau","gateau");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Tarte","tarte");
 		tpRepo.save(typePlat);
@@ -73,7 +73,7 @@ public class GenerationRecettes {
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Pain","pain");
 		tpRepo.save(typePlat);
-		typePlat = new TypePlat("Recette de base / Pâte","recette_base_pate");
+		typePlat = new TypePlat("Recette de base / PÃ¢te","recette_base_pate");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Sauce","sauce");
 		tpRepo.save(typePlat);
