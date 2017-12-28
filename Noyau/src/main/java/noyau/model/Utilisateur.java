@@ -45,7 +45,10 @@ public class Utilisateur {
 	}
 	
 	public Utilisateur(String login, String password){
-		
+		super();
+		this.login = login;
+		this.password = password;
+		this.droits = Droit.UTILISATEUR;
 	}
 
 	public Utilisateur(String login, String password, Droit droits) {
@@ -68,11 +71,17 @@ public class Utilisateur {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+	
+	/**
+	 * @return the version
+	 */
 	public int getVersion() {
 		return version;
 	}
-
+	
+	/**
+	 * @param version the version to set
+	 */
 	public void setVersion(int version) {
 		this.version = version;
 	}
@@ -138,15 +147,10 @@ public class Utilisateur {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		if (this == obj) return true;
+		if ((obj == null) || (getClass() != obj.getClass())) return false;
 		Utilisateur other = (Utilisateur) obj;
-		if (droits != other.droits)
-			return false;
+		if (droits != other.droits) return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;

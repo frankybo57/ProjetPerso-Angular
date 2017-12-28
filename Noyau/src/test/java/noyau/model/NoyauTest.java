@@ -12,6 +12,6 @@ public class NoyauTest {
 	
 	@Test
 	public void test() {
-		Assert.assertEquals(true, true);
+		Assert.assertEquals(1, 1);
 	}
 }

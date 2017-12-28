@@ -28,19 +28,19 @@ public class ModuleController {
 	@GetMapping("/modules-actifs")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<List<Module>> findAllModulesActifs() {
-		return new ResponseEntity<List<Module>>(modRepo.findAllByEtat(Etat.Actif), HttpStatus.OK);
+		return new ResponseEntity<>(modRepo.findAllByEtat(Etat.ACTIF), HttpStatus.OK);
 	}
 	
 	@GetMapping("/modules")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<List<Module>> findAll() {
-		return new ResponseEntity<List<Module>>(modRepo.findAll(), HttpStatus.OK);
+		return new ResponseEntity<>(modRepo.findAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/modules/{id}")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<Module> findOne(@PathVariable("id") Integer id) {
-		Module tmp = (Module) modRepo.findOne(id);
+		Module tmp = modRepo.findOne(id);
 		if (tmp != null) {
 			return new ResponseEntity<>(tmp, HttpStatus.OK);
 		} else {
@@ -73,7 +73,7 @@ public class ModuleController {
 	@DeleteMapping("/modules/{id}")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<Module> delete(@PathVariable("id") Integer id) {
-		Module tmp = (Module) modRepo.findOne(id);
+		Module tmp = modRepo.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
@@ -84,6 +84,6 @@ public class ModuleController {
 	
 	@GetMapping("/etats")
 	public ResponseEntity<Etat[]> findAllEtats() {
-		return new ResponseEntity<Etat[]>(Etat.values(), HttpStatus.OK);
+		return new ResponseEntity<>(Etat.values(), HttpStatus.OK);
 	}
 }

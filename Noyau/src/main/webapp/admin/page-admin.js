@@ -1,6 +1,6 @@
 (function(){
 	
-	admin = angular.module("pageAdmin", []);
+	var admin = angular.module("pageAdmin", []);
 	
 	admin.directive("pageAdmin",function(){
 		return{

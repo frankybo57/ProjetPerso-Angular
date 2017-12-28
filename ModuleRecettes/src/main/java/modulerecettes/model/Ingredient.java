@@ -38,12 +38,12 @@ public class Ingredient {
 		super();
 	}
 
-	public Ingredient(String label, String quantite) {
+	public Ingredient(String label) {
 		super();
 		this.label = label;
 	}
 
-	public Ingredient(String label, String quantite, TypeIngredient typeIngredient) {
+	public Ingredient(String label, TypeIngredient typeIngredient) {
 		super();
 		this.label = label;
 		this.typeIngredient = typeIngredient;

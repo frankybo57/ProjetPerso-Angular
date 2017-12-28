@@ -21,16 +21,16 @@ public class ModuleGeneration {
 	@Test
 	public void generation() {
 		// TODO Auto-generated method stub
-		modRepo.save(new Module("Noyau","Accueil",Etat.Actif));
-		modRepo.save(new Module("Administration","Administration",Etat.Actif));
-		modRepo.save(new Module("Stock","Stock",Etat.Inactif));
-		modRepo.save(new Module("Recettes","Recettes",Etat.Inactif));
-		modRepo.save(new Module("Courses","Courses",Etat.Inactif));
-		modRepo.save(new Module("Menus","Menus",Etat.Inactif));
-		modRepo.save(new Module("Comptes","Comptes",Etat.Inactif));
-		modRepo.save(new Module("Contacts","Contacts",Etat.Inactif));
-		modRepo.save(new Module("Agenda","Agenda",Etat.Inactif));
-		modRepo.save(new Module("Calculatrice","Calculatrice",Etat.Inactif));
+		modRepo.save(new Module("Noyau","Accueil",Etat.ACTIF));
+		modRepo.save(new Module("Administration","Administration",Etat.ACTIF));
+		modRepo.save(new Module("Stock","Stock",Etat.INACTIF));
+		modRepo.save(new Module("Recettes","Recettes",Etat.INACTIF));
+		modRepo.save(new Module("Courses","Courses",Etat.INACTIF));
+		modRepo.save(new Module("Menus","Menus",Etat.INACTIF));
+		modRepo.save(new Module("Comptes","Comptes",Etat.INACTIF));
+		modRepo.save(new Module("Contacts","Contacts",Etat.INACTIF));
+		modRepo.save(new Module("Agenda","Agenda",Etat.INACTIF));
+		modRepo.save(new Module("Calculatrice","Calculatrice",Etat.INACTIF));
 		
 		Assert.assertEquals(10, modRepo.findAll().size());
 	}

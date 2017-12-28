@@ -1,8 +1,10 @@
 package noyau.model;
 
 public class Views {
-	public class Common{
-		
+	public static class Common{
+		private Common() {
+			
+		}
 	}
 	
 	public class Module extends Common{

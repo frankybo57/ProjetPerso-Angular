@@ -1,12 +1,20 @@
 package modulerecettes.model;
 
 public class Views {
-
-	public static class Common{
+	
+	private Views() {
 		
 	}
 	
-	public class Recette extends Common {
+	public static class Common{
+		
+		private Common() {
+			
+		}
+		
+	}
+	
+	public static class Recette extends Common {
 
 	}
 	
@@ -14,7 +22,7 @@ public class Views {
 		
 	}
 	
-	public class TypeIngredient extends Common {
+	public static class TypeIngredient extends Common {
 
 	}
 }

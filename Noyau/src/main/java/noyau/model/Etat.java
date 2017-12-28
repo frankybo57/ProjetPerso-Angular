@@ -5,6 +5,6 @@ package noyau.model;
  * @version 0.0.1-Snapshot
  */
 public enum Etat {
-	Inactif,
-	Actif
+	INACTIF,
+	ACTIF
 }

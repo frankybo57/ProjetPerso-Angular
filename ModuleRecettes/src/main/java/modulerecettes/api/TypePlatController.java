@@ -23,6 +23,6 @@ public class TypePlatController {
 	@GetMapping("/typesPlats/")
 	@JsonView(Views.Common.class)
 	public ResponseEntity<List<TypePlat>> findAll() {
-		return new ResponseEntity<List<TypePlat>>(tpRepo.findAllOrderByIdAsc(), HttpStatus.OK);
+		return new ResponseEntity<>(tpRepo.findAllOrderByIdAsc(), HttpStatus.OK);
 	}
 }

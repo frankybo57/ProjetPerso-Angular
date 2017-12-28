@@ -32,11 +32,11 @@ public class ModuleRepositoryTest {
 	
 	@Test
 	public void testfindAllByEtat(){
-		int size = modRepo.findAllByEtat(Etat.Actif).size();
+		int size = modRepo.findAllByEtat(Etat.ACTIF).size();
 		
-		int id = modRepo.save(new Module("test","test",Etat.Actif)).getId();
+		int id = modRepo.save(new Module("test","test",Etat.ACTIF)).getId();
 		
-		size = modRepo.findAllByEtat(Etat.Actif).size() - size;
+		size = modRepo.findAllByEtat(Etat.ACTIF).size() - size;
 		
 		Assert.assertEquals(1, size);
 		

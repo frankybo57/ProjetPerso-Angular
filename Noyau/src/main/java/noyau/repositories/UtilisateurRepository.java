@@ -31,4 +31,8 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Intege
 	@Transactional(readOnly=true)
 	@Query("select u from Utilisateur u where u.login = :login and u.password = :password")
 	public Utilisateur findOneByLoginAndByPassword(@Param("login") String login, @Param("password") String password);
+	
+	@Transactional(readOnly=true)
+	@Query("select u.login, u.droits from Utilisateur")
+	public List<Utilisateur> findAllWithoutCode();
 }

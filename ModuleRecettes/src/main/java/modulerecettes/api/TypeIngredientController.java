@@ -23,6 +23,6 @@ public class TypeIngredientController {
 	@GetMapping("/type-ingredient/liste/")
 	@JsonView(Views.TypeIngredient.class)
 	public ResponseEntity<List<TypeIngredient>> findAllModulesActifs() {
-		return new ResponseEntity<List<TypeIngredient>>(tiRepo.findAll(), HttpStatus.OK);
+		return new ResponseEntity<>(tiRepo.findAll(), HttpStatus.OK);
 	}
 }

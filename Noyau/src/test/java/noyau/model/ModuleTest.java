@@ -79,8 +79,8 @@ public class ModuleTest {
 	public void testAccesseursEtat(){
 		Module module = new Module();
 		
-		module.setEtat(Etat.Inactif);
-		Assert.assertEquals(Etat.Inactif, module.getEtat());
+		module.setEtat(Etat.INACTIF);
+		Assert.assertEquals(Etat.INACTIF, module.getEtat());
 	}
 	
 	/**
@@ -142,7 +142,7 @@ public class ModuleTest {
 	 */
 	@Test
 	public void testEqualsNomNull(){
-		Module module1 = new Module("module1","module1",Etat.Actif);
+		Module module1 = new Module("module1","module1",Etat.ACTIF);
 		Module module2 = new Module();
 		
 		Assert.assertEquals(false, module2.equals(module1));
@@ -168,7 +168,7 @@ public class ModuleTest {
 	 */
 	@Test
 	public void testHashCodeEgaux(){
-		Module module1 = new Module("module1","module1",Etat.Actif);
+		Module module1 = new Module("module1","module1",Etat.ACTIF);
 		Module module2 = new Module("module1");
 		
 		Assert.assertEquals(true, module2.hashCode()==module1.hashCode());
@@ -181,7 +181,7 @@ public class ModuleTest {
 	 */
 	@Test
 	public void testHashCodeInegaux(){
-		Module module1 = new Module("module1","module1",Etat.Actif);
+		Module module1 = new Module("module1","module1",Etat.ACTIF);
 		Module module2 = new Module("module2");
 		
 		Assert.assertEquals(false, module2.hashCode()==module1.hashCode());
@@ -207,7 +207,7 @@ public class ModuleTest {
 	 */
 	@Test
 	public void testHashCodeInegauxNomNull(){
-		Module module1 = new Module("module1","module1",Etat.Actif);
+		Module module1 = new Module("module1","module1",Etat.ACTIF);
 		Module module2 = new Module();
 		
 		Assert.assertEquals(false, module2.hashCode()==module1.hashCode());

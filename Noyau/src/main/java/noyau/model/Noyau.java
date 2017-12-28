@@ -1,6 +1,7 @@
 package noyau.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +13,8 @@ import noyau.repositories.UtilisateurRepository;
  * @version 0.0.1-Snapshot
  */
 public class Noyau {
-	private Noyau instance = null;
+
+	private Noyau instance;
 	private ArrayList<Utilisateur> listeUtilisateurs;
 	private ArrayList<Module> listeModules;
 	private ArrayList<Module> listeModulesActifs;
@@ -24,7 +26,7 @@ public class Noyau {
 	
 	private Noyau(){
 		this.listeModules = (ArrayList<Module>) modRepo.findAll();
-		this.listeModulesActifs = (ArrayList<Module>) modRepo.findAllByEtat(Etat.Actif);
+		this.listeModulesActifs = (ArrayList<Module>) modRepo.findAllByEtat(Etat.ACTIF);
 		
 		this.listeUtilisateurs = (ArrayList<Utilisateur>) utiRepo.findAll();
 	}
@@ -38,4 +40,30 @@ public class Noyau {
 		modRepo.save(this.listeModules);
 		utiRepo.save(this.listeUtilisateurs);
 	}
+
+	public List<Utilisateur> getListeUtilisateurs() {
+		return listeUtilisateurs;
+	}
+
+	public void setListeUtilisateurs(List<Utilisateur> listeUtilisateurs) {
+		this.listeUtilisateurs = (ArrayList<Utilisateur>) listeUtilisateurs;
+	}
+
+	public List<Module> getListeModules() {
+		return listeModules;
+	}
+
+	public void setListeModules(List<Module> listeModules) {
+		this.listeModules = (ArrayList<Module>) listeModules;
+	}
+
+	public List<Module> getListeModulesActifs() {
+		return listeModulesActifs;
+	}
+
+	public void setListeModulesActifs(List<Module> listeModulesActifs) {
+		this.listeModulesActifs = (ArrayList<Module>) listeModulesActifs;
+	}
+	
+	
 }

@@ -1,6 +1,6 @@
 (function() {
 	
-	mod = angular.module("modules", []);
+	var mod = angular.module("modules", []);
 	
 	mod.controller('ModuleController', function($http){
 		

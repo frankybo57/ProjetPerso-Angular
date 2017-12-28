@@ -80,8 +80,9 @@ public class Recette {
 	@JsonView(Views.Recette.class)
 	private byte[] video;
 	
+	
 	public Recette(){
-		
+		super();
 	}
 
 	public Integer getId() {

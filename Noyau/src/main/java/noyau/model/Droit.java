@@ -5,8 +5,8 @@ package noyau.model;
  * @version 0.0.1-Snapshot
  */
 public enum Droit {
-	Administrateur("Droit.Administrateur"),
-	Utilisateur("Droit.Utilisateur");
+	ADMINISTRATEUR("Droit.Administrateur"),
+	UTILISATEUR("Droit.Utilisateur");
 	
 	private final String label;
 

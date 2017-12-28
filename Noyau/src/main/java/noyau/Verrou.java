@@ -9,9 +9,9 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class Verrou {
 	
-	final static Logger logger = LogManager.getLogger(Verrou.class);
+	private static final Logger logger = LogManager.getLogger(Verrou.class);
 	
-	private static final String sel = "sel";
+	private static final String SEL = "sel";
 	
 	
 	private Verrou() {
@@ -19,24 +19,7 @@ public abstract class Verrou {
 	}
 	
 	public static String cryptage(String password) {
-		return sha512(password,sel);
-	}
-	
-	private static String fonctionCryptage(String password) {
-		StringBuilder temp = new StringBuilder(password);
-		
-		while (temp.length() < 255) {
-			int length = temp.length();
-			
-			for (int i = 0; i < length; i++) {
-				temp.insert(i, i+1);
-				temp.insert(i+1, (char) i);
-			}
-		}
-		
-		temp.setLength(255);
-		
-		return temp.toString();
+		return sha512(password,SEL);
 	}
 	
 	private static String sha512(String password, String salt){
@@ -73,15 +56,6 @@ public abstract class Verrou {
 	
 	private static String md5(String password) {
 		return password;
-	}
-	
-	private static String fonctionCryptageOld(String password) {
-		StringBuilder temp = new StringBuilder(password);
-		for(int i = 0; i < password.length(); i++) {
-			temp.append(i+1);
-			temp.append(password.charAt(i));
-		}
-		return temp.toString();
 	}
 	
 }

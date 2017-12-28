@@ -22,6 +22,6 @@ public class RecetteController {
 	@GetMapping("/recettes/")
 	@JsonView(Views.Common.class)
 	public ResponseEntity<List<Recette>> findAll() {
-		return new ResponseEntity<List<Recette>>(recRepo.findAll(), HttpStatus.OK);
+		return new ResponseEntity<>(recRepo.findAll(), HttpStatus.OK);
 	}
 }

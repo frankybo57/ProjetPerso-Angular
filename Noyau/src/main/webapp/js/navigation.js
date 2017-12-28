@@ -1,6 +1,6 @@
 (function() {
 	
-	nav = angular.module("navigation", []);
+	var nav = angular.module("navigation", []);
 	
 	nav.directive("barreNavigation",function(){
 		return {
