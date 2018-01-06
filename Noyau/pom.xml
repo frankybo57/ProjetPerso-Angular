@@ -9,17 +9,21 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>Noyau</name>
 
+	<properties>
+		<java-version>1.8</java-version>
+		<org.springframework-version>4.3.12.RELEASE</org.springframework-version>
+		<org.springframework.security-version>4.2.3.RELEASE</org.springframework.security-version>
+		<org.slf4j-version>1.5.6</org.slf4j-version>
+	</properties>
+
 	<dependencies>
-		<dependency>
-			<groupId>frankybo57</groupId>
-			<artifactId>ModuleAdmin</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
+		<!-- Dépendances persos -->
 		<dependency>
 			<groupId>frankybo57</groupId>
 			<artifactId>ModuleRecettes</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+		<!--  -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -30,36 +34,34 @@
 		    <groupId>org.postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
 		    <version>9.4.1212</version>
+		    <scope>runtime</scope>
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-context</artifactId>
-		    <version>4.3.12.RELEASE</version>
+		    <version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-orm</artifactId>
-		    <version>4.3.12.RELEASE</version>
+		    <version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-tx</artifactId>
-		    <version>4.3.12.RELEASE</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-test</artifactId>
-		    <version>4.3.12.RELEASE</version>
+		    <version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-jpa</artifactId>
 		    <version>1.11.8.RELEASE</version>
 		</dependency>
+		<!-- Dépendances de test -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.9.2</version>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${org.springframework-version}</version>
+		    <scope>compile</scope>
 		</dependency>
 		<dependency>
 		    <groupId>junit</groupId>
@@ -73,22 +75,6 @@
 		    <version>2.1.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>4.3.12.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>4.2.3.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>4.2.3.RELEASE</version>
-		</dependency>
-		
-		<dependency>
     		<groupId>org.apache.maven.plugins</groupId>
     		<artifactId>maven-javadoc-plugin</artifactId>
     		<version>2.10.4</version>
@@ -98,11 +84,33 @@
     		<artifactId>jacoco-maven-plugin</artifactId>
     		<version>0.7.9</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<!-- Dépendances web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springframework.security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springframework.security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+
 		<dependency>
 		    <groupId>org.slf4j</groupId>
 		    <artifactId>slf4j-api</artifactId>
-		    <version>1.5.6</version>
+		    <version>${org.slf4j-version}</version>
+		    <scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -132,6 +140,21 @@
 					<target>1.8</target>
     			</configuration>
 			</plugin>
+			<plugin>
+			  	<groupId>org.apache.maven.plugins</groupId>
+			  	<artifactId>maven-surefire-plugin</artifactId>
+			  	<version>2.13</version>
+			  	<configuration>
+			   		<argLine>-XX:-UseSplitVerifier</argLine>
+			   		<includes>
+			    		<include>**/*Test.java</include>
+			    		<include>**/*Tests.java</include>
+			   		</includes>
+			   		<excludes>
+			    		<exclude>**/it/*IT.java</exclude>
+			   		</excludes>
+			  	</configuration>
+			 </plugin>
 		</plugins>
 	</build>
 

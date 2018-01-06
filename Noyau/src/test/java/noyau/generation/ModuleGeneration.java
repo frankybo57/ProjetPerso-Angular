@@ -20,7 +20,6 @@ public class ModuleGeneration {
 	
 	@Test
 	public void generation() {
-		// TODO Auto-generated method stub
 		modRepo.save(new Module("Noyau","Accueil",Etat.ACTIF));
 		modRepo.save(new Module("Administration","Administration",Etat.ACTIF));
 		modRepo.save(new Module("Stock","Stock",Etat.INACTIF));

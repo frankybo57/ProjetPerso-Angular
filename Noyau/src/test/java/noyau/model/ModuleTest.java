@@ -127,12 +127,13 @@ public class ModuleTest {
 	 * @author Francois 2
 	 * @version 0.0.1-Snapshot
 	 */
+	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testEqualsClasseDifferente(){
 		Module module1 = new Module("module1");
 		String module2 = "module2";
 		
-		Assert.assertEquals(false, module1.equals(module2));
+		Assert.assertNotEquals(true, module1.equals(module2));
 	}
 	
 	/**

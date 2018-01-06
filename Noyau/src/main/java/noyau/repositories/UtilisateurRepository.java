@@ -16,7 +16,7 @@ import noyau.model.Droit;
 import noyau.model.Utilisateur;
 
 /**
- * @author Francois 2
+ * @author frankybo57
  * @version 1.0
  *
  */
@@ -33,6 +33,6 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Intege
 	public Utilisateur findOneByLoginAndByPassword(@Param("login") String login, @Param("password") String password);
 	
 	@Transactional(readOnly=true)
-	@Query("select u.login, u.droits from Utilisateur")
+	@Query("select u.login, u.droits from Utilisateur u")
 	public List<Utilisateur> findAllWithoutCode();
 }

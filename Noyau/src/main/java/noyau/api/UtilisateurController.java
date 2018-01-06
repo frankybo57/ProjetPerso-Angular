@@ -2,8 +2,6 @@ package noyau.api;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +29,7 @@ public class UtilisateurController {
 	/**
 	 * Logger de la classe.
 	 */
-	private static final Logger logger = LogManager.getLogger(UtilisateurController.class);
+//	private static final Logger logger = LogManager.getLogger(UtilisateurController.class);
 	private static final String UTILISATEUR_NON_TROUVE = "Utilisateur non trouvé.";
 	private static final String NOUVEL_UTILISATEUR_AVEC_ID ="Problème : le nouvel utilisateur ne devrait pas avoir d'id.";
 	private static final String UTILISATEUR_SANS_ID ="Problème : l'utilisateur devrait avoir un id.";
@@ -126,9 +124,9 @@ public class UtilisateurController {
 			tmp.setPassword("");
 			return tmp;
 		} else {
-			if(logger.isErrorEnabled()) {
-				logger.error(UTILISATEUR_NON_TROUVE);
-			}
+//			if(logger.isErrorEnabled()) {
+//				logger.error(UTILISATEUR_NON_TROUVE);
+//			}
 			throw new UtilisateurException(UTILISATEUR_NON_TROUVE);
 		}
 	}
@@ -199,17 +197,17 @@ public class UtilisateurController {
 		String message;
 		
 		// Logging de la tentative de création.
-		if(logger.isInfoEnabled()) {
-			logger.info(TENTATIVE_CREATION + obj.getLogin() + DROITS + Droit.UTILISATEUR.getLabel());
-		}
+//		if(logger.isInfoEnabled()) {
+//			logger.info(TENTATIVE_CREATION + obj.getLogin() + DROITS + Droit.UTILISATEUR.getLabel());
+//		}
 		
 		// Test d'unicité du login.
 		if (utiRepo.findByLogin(obj.getLogin())!=null) {
 			message = "Un compte avec le nom d'utilisateur \""+ obj.getLogin() + "\" existe déjà.";
 			
-			if(logger.isInfoEnabled()) {
-				logger.info(message);
-			}
+//			if(logger.isInfoEnabled()) {
+//				logger.info(message);
+//			}
 			
 			throw new UtilisateurException(message);
 		}
@@ -217,9 +215,9 @@ public class UtilisateurController {
 		// Test de nullité de l'id du nouvel utilisateur.
 		if (obj.getId() != null) {
 			
-			if(logger.isDebugEnabled()) {
-				logger.debug(NOUVEL_UTILISATEUR_AVEC_ID);
-			}
+//			if(logger.isDebugEnabled()) {
+//				logger.debug(NOUVEL_UTILISATEUR_AVEC_ID);
+//			}
 			
 			throw new UtilisateurException(NOUVEL_UTILISATEUR_AVEC_ID);
 		}
@@ -234,11 +232,11 @@ public class UtilisateurController {
 		obj.setPassword("");
 		
 		// Logging de la création d'un utilisateur.
-		if(logger.isInfoEnabled()) {
-			logger.info("Un nouvel utilisateur : " + obj.getLogin()
-					+ DROITS + Droit.UTILISATEUR.getLabel()
-					+ "a été créé.");
-		}
+//		if(logger.isInfoEnabled()) {
+//			logger.info("Un nouvel utilisateur : " + obj.getLogin()
+//					+ DROITS + Droit.UTILISATEUR.getLabel()
+//					+ "a été créé.");
+//		}
 		
 		return obj;
 	}
@@ -301,15 +299,15 @@ public class UtilisateurController {
 	
 	private Utilisateur update(Utilisateur obj, boolean hash) throws UtilisateurException{
 		// Logging de la tentative d'update.
-		if(logger.isInfoEnabled()) {
-			logger.info(TENTATIVE_UPDATE + obj.getLogin() + DROITS + Droit.UTILISATEUR.getLabel());
-		}
+//		if(logger.isInfoEnabled()) {
+//			logger.info(TENTATIVE_UPDATE + obj.getLogin() + DROITS + Droit.UTILISATEUR.getLabel());
+//		}
 		
 		// Test de nullité de l'id du nouvel utilisateur.
 		if(obj.getId() == null) {
-			if(logger.isDebugEnabled()) {
-				logger.debug(UTILISATEUR_SANS_ID);
-			}
+//			if(logger.isDebugEnabled()) {
+//				logger.debug(UTILISATEUR_SANS_ID);
+//			}
 			throw new UtilisateurException(UTILISATEUR_SANS_ID);
 		}
 		
@@ -323,9 +321,9 @@ public class UtilisateurController {
 			utiRepo.save(obj);
 			obj.setPassword("");
 		} catch(Exception e) {
-			if(logger.isErrorEnabled()) {
-				logger.error("L'utilisateur" + obj.getLogin() + "n'a pas pu être mis à jour.");
-			}
+//			if(logger.isErrorEnabled()) {
+//				logger.error("L'utilisateur" + obj.getLogin() + "n'a pas pu être mis à jour.");
+//			}
 			throw new UtilisateurException("L'utilisateur" + obj.getLogin() + "n'a pas pu être mis à jour.");
 		}
 		

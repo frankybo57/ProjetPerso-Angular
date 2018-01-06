@@ -12,7 +12,7 @@ import noyau.model.Etat;
 import noyau.model.Module;
 
 /**
- * @author Francois 2
+ * @author frankybo57
  * @version 1.0
  *
  */
