@@ -1,6 +1,3 @@
-/**
- * 
- */
 package noyau.repository;
 
 import java.util.List;
@@ -12,11 +9,12 @@ import noyau.model.Etat;
 import noyau.model.Module;
 
 /**
+ * Repository JPA relatif à la persistance des modules.
+ * 
  * @author frankybo57
  * @version 1.0
  *
  */
-
 public interface ModuleRepository extends JpaRepository<Module, Integer> {
 	@Transactional(readOnly=true)
 	public Module findByNom(String nom);

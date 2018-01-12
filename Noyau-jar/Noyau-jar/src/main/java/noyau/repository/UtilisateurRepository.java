@@ -1,11 +1,6 @@
-/**
- * 
- */
 package noyau.repository;
 
 import java.util.List;
-
-
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,11 +11,12 @@ import noyau.model.Droit;
 import noyau.model.Utilisateur;
 
 /**
+ * Repository JPA relatif à la persistance des utilisateurs.
+ * 
  * @author frankybo57
  * @version 1.0
  *
  */
-
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer> {
 	@Transactional(readOnly=true)
 	public Utilisateur findByLogin(String login);

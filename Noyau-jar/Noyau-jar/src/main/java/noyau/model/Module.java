@@ -109,7 +109,7 @@ public class Module {
 		this.etat = etat;
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -120,7 +120,7 @@ public class Module {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
