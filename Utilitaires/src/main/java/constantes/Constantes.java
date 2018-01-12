@@ -1,5 +1,12 @@
 package constantes;
 
+/**
+ * Constantes utilisées.
+ * 
+ * @author frankybo57
+ * @since 1.0
+ *
+ */
 public class Constantes {
 	
 	public static final String UTILISATEUR_NON_TROUVE = "Utilisateur non trouvé.";
@@ -17,6 +24,10 @@ public class Constantes {
 	public static final String TYPEPLAT_NON_TROUVE = "TypePlat non trouvé.";
 	public static final String NOUVEAU_TYPEPLAT_AVEC_ID ="Problème : le nouveau typePlat ne devrait pas avoir d'id.";
 	public static final String TYPEPLAT_SANS_ID ="Problème : le typePlat devrait avoir un id.";
+	
+	public static final String MODULE_NON_TROUVE = "Module non trouvé.";
+	public static final String NOUVEAU_MODULE_AVEC_ID ="Problème : le nouveau module ne devrait pas avoir d'id.";
+	public static final String MODULE_SANS_ID ="Problème : le module devrait avoir un id.";
 	
 	private Constantes() {
 		
