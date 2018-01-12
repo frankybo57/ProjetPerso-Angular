@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import constantes.Constantes;
 import noyau.Verrou;
 import noyau.exception.UtilisateurException;
 import noyau.model.Droit;
 import noyau.model.Utilisateur;
 import noyau.model.Views;
-import noyau.repositories.UtilisateurRepository;
+import noyau.repository.UtilisateurRepository;
+
 
 @RestController
 public class UtilisateurController {
@@ -30,12 +32,9 @@ public class UtilisateurController {
 	 * Logger de la classe.
 	 */
 //	private static final Logger logger = LogManager.getLogger(UtilisateurController.class);
-	private static final String UTILISATEUR_NON_TROUVE = "Utilisateur non trouvé.";
-	private static final String NOUVEL_UTILISATEUR_AVEC_ID ="Problème : le nouvel utilisateur ne devrait pas avoir d'id.";
-	private static final String UTILISATEUR_SANS_ID ="Problème : l'utilisateur devrait avoir un id.";
-	private static final String TENTATIVE_CREATION = "Tentative de création d'un nouvel utilisateur : ";
-	private static final String TENTATIVE_UPDATE = "Tentative d'update de l'utilisateur : ";
-	private static final String DROITS = ", avec les droits : ";
+//	private static final String TENTATIVE_CREATION = "Tentative de création d'un nouvel utilisateur : ";
+//	private static final String TENTATIVE_UPDATE = "Tentative d'update de l'utilisateur : ";
+//	private static final String DROITS = ", avec les droits : ";
 	
 	/**
 	 * Méthode de récupération d'un utilisateur à partir de son nom d'utilisateur et de son mot de passe sans hashage du mot de passe.
@@ -108,7 +107,7 @@ public class UtilisateurController {
 	 * @param password
 	 * 		Mot de passe.
 	 * @param hash
-	 * 		Condition de hashage.
+	 * 		Si true alors hashage.
 	 * @return Utilisateur
 	 * 		
 	 */
@@ -127,7 +126,7 @@ public class UtilisateurController {
 //			if(logger.isErrorEnabled()) {
 //				logger.error(UTILISATEUR_NON_TROUVE);
 //			}
-			throw new UtilisateurException(UTILISATEUR_NON_TROUVE);
+			throw new UtilisateurException(Constantes.UTILISATEUR_NON_TROUVE);
 		}
 	}
 	
@@ -156,7 +155,6 @@ public class UtilisateurController {
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @throws UtilisateurException
 	 * @param obj
 	 * 		Utilisateur à créer.
 	 * @return
@@ -167,18 +165,32 @@ public class UtilisateurController {
 	 */
 	@PostMapping("/utilisateur/")
 	@JsonView(Views.Utilisateur.class)
-	public ResponseEntity<Utilisateur> createOne(@RequestBody Utilisateur obj) throws UtilisateurException{
+	public ResponseEntity<Utilisateur> createOne(@RequestBody Utilisateur obj) {
 		try {
 			obj = createOne(obj,false);
 			return new ResponseEntity<>(obj, HttpStatus.CREATED);
 		}catch(UtilisateurException ue) {
-			if(NOUVEL_UTILISATEUR_AVEC_ID.equals(ue.getMessage())) {
+			if(Constantes.NOUVEL_UTILISATEUR_AVEC_ID.equals(ue.getMessage())) {
 				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 	
+	/**
+	 * Méthode de création d'un utilisateur à partir de son nom d'utilisateur et de son mot de passe avec hashage du mot de passe.
+	 * Si l'utilisateur est créé il reçoit des droits d'utilisateur de base.
+	 * 
+	 * @author frankybo57
+	 * @since 1.0
+	 * @param obj
+	 * 		Utilisateur à créer.
+	 * @return
+	 * 		HttpStatus.CREATED + Utilisateur si l'utilisateur est trouvé.
+	 * 		ou
+	 * 		HttpStatus.NOT_FOUND si l'utilisateur n'est pas trouvé.
+	 * 		
+	 */
 	@PostMapping("/utilisateur/code/")
 	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> createOneCode(@RequestBody Utilisateur obj) throws UtilisateurException{
@@ -186,13 +198,27 @@ public class UtilisateurController {
 			obj = createOne(obj,true);
 			return new ResponseEntity<>(obj, HttpStatus.CREATED);
 		}catch(UtilisateurException ue) {
-			if(NOUVEL_UTILISATEUR_AVEC_ID.equals(ue.getMessage())) {
+			if(Constantes.NOUVEL_UTILISATEUR_AVEC_ID.equals(ue.getMessage())) {
 				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 	
+	/**
+	 * Méthode de création d'un utilisateur à partir de son nom d'utilisateur et de son mot de passe avec ou sans hashage du mot de passe.
+	 * Si l'utilisateur est créé il reçoit des droits d'utilisateur de base.
+	 * 
+	 * @author frankybo57
+	 * @since 1.0
+	 * @param obj
+	 * 		Utilisateur à créer.
+	 * @param hash
+	 * 		Si true alors hashage du mot de passe.
+	 * @return
+	 * 		Utilisateur créé.
+	 * 		
+	 */
 	private Utilisateur createOne(Utilisateur obj, boolean hash) throws UtilisateurException {
 		String message;
 		
@@ -219,7 +245,7 @@ public class UtilisateurController {
 //				logger.debug(NOUVEL_UTILISATEUR_AVEC_ID);
 //			}
 			
-			throw new UtilisateurException(NOUVEL_UTILISATEUR_AVEC_ID);
+			throw new UtilisateurException(Constantes.NOUVEL_UTILISATEUR_AVEC_ID);
 		}
 		
 		// Hashage du mot de passe si nécessaire.
@@ -246,7 +272,6 @@ public class UtilisateurController {
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @throws UtilisateurException
 	 * @param obj
 	 * 		Utilisateur à créer.
 	 * @return
@@ -274,7 +299,6 @@ public class UtilisateurController {
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @throws UtilisateurException
 	 * @param obj
 	 * 		Utilisateur à créer.
 	 * @return
@@ -297,6 +321,19 @@ public class UtilisateurController {
 		
 	}
 	
+	/**
+	 * Méthode d'update d'un utilisateur avec ou sans hashage.
+	 * 
+	 * @author frankybo57
+	 * @since 1.0
+	 * @param obj
+	 * 		Utilisateur à créer.
+	 * @param hash
+	 * 		Si true alors hashage.
+	 * @return
+	 * 		Utilisateur mis à jour.
+	 * 		
+	 */
 	private Utilisateur update(Utilisateur obj, boolean hash) throws UtilisateurException{
 		// Logging de la tentative d'update.
 //		if(logger.isInfoEnabled()) {
@@ -308,7 +345,7 @@ public class UtilisateurController {
 //			if(logger.isDebugEnabled()) {
 //				logger.debug(UTILISATEUR_SANS_ID);
 //			}
-			throw new UtilisateurException(UTILISATEUR_SANS_ID);
+			throw new UtilisateurException(Constantes.UTILISATEUR_SANS_ID);
 		}
 		
 		// Hashage du mot de passe si nécessaire.
