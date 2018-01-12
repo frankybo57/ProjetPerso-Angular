@@ -2,13 +2,34 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>frankybo57</groupId>
+	
+	<parent>
+		<artifactId>ProjetPerso</artifactId>
+		<groupId>frankybo57</groupId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	
 	<artifactId>ModuleRecettes</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>ModuleRecettes</name>
 	
+	<properties>
+		<java-version>1.8</java-version>
+		<org.springframework-version>4.3.13.RELEASE</org.springframework-version>
+		<org.slf4j-version>1.7.25</org.slf4j-version>
+	</properties>
+	
 	<dependencies>
+		<!-- Dépendances perso -->
+		<dependency>
+			<groupId>frankybo57</groupId>
+			<artifactId>Utilitaires</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+	
+		<!-- Dépendances de base de données -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -22,35 +43,30 @@
 		    <scope>runtime</scope>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-context</artifactId>
-		    <version>4.3.12.RELEASE</version>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.1.1</version>
 		</dependency>
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-orm</artifactId>
-		    <version>4.3.12.RELEASE</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-tx</artifactId>
-		    <version>4.3.12.RELEASE</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-test</artifactId>
-		    <version>4.3.12.RELEASE</version>
-		    <scope>compile</scope>
-		</dependency>
+		
+		<!-- Spring framework -->
 		<dependency>
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-jpa</artifactId>
 		    <version>1.11.8.RELEASE</version>
 		</dependency>
+		
+		<!-- Dépendances de test -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.9.2</version>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${org.springframework-version}</version>
+		    <scope>compile</scope>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>org.springframework</groupId>
+		    		<artifactId>spring-core</artifactId>
+		    	</exclusion>
+		    </exclusions>
 		</dependency>
 		<dependency>
 		    <groupId>junit</groupId>
@@ -58,29 +74,36 @@
 		    <version>4.12</version>
 		    <scope>test</scope>
 		</dependency>
-		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-dbcp2</artifactId>
-		    <version>2.1.1</version>
-		</dependency>
+		
+		<!-- Dépendances web -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.3.12.RELEASE</version>
+			<version>${org.springframework-version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aop</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+		    		<groupId>org.springframework</groupId>
+		    		<artifactId>spring-core</artifactId>
+		    	</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
-    		<groupId>org.slf4j</groupId>
-    		<artifactId>slf4j-api</artifactId>
-    		<version>1.7.25</version>
-    		<scope>test</scope>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.2</version>
 		</dependency>
-		<!-- 
-		https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
-		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-api</artifactId>
-		    <version>2.4.1</version>
-		</dependency> -->
 	</dependencies>
 
 	<build>
