@@ -1,4 +1,4 @@
-package noyau.repositories;
+package noyau.repository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

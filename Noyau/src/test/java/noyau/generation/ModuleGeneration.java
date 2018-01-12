@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import noyau.model.Etat;
 import noyau.model.Module;
-import noyau.repositories.ModuleRepository;
+import noyau.repository.ModuleRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")

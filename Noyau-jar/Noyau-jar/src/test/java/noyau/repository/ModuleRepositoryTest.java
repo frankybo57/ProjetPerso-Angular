@@ -1,4 +1,4 @@
-package noyau.repositories;
+package noyau.repository;
 
 import org.junit.Assert;
 import org.junit.Test;

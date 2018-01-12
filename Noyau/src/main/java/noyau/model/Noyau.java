@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import noyau.repositories.ModuleRepository;
-import noyau.repositories.UtilisateurRepository;
+import noyau.repository.ModuleRepository;
+import noyau.repository.UtilisateurRepository;
 
 /**
  * @author Francois 2

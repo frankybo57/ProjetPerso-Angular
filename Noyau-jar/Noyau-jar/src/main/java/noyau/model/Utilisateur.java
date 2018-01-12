@@ -21,20 +21,25 @@ import com.fasterxml.jackson.annotation.JsonView;
 @SequenceGenerator(name = "sequenceUtilisateur",sequenceName="sequenceUtilisateur")
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "login"))
 public class Utilisateur {
+	
 	@Id @GeneratedValue(generator = "sequenceUtilisateur")
 	@Column(name="id")
 	@JsonView(Views.Common.class)
 	private Integer id;
+	
 	@Version
 	@Column(name="version")
 	@JsonView(Views.Common.class)
 	private int version;
+	
 	@Column(name="login")
 	@JsonView(Views.Utilisateur.class)
 	private String login;
-	@Column(name="password")
+	
+	@Column(name="password",columnDefinition="TEXT")
 	@JsonView(Views.Utilisateur.class)
 	private String password;
+	
 	@Column(name="droits")
 	@JsonView(Views.Utilisateur.class)
 	@Enumerated(EnumType.STRING)
@@ -128,7 +133,7 @@ public class Utilisateur {
 		this.droits = droits;
 	}
 
-	/* (non-Javadoc)
+	/** 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -142,7 +147,7 @@ public class Utilisateur {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

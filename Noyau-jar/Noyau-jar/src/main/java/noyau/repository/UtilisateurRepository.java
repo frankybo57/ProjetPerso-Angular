@@ -1,7 +1,7 @@
 /**
  * 
  */
-package noyau.repositories;
+package noyau.repository;
 
 import java.util.List;
 
