@@ -6,7 +6,7 @@
 	<groupId>frankybo57</groupId>
 	<artifactId>ProjetPerso</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>ProjetPerso</name>
 	
 	
@@ -19,8 +19,11 @@
 	</properties>
 	
 	<modules>
-		<module>ModuleRecettes</module>
-		<module>Noyau</module>
+		<module>Recettes-data</module>
+		<module>Recettes-api</module>
+		<module>Noyau-data</module>
+		<module>Noyau-api</module>
+		<module>Noyau-webclient</module>
 	</modules>
 	
 	<dependencies>		
