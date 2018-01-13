@@ -5,14 +5,7 @@
 	uti.controller("UtilisateurController",function(){
 		var self = this;
 		
-		self.utilisateurs = [
-			{
-				"id" : 1,
-				"login" : "Admin",
-				"password" : "Passwort",
-				"droits" : "admin"
-			}
-		];
+		self.utilisateurs = [];
 		
 		self.isUser = function(login){
 			for(var utilisateur of utilisateurs){

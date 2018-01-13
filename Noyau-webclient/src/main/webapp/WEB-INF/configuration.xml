@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+	<configurator config-class="fr.cnasea.commons.webfwk.util.config.Log4jConfigurator"
+		log4jFile="/WEB-INF/log4j.xml">
+	</configurator>
+	<configurator
+		config-class="fr.cnasea.osiris.generique.config.OsirisGeneriqueAppConfigurator">
+		<appConfigReader
+			config-class="fr.cnasea.commons.webfwk.util.config.lecture.XMLDigesterReader"
+			configFile="/WEB-INF/osiris-conf.xml"
+			rulesFile="classpath:fr/cnasea/osiris/generique/config/osirisGeneriqueDigesterRules.xml">
+		</appConfigReader>
+	</configurator>
+	<configurator
+		config-class="fr.cnasea.commons.webfwk.util.config.DisplayTagConfigurator"
+		displayTagProps="fr.cnasea.osiris.commons.config.displaytag">
+	</configurator>
+</config>

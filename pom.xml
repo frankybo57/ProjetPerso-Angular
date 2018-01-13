@@ -19,10 +19,10 @@
 	</properties>
 	
 	<modules>
-		<module>Recettes-data</module>
-		<module>Recettes-api</module>
-		<module>Noyau-data</module>
-		<module>Noyau-api</module>
+		<module>Recettes/Recettes-data</module>
+		<module>Recettes/Recettes-api</module>
+		<module>Noyau/Noyau-data</module>
+		<module>Noyau/Noyau-api</module>
 		<module>Noyau-webclient</module>
 	</modules>
 	
