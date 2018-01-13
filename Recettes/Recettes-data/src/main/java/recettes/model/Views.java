@@ -1,4 +1,4 @@
-package modulerecettes.model;
+package recettes.model;
 
 public class Views {
 	

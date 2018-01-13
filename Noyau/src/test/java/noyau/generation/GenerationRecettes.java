@@ -7,12 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-
-import modulerecettes.model.TypePlat;
-import modulerecettes.repository.IngredientRepository;
-import modulerecettes.repository.RecetteIngredientRepository;
-import modulerecettes.repository.RecetteRepository;
-import modulerecettes.repository.TypePlatRepository;
+import recettes.model.TypePlat;
+import recettes.repository.IngredientRepository;
+import recettes.repository.RecetteIngredientRepository;
+import recettes.repository.RecetteRepository;
+import recettes.repository.TypePlatRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
