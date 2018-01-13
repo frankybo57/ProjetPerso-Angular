@@ -1,4 +1,4 @@
-package noyau.generation;
+package recettes.generation;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package modulerecettes.api;
+package recettes.api;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import modulerecettes.model.TypeIngredient;
-import modulerecettes.model.Views;
-import modulerecettes.repository.TypeIngredientRepository;
+import recettes.model.TypeIngredient;
+import recettes.model.Views;
+import recettes.repository.TypeIngredientRepository;
 
 
 @RestController
@@ -22,7 +22,7 @@ public class TypeIngredientController {
 	
 	@GetMapping("/type-ingredient/liste/")
 	@JsonView(Views.TypeIngredient.class)
-	public ResponseEntity<List<TypeIngredient>> findAllModulesActifs() {
+	public ResponseEntity<List<TypeIngredient>> findAll() {
 		return new ResponseEntity<>(tiRepo.findAll(), HttpStatus.OK);
 	}
 }
