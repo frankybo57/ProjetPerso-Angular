@@ -9,8 +9,13 @@ import recettes.model.Recette;
 import recettes.model.TypePlat;
 
 public interface RecetteRepository extends JpaRepository<Recette, Integer> {
+	@SuppressWarnings("rawtypes")
 	@Transactional(readOnly = true)
-	public List<Recette> findAllByTypePlat(TypePlat typePlat);
+	public List findAllByTypePlat(TypePlat typePlat);
+
+	@SuppressWarnings("rawtypes")
+	@Transactional(readOnly = true)
+	public List findAllByDifficulte(Short difficulte);
 	
 
 }

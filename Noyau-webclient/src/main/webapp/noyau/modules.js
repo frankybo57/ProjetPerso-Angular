@@ -15,7 +15,7 @@
 		self.liste = function() {
 			$http({
 				method : 'GET',
-				url : 'api/modules'
+				url : 'api/modulesbyid'
 			}).then(function success(response) {
 				self.modules = response.data; 
 			}, function error(response) {
@@ -83,11 +83,11 @@
 				url : 'api/modules/'+id
 			}).then(function success(response) {
 				var temp  = response.data;
-				if(temp.etat==='Actif'){
-					temp.etat = 'Inactif';
+				if(temp.etat==='ACTIF'){
+					temp.etat = 'INACTIF';
 				}
 				else{
-					temp.etat = 'Actif';
+					temp.etat = 'ACTIF';
 				}
 				$http({
 					method : 'PUT',

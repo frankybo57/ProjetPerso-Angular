@@ -6,11 +6,11 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
 	<!-- Renderers -->
-	<renderer renderingClass="fr.cnasea.commons.log.LogMessageRenderer"
+	<!-- <renderer renderingClass="fr.cnasea.commons.log.LogMessageRenderer"
 		renderedClass="fr.cnasea.commons.log.ContexteLogMessage"/>
 
 	<renderer renderingClass="fr.cnasea.commons.log.LogMessageRenderer"
-		renderedClass="fr.cnasea.commons.log.LogMessage"/>
+		renderedClass="fr.cnasea.commons.log.LogMessage"/> -->
 
 	<!-- Appenders -->
 	<appender name="console" class="org.apache.log4j.ConsoleAppender">
@@ -18,13 +18,13 @@
 			<param name="ConversionPattern" value="[%d{HH:mm:ss}] %-5p : %c{5}.%M:%L - %m %n"/>
 		</layout>
 	</appender>
-	    <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
-			<param name="File" value="${com.sun.aas.instanceRoot}/logs/ecoBonus.log"/>
-			<param name="DatePattern" value="'.'yyyy-MM-dd"/>
-			<layout class="org.apache.log4j.PatternLayout">
-				<param name="ConversionPattern" value="[%d{HH:mm:ss}] %-5p : %c{5}.%M:%L - %X{user} - %m %n"/>
-			</layout>
-        </appender>
+	<!-- <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${com.sun.aas.instanceRoot}/logs/ecoBonus.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{HH:mm:ss}] %-5p : %c{5}.%M:%L - %X{user} - %m %n"/>
+		</layout>
+    </appender> -->
 	<!-- <appender name="fileIntegr" class="org.apache.log4j.DailyRollingFileAppender"> 
 		<param name="File" value="logs/ecoBonus.log" /> <param name="DatePattern" 
 		value="'.'yyyy-MM-dd" /> <layout class="org.apache.log4j.PatternLayout"> 

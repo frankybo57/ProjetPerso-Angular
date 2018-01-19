@@ -23,7 +23,7 @@ public class TypePlatController {
 	
 	/**
 	 * 
-	 * @return
+	 * @return tous les types de plats en base.
 	 */
 	@GetMapping("/typesPlats/")
 	@JsonView(Views.Common.class)

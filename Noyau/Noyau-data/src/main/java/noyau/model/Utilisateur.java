@@ -152,25 +152,33 @@ public class Utilisateur {
 	 */
 	@Override
 	public boolean equals(Object obj) {
+		// Les deux références pointent sur le même objet.
 		if (this == obj) return true;
+		
+		// L'objet comparé est nul ou a une classe différente
 		if ((obj == null) || (getClass() != obj.getClass())) return false;
+		
 		Utilisateur other = (Utilisateur) obj;
-		if (droits != other.droits) return false;
+		
+		// Tests sur l'id
 		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
+			if (other.id != null) return false;
+		} 
+		else if (!id.equals(other.id)) return false;
+		
+		// Test sur le login
 		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
+			if (other.login != null) return false;
+		} 
+		else if (!login.equals(other.login)) return false;
+		
+		// Test sur le mot de passe
 		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		return true;
+			if (other.password != null) return false;
+		} 
+		else if (!password.equals(other.password)) return false;
+		
+		// Comparaison des droits
+		return (droits == other.droits);
 	}
 }

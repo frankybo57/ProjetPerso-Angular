@@ -119,14 +119,14 @@ public class UtilisateurController {
 		else {
 			tmp = utiRepo.findOneByLoginAndByPassword(login,password);
 		}
-		if (tmp != null) {
-			tmp.setPassword("");
-			return tmp;
-		} else {
+		if (tmp == null) {
 //			if(logger.isErrorEnabled()) {
 //				logger.error(UTILISATEUR_NON_TROUVE);
 //			}
 			throw new UtilisateurException(Constantes.UTILISATEUR_NON_TROUVE);
+		} else {
+			tmp.setPassword("");
+			return tmp;
 		}
 	}
 	
@@ -193,7 +193,7 @@ public class UtilisateurController {
 	 */
 	@PostMapping("/utilisateur/code/")
 	@JsonView(Views.Utilisateur.class)
-	public ResponseEntity<Utilisateur> createOneCode(@RequestBody Utilisateur obj) throws UtilisateurException{
+	public ResponseEntity<Utilisateur> createOneCode(@RequestBody Utilisateur obj) {
 		try {
 			obj = createOne(obj,true);
 			return new ResponseEntity<>(obj, HttpStatus.CREATED);

@@ -31,20 +31,45 @@ public class ModuleController {
 	 * @author frankybo57
 	 * @since 1.0
 	 * @return
-	 * 		HttpStatus.OK + List<Module> liste des modules actifs.
+	 * 		HttpStatus.OK + Liste des modules actifs.
 	 * 		ou
 	 * 		HttpStatus.NOT_FOUND si aucun module actif n'est trouvé.
 	 * 		
 	 */
+	@SuppressWarnings("rawtypes")
 	@GetMapping("/modules-actifs")
 	@JsonView(Views.Module.class)
-	public ResponseEntity<List<Module>> findAllModulesActifs() {
-		List temp = modRepo.findAllByEtat(Etat.ACTIF);
-		if(temp.isEmpty()) {
+	public ResponseEntity<List> findAllModulesActifs() {
+		List tmp = modRepo.findAllByEtat(Etat.ACTIF);
+		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		else {
-			return new ResponseEntity<>(modRepo.findAllByEtat(Etat.ACTIF), HttpStatus.OK);
+			return new ResponseEntity<>(tmp, HttpStatus.OK);
+		}
+	}
+	
+	/**
+	 * Méthode de récupération de tous les modules triés par id.
+	 * 
+	 * @author frankybo57
+	 * @since 1.0
+	 * @return
+	 * 		HttpStatus.OK + Liste des modules triés.
+	 * 		ou
+	 * 		HttpStatus.NOT_FOUND si aucun module n'est trouvé.
+	 * 		
+	 */
+	@SuppressWarnings("rawtypes")
+	@GetMapping("/modulesbyid")
+	@JsonView(Views.Module.class)
+	public ResponseEntity<List> findAllOrderById() {
+		List tmp = modRepo.findAllOrderByIdAsc();
+		if(tmp.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(tmp, HttpStatus.OK);
 		}
 	}
 	
@@ -54,20 +79,21 @@ public class ModuleController {
 	 * @author frankybo57
 	 * @since 1.0
 	 * @return
-	 * 		HttpStatus.OK + List<Module> liste des modules.
+	 * 		HttpStatus.OK + Liste des modules.
 	 * 		ou
 	 * 		HttpStatus.NOT_FOUND si aucun module n'est trouvé.
 	 * 		
 	 */
+	@SuppressWarnings("rawtypes")
 	@GetMapping("/modules")
 	@JsonView(Views.Module.class)
-	public ResponseEntity<List<Module>> findAll() {
-		List temp = modRepo.findAllByEtat(Etat.ACTIF);
-		if(temp.isEmpty()) {
+	public ResponseEntity<List> findAll() {
+		List tmp = modRepo.findAll();
+		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		else {
-			return new ResponseEntity<>(modRepo.findAll(), HttpStatus.OK);
+			return new ResponseEntity<>(tmp, HttpStatus.OK);
 		}
 	}
 	
@@ -76,9 +102,9 @@ public class ModuleController {
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @param id
+	 * @param id du module recherché.
 	 * @return
-	 * 		HttpStatus.OK + List<Module> module.
+	 * 		HttpStatus.OK + Module.
 	 * 		ou
 	 * 		HttpStatus.NOT_FOUND si le module n'est pas trouvé.
 	 * 		
@@ -87,10 +113,10 @@ public class ModuleController {
 	@JsonView(Views.Module.class)
 	public ResponseEntity<Module> findOne(@PathVariable("id") Integer id) {
 		Module tmp = modRepo.findOne(id);
-		if (tmp != null) {
-			return new ResponseEntity<>(tmp, HttpStatus.OK);
-		} else {
+		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(tmp, HttpStatus.OK);
 		}
 	}
 	
@@ -99,7 +125,7 @@ public class ModuleController {
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @param module
+	 * @param obj module a créer
 	 * @return
 	 * 		HttpStatus.CREATED + Module
 	 * 		ou
@@ -122,7 +148,7 @@ public class ModuleController {
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @param module
+	 * @param obj module mis à jour
 	 * @return
 	 * 		HttpStatus.OK + Module module.
 	 * 		
