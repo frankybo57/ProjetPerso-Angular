@@ -174,4 +174,46 @@ public class UtilisateurTest {
 		Assert.assertEquals("Droit.Administrateur", Droit.ADMINISTRATEUR.getLabel());
 	}
 	
+	/**
+	 * Test de la fonction "equals" de Utilisateur.class en cas d'égalité
+	 * @author Francois 2
+	 * @version 0.0.1-Snapshot
+	 */
+	@Test
+	public void testEqualsDroitsDifferents(){
+		Utilisateur utilisateur = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
+		Utilisateur utilisateur2 = new Utilisateur("module1", "mdp");
+		
+		Assert.assertEquals(false, utilisateur.equals(utilisateur2));
+	}
+	
+	/**
+	 * Test de la fonction "equals" de Utilisateur.class en cas d'égalité
+	 * @author Francois 2
+	 * @version 0.0.1-Snapshot
+	 */
+	@Test
+	public void testEqualsIdNull(){
+		Utilisateur utilisateur = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
+		Utilisateur utilisateur2 = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
+		utilisateur2.setId(1);
+		
+		Assert.assertEquals(false, utilisateur.equals(utilisateur2));
+	}
+	
+	/**
+	 * Test de la fonction "equals" de Utilisateur.class en cas d'égalité
+	 * @author Francois 2
+	 * @version 0.0.1-Snapshot
+	 */
+	@Test
+	public void testEqualsIdInegaux(){
+		Utilisateur utilisateur = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
+		utilisateur.setId(0);
+		Utilisateur utilisateur2 = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
+		utilisateur2.setId(1);
+		
+		Assert.assertEquals(false, utilisateur.equals(utilisateur2));
+	}
+	
 }

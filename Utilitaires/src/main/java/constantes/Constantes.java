@@ -1,7 +1,7 @@
 package constantes;
 
 /**
- * Constantes utilisÃ©es.
+ * Constantes utilisées.
  * 
  * @author frankybo57
  * @since 1.0
@@ -9,25 +9,25 @@ package constantes;
  */
 public class Constantes {
 	
-	public static final String UTILISATEUR_NON_TROUVE = "Utilisateur non trouvÃ©.";
-	public static final String NOUVEL_UTILISATEUR_AVEC_ID ="ProblÃ¨me : le nouvel utilisateur ne devrait pas avoir d'id.";
-	public static final String UTILISATEUR_SANS_ID ="ProblÃ¨me : l'utilisateur devrait avoir un id.";
+	public static final String UTILISATEUR_NON_TROUVE = "Utilisateur non trouvé.";
+	public static final String NOUVEL_UTILISATEUR_AVEC_ID ="Problème : le nouvel utilisateur ne devrait pas avoir d'id.";
+	public static final String UTILISATEUR_SANS_ID ="Problème : l'utilisateur devrait avoir un id.";
 	
-	public static final String RECETTE_NON_TROUVEE = "Recette non trouvÃ©e.";
-	public static final String NOUVELLE_RECETTE_AVEC_ID ="ProblÃ¨me : la nouvelle recette ne devrait pas avoir d'id.";
-	public static final String RECETTE_SANS_ID ="ProblÃ¨me : la recette devrait avoir un id.";
+	public static final String RECETTE_NON_TROUVEE = "Recette non trouvée.";
+	public static final String NOUVELLE_RECETTE_AVEC_ID ="Problème : la nouvelle recette ne devrait pas avoir d'id.";
+	public static final String RECETTE_SANS_ID ="Problème : la recette devrait avoir un id.";
 	
-	public static final String INGREDIENT_NON_TROUVE = "IngrÃ©dient non trouvÃ©.";
-	public static final String NOUVEL_INGREDIENT_AVEC_ID ="ProblÃ¨me : le nouvel ingrÃ©dient ne devrait pas avoir d'id.";
-	public static final String INGREDIENT_SANS_ID ="ProblÃ¨me : l'ingrÃ©dient devrait avoir un id.";
+	public static final String INGREDIENT_NON_TROUVE = "Ingrédient non trouvé.";
+	public static final String NOUVEL_INGREDIENT_AVEC_ID ="Problème : le nouvel ingrédient ne devrait pas avoir d'id.";
+	public static final String INGREDIENT_SANS_ID ="Problème : l'ingrédient devrait avoir un id.";
 	
-	public static final String TYPEPLAT_NON_TROUVE = "TypePlat non trouvÃ©.";
-	public static final String NOUVEAU_TYPEPLAT_AVEC_ID ="ProblÃ¨me : le nouveau typePlat ne devrait pas avoir d'id.";
-	public static final String TYPEPLAT_SANS_ID ="ProblÃ¨me : le typePlat devrait avoir un id.";
+	public static final String TYPEPLAT_NON_TROUVE = "TypePlat non trouvé.";
+	public static final String NOUVEAU_TYPEPLAT_AVEC_ID ="Problème : le nouveau typePlat ne devrait pas avoir d'id.";
+	public static final String TYPEPLAT_SANS_ID ="Problème : le typePlat devrait avoir un id.";
 	
-	public static final String MODULE_NON_TROUVE = "Module non trouvÃ©.";
-	public static final String NOUVEAU_MODULE_AVEC_ID ="ProblÃ¨me : le nouveau module ne devrait pas avoir d'id.";
-	public static final String MODULE_SANS_ID ="ProblÃ¨me : le module devrait avoir un id.";
+	public static final String MODULE_NON_TROUVE = "Module non trouvé.";
+	public static final String NOUVEAU_MODULE_AVEC_ID ="Problème : le nouveau module ne devrait pas avoir d'id.";
+	public static final String MODULE_SANS_ID ="Problème : le module devrait avoir un id.";
 	
 	private Constantes() {
 		

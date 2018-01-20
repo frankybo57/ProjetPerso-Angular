@@ -27,6 +27,9 @@ public class Ingredient {
 	@Column(name="label")
 	private String label;
 	
+	@Column(name="cout")
+	private Short cout;
+	
 	@OneToMany(mappedBy="ingredient")
 	private List<RecetteIngredient> listeRecetteIngredient;
 	

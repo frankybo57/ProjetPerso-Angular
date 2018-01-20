@@ -54,7 +54,7 @@ public class IngredientController {
 	@GetMapping("/ingredients/{recette}")
 	@JsonView(Views.Common.class)
 	public ResponseEntity<List> findAllByRecette(@PathVariable("recette") Recette recette){
-		List tmp = ingRepo.findAllByRecette(recette);
+		List tmp = ingRepo.findAllIngredientByRecette(recette);
 		
 		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

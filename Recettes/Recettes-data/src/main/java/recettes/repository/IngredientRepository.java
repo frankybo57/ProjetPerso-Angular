@@ -27,10 +27,6 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 
 	@SuppressWarnings("rawtypes")
 	@Transactional(readOnly = true)
-	public List findAllByRecette(Recette recette);
-
-	@SuppressWarnings("rawtypes")
-	@Transactional(readOnly = true)
 	public List findAllByCout(Short cout);
 	
 	@SuppressWarnings("rawtypes")

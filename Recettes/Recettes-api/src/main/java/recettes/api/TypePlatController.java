@@ -23,18 +23,25 @@ public class TypePlatController {
 	
 	/**
 	 * 
-	 * @return tous les types de plats en base.
+	 * @return la liste des types de plats en base.
 	 */
+	@SuppressWarnings("rawtypes")
 	@GetMapping("/typesPlats/")
 	@JsonView(Views.Common.class)
-	public ResponseEntity<List<TypePlat>> findAll() {
+	public ResponseEntity<List> findAll() {
 		return new ResponseEntity<>(tpRepo.findAllOrderByIdAsc(), HttpStatus.OK);
 	}
 	
+	/**
+	 * @deprecated
+	 * @param typePlat -
+	 * @return -
+	 */
+	@SuppressWarnings("rawtypes")
 	@GetMapping("/typesPlats/{typeplat}")
 	@JsonView(Views.Common.class)
 	@Deprecated
-	public ResponseEntity<List<TypePlat>> findAll(@PathVariable("typeplat") TypePlat typePlat) {
+	public ResponseEntity<List> findAll(@PathVariable("typeplat") TypePlat typePlat) {
 		return new ResponseEntity<>(tpRepo.findAllOrderByIdAsc(), HttpStatus.OK);
 	}
 }
