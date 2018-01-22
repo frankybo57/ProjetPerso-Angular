@@ -1,0 +1,26 @@
+<meta charset="UTF-8">
+
+<div id="Compte-utilisateur" class="panel panel-default">
+	<div class="panel panel-heading">
+		<h1>Gestion de mon compte utilisateur</h1>
+	</div>
+	<div class="panel panel-body" ng-controller="UtilisateurController as UtilisateurCtrl">
+		<table id="compteUtilisateur" class="table table-striped">
+			<thead>
+				<tr>
+					<td>Mes données personelles</td>
+				</tr>
+			</thead>
+			<tbody id="tableUtilisateurs">
+				<tr>
+					<td>Login</td>
+					<td>{{sessionCtrl.utilisateur.login}}</td>
+				</tr>
+				<tr>
+					<td>Droits</td>
+					<td>{{sessionCtrl.utilisateur.droits}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

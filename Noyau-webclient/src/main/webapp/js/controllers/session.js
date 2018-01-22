@@ -1,16 +1,9 @@
 (function(){
 	
-	var ses = angular.module('session',[])
+	angular.module('sessionController',[])
+	.controller('SessionController', SessionController);
 	
-
-	ses.directive('ecranConnexion',function(){
-		return{
-			restrict:'E',
-			templateUrl:'ecran-connexion.html'
-		};
-	});
-	
-	ses.controller('SessionController',function($http){
+	function SessionController($http){
 		var self = this;
 		self.creation = false;
 		self.droits = null;
@@ -152,5 +145,5 @@
 			self.utilisateurForm.$setPristine();
 			self.utilisateurCreationForm.$setPristine();
 		};
-	});
+	}
 })();

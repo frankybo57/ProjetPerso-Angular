@@ -1,12 +1,15 @@
 (function() {
 	
-	var mod = angular.module("modules", []);
+	angular.module("modules", [])
 	
-	mod.controller('ModuleController', function($http){
+	.controller('ModuleController', ModuleController);
+			
+	function ModuleController($http){
 		
 		var self = this;
 		
 		self.onglet = "Accueil";
+		self.sousonglet = null;
 		self.module = null;
 		self.modules = [];
 		self.modulesActifs = [];
@@ -124,10 +127,20 @@
 				
 		self.setOnglet = function(onglet){
 			self.onglet = onglet;
+			self.sousonglet = null;
 		};
 				
 		self.isOnglet = function(onglet){
 			return self.onglet === onglet;
+		};
+		
+		self.setSousOnglet = function(onglet,sousonglet){
+			self.onglet = onglet;
+			self.sousonglet = sousonglet;
+		};
+				
+		self.isSousOnglet = function(sousonglet){
+			return self.sousonglet === sousonglet;
 		};
 		
 		self.listeEtats = function() {
@@ -140,10 +153,17 @@
 
 			});
 		};
+		
+		self.isActif = function(header){
+			for(module of self.modulesActifs){
+				if(module.header === header)return true;
+			}
+			return false;
+		}
 				
 		self.liste();
 		self.listeActifs();
 		self.listeEtats();
-	});
+	};
 				
 })();

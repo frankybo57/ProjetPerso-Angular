@@ -1,6 +1,23 @@
 (function(){
 	
-	angular.module('application', ['session','navigation','pageAdmin','modules','utilisateurs','recettes']);
+	angular.module('application', 
+			[	
+				'ngRoute',
+				
+				/* Controllers */
+				'recettesController',
+				'sessionController',
+				
+				/* Directives */
+				'ingredientsDirective',
+				'navigationDirective',
+				'recettesDirective',
+				'sessionDirective',
+				
+				
+				'modules',
+				'utilisateurs',
+				]);
 		
 })();
 

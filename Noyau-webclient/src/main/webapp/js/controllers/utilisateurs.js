@@ -1,8 +1,10 @@
 (function(){
 	
-	var uti = angular.module('utilisateurs', []);
+	angular.module('utilisateurs', [])
 	
-	uti.controller("UtilisateurController",function(){
+	.controller("UtilisateurController", UtilisateurController);
+	
+	function UtilisateurController(){
 		var self = this;
 		
 		self.utilisateurs = [];
@@ -20,6 +22,6 @@
 			}
 			return null;
 		};
-	});
+	};
 		
 })();

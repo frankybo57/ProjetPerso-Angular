@@ -1,24 +1,10 @@
 (function(){
 	
-	var rec = angular.module('recettes', ['navigationTableRecettes','tableRecettes','recettesScroll','navigationEditionRecette','editionRecette','navigationEditionIngredient','editionIngredient']);
+	angular.module('recettesController', ['recettesScroll'])
 	
-	rec.directive('pageRecettes',function(){
-		return {
-			restrict:'E',
-			templateUrl:'recettes/recettes.html',
-			controller:'RecetteController',
-			controllerAs:'recetteCtrl'
-		};
-	});
+	.controller('RecetteController', RecetteController);
 	
-	rec.directive('vueRecette',function(){
-		return {
-			restrict:'E',
-			templateUrl:'recettes/vueRecette.html'
-		};
-	});
-	
-	rec.controller('RecetteController', function($http){
+	function RecetteController($http){
 		var self = this;
 		
 		self.mode = "table";
@@ -79,7 +65,7 @@
 		
 		self.listeTypesPlats();
 		self.listerRecettes();
-	});
+	}
 		
 })();
 
