@@ -2,17 +2,17 @@
 
 <ul class="nav nav-pills">
 	<li ng-class="{active:moduleCtrl.isOnglet('Acceuil')}">
-		<a ng-href="/Noyau-webclient/acceuil" ng-click="moduleCtrl.setOnglet('Acceuil')">
+		<a ng-href="acceuil" ng-click="moduleCtrl.setOnglet('Acceuil')">
 			Acceuil
 		</a>
 	</li>
 	<li ng-class="{active:moduleCtrl.isOnglet('Compte utilisateur')}">
-		<a ng-href="/Noyau-webclient/compte-utilisateur" ng-click="moduleCtrl.setOnglet('Compte utilisateur')">
+		<a ng-href="compte-utilisateur" ng-click="moduleCtrl.setOnglet('Compte utilisateur')">
 			Compte utilisateur
 		</a>
 	</li>
 	<li ng-class="{active:moduleCtrl.isOnglet('Administration')}" ng-show="moduleCtrl.isActif('Administration') && sessionCtrl.droits==='ADMINISTRATEUR'">
-		<a ng-href="/Noyau-webclient/administration" ng-click="moduleCtrl.setOnglet('Administration')">
+		<a ng-href="administration" ng-click="moduleCtrl.setOnglet('Administration')">
 			Administration
 		</a>
 	</li>
@@ -22,12 +22,12 @@
 		</a>
 		<ul class="dropdown-menu">
 			<li ng-class="{active:moduleCtrl.isSousOnglet('ListeRecettes')}">
-				<a ng-href="/Noyau-webclient/recettes/liste" ng-click="moduleCtrl.setSousOnglet('Recettes','listeRecettes') ">
+				<a ng-href="recettes/liste" ng-click="moduleCtrl.setSousOnglet('Recettes','listeRecettes') ">
 					Liste des recettes
 				</a>
 			</li>
 			<li ng-class="{active:moduleCtrl.isSousOnglet('ListeIngredients')}">
-				<a ng-href="/Noyau-webclient/recettes/ingredients/liste" ng-click="moduleCtrl.setSousOnglet('Recettes','listeIngredients') ">
+				<a ng-href="recettes/ingredients/liste" ng-click="moduleCtrl.setSousOnglet('Recettes','listeIngredients') ">
 					Liste des ingrédients
 				</a>
 			</li>

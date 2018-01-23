@@ -23,22 +23,32 @@
 		})
 		
 		.when('/recettes',{
-			redirectTo:'/Recettes/liste'
+			redirectTo:'/recettes/liste'
 		})
 		
 		.when('/recettes/liste',{
-			templateUrl:'templates/pages/recettes/index.html',
-			controller:'RecetteController',
+			templateUrl:'templates/pages/recettes/liste-recettes/index.html',
+			controller:'ControllerAfficherListeRecette',
+			controllerAs:'recetteCtrl',
+		})
+		
+		.when('/recettes/edition',{
+			templateUrl:'templates/pages/recettes/edition-recette/index.html',
+			controller:'ControllerEditionRecette',
 			controllerAs:'recetteCtrl',
 		})
 		
 		.when('/recettes/ingredients/liste',{
-			templateUrl:'templates/pages/recettes/ingredients/index.html',
-			controller:'ListeIngredientsController',
+			templateUrl:'templates/pages/recettes/liste-ingredients/index.html',
+			controller:'ControllerAfficherListeIngredient',
 			controllerAs:'listeIngredientsCtrl',
 		})
 		
-		
+		.when('/recettes/ingredients/edition',{
+			templateUrl:'templates/pages/recettes/edition-ingredient/index.html',
+			controller:'ControllerEditionIngredient',
+			controllerAs:'editionIngredientsCtrl',
+		})
 		
 		
 		

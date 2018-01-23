@@ -5,6 +5,7 @@
 				'ngRoute',
 				
 				/* Controllers */
+				'ControllerAfficherListeRecette',
 				'recettesController',
 				'sessionController',
 				
@@ -14,6 +15,10 @@
 				'recettesDirective',
 				'sessionDirective',
 				
+				/* Services */
+				'RecetteService',
+				'TypePlatService',
+				'UtilisateurService',
 				
 				'modules',
 				'utilisateurs',

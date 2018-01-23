@@ -4,7 +4,7 @@
 	
 	.controller('RecetteController', RecetteController);
 	
-	function RecetteController($http){
+	function RecetteController(RecetteFactory,TypePlatFactory){
 		var self = this;
 		
 		self.mode = "table";
@@ -16,10 +16,8 @@
 		self.recetteTemp = {};
 		
 		self.listeTypesPlats = function() {
-			$http({
-				method : 'GET',
-				url : 'api/typesPlats/'
-			}).then(function success(response) {
+			TypePlatFactory.findAll()
+			.then(function success(response) {
 				self.typesPlats = response.data; 
 			}, function error(response) {
 
@@ -27,14 +25,16 @@
 		};
 		
 		self.listerRecettes = function(){
-			$http({
-				method : 'GET',
-				url : 'api/recettes/'
-			}).then(function success(response) {
-				self.listeRecettesComplete = response.data; 
-			}, function error(response) {
+			
+			RecetteFactory.findAll()
+			.then(
+					function success(response) {
+						self.listeRecettesComplete = response.data; 
+					}, 
+					function error(response) {
 
-			});
+					}
+				);
 		}
 		
 		self.calculTempsTotal=function(recette){

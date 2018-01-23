@@ -1,0 +1,64 @@
+<meta charset="UTF-8">
+
+<div ng-controller="recetteScrollController">
+
+	<navigation-table-recettes></navigation-table-recettes>
+
+	<div class="panel panel-default col-sm-10">
+		<div class="panel-heading">
+			<h1>Liste des recettes</h1>
+		</div>
+		<table class="table table-striped" id="listeRecettes">
+			<thead>
+				<tr>
+					<td><label>Label</label></td>
+					<td><label>Difficulté</label></td>
+					<td><label>Temps de préparation</label></td>
+					<td><label>Nombre de couverts</label></td>
+					<td><label>Coût</label></td>
+					<td><label>Opérations</label></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat-start="typePlat in recetteCtrl.typesPlats"
+					id="anchor{{typePlat.ancre}}">
+					<td colspan="6"><label>{{typePlat.label}}</label></td>
+				</tr>
+				<tr ng-repeat-end
+					ng-repeat="recette in recetteCtrl.listeRecettesComplete"
+					ng-if="recette.typePlat.id == typePlat.id">
+					<td><label style="padding-left: 20px; font-weight: normal">{{console.log(recette)}}{{recette.label}}</label>
+					</td>
+					<td><span
+						ng-repeat="n in recetteCtrl.creerCollection(recette.difficulte)"
+						class="glyphicon glyphicon-apple"></span></td>
+					<td><label style="font-weight: normal">{{recetteCtrl.calculTempsTotal(recette)}}
+					</label></td>
+					<td>{{recette.nombreCouverts}}<span
+						ng-if="recette.nombreCouverts > 0"
+						class="glyphicon glyphicon-cutlery"></span></td>
+					<td><span
+						ng-repeat="n in recetteCtrl.creerCollection(recette.cout)"
+						class="glyphicon glyphicon-euro"></span></td>
+					<td>
+						<div clas="btn btn-group">
+							<button class="btn btn-success btn-sm">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+							<button class="btn btn-success btn-sm">
+								<span class='glyphicon glyphicon-print'></span>
+							</button>
+							<button class="btn btn-info btn-sm">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button>
+							<button ng-show="sessionCtrl.droits === 'Administrateur'"
+								class="btn btn-danger btn-sm">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
