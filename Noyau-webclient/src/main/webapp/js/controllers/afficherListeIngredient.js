@@ -1,17 +1,17 @@
 (function(){
 	
-	angular.module('ControllerAfficherListeRecette', ['recettesScroll'])
+	angular.module('ControllerAfficherListeIngredient',['ingredientsScroll'])
 	
-	.controller('ControllerAfficherListeRecette', ControllerAfficherListeRecette);
+	.controller('ControllerAfficherListeIngredient',ControllerAfficherListeIngredient);
 	
-	function ControllerAfficherListeRecette(RecetteFactory,TypePlatFactory){
+	function ControllerAfficherListeIngredient(TypeIngredientFactory,IngredientFactory){
 		var ctrl = this;
 		
-		ctrl.liste = [];
 		ctrl.types = [];
+		ctrl.liste = [];
 		
-		ctrl.listeTypesPlats = function() {
-			TypePlatFactory.findAll()
+		ctrl.listeTypesIngredients = function() {
+			TypeIngredientFactory.findAll()
 			.then(
 				function success(response) {
 					ctrl.types = response.data; 
@@ -22,9 +22,9 @@
 			);
 		};
 		
-		ctrl.listeRecettes = function(){
+		ctrl.listeIngredients = function(){
 			
-			RecetteFactory.findAll()
+			IngredientFactory.findAll()
 			.then(
 				function success(response) {
 					ctrl.liste = response.data; 
@@ -37,8 +37,9 @@
 		
 		ctrl.creerCollection=function(entier){var collection=[];for(var i=1;i<=entier;i++){collection.push(i);}return collection;};
 		
-		ctrl.listeTypesPlats();
-		ctrl.listeRecettes();
+		ctrl.listeTypesIngredients();
+		ctrl.listeIngredients();
+		
+		
 	};
-	
 })();

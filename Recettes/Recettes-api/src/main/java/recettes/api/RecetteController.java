@@ -22,7 +22,7 @@ public class RecetteController {
 	private RecetteRepository recRepo;
 	
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/recettes/")
+	@GetMapping("/recettes/liste/")
 	@JsonView(Views.Common.class)
 	public ResponseEntity<List> findAll() {
 		return new ResponseEntity<>(recRepo.findAll(), HttpStatus.OK);

@@ -23,7 +23,7 @@ public class IngredientController {
 	private IngredientRepository ingRepo;
 	
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/ingredients/")
+	@GetMapping("/ingredients/liste/")
 	@JsonView(Views.Common.class)
 	public ResponseEntity<List> findAll(){
 		List tmp = ingRepo.findAll();

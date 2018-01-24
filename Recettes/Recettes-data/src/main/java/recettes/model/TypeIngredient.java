@@ -40,10 +40,12 @@ public class TypeIngredient {
 	private List<Ingredient> listeIngredients;
 	
 	@OneToMany(mappedBy="typePere")
+	@JsonView(Views.TypeIngredient.class)
 	private List<TypeIngredient> typesFils;
 	
 	@ManyToOne
 	@JoinColumn(name="type_fils_id")
+	@JsonView(Views.TypeIngredient.class)
 	private TypeIngredient typePere;
 	
 	public TypeIngredient() {

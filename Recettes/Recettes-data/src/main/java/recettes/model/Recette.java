@@ -80,6 +80,12 @@ public class Recette {
 	@JsonView(Views.Recette.class)
 	private byte[] video;
 	
+	@Column(name="utilisateur")
+	private Integer utilisateur;
+	
+	@Column(name="visibilite")
+	private Boolean prive;
+	
 	
 	public Recette(){
 		super();
@@ -203,5 +209,25 @@ public class Recette {
 
 	public void setVideo(byte[] video) {
 		this.video = video;
+	}
+
+	public Integer getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Integer utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public Boolean getPrive() {
+		return prive;
+	}
+
+	public void setPrive(Boolean prive) {
+		this.prive = prive;
+	}
+	
+	public boolean isVisible() {
+		return this.prive.booleanValue();
 	}
 }

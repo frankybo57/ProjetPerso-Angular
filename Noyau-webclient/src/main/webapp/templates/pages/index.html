@@ -19,12 +19,10 @@
 	<script type="text/javascript" src="js/controllers/afficherListeIngredient.js"></script>
 	<script type="text/javascript" src="js/controllers/afficherListeModules.js"></script>
 	<script type="text/javascript" src="js/controllers/afficherListeRecette.js"></script>
-	<script type="text/javascript" src="js/controllers/afficherListeUtilisateurs.js"></script>
 	<script type="text/javascript" src="js/controllers/editerRecette.js"></script>
 	<script type="text/javascript" src="js/controllers/editerIngredient.js"></script>
 	<script type="text/javascript" src="js/controllers/ingredients.js"></script>
-	<script type="text/javascript" src="js/controllers/navigation.js"></script>	
-	<script type="text/javascript" src="js/controllers/scrollTableIngredients.js"></script>
+	<script type="text/javascript" src="js/controllers/navigation.js"></script>
 	<script type="text/javascript" src="js/controllers/scrollTableRecettes.js"></script>	
 	<script type="text/javascript" src="js/controllers/session.js"></script>
 	<script type="text/javascript" src="js/controllers/utilisateurs.js"></script>
@@ -36,16 +34,14 @@
 	<script type="text/javascript" src="js/directives/session.js"></script>
 	
 	<!-- Services -->
-	<script type="text/javascript" src="js/services/ingredient.js"></script>
 	<script type="text/javascript" src="js/services/module.js"></script>
 	<script type="text/javascript" src="js/services/recettes.js"></script>
-	<script type="text/javascript" src="js/services/type-ingredient.js"></script>
-	<script type="text/javascript" src="js/services/type-plat.js"></script>
+	<script type="text/javascript" src="js/services/typePlat.js"></script>
 	<script type="text/javascript" src="js/services/utilisateur.js"></script>
 	
 	<base href="/Noyau-webclient/">
 </head>
-<body>
+<body ng-controller="ModuleController as moduleCtrl">
 
 	<div id = "container" class="container">
 	

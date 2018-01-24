@@ -1,43 +1,30 @@
 (function(){
 	
-	angular.module('recettesController', ['recettesScroll'])
+	angular.module('ControllerEditerRecette',[])
 	
-	.controller('RecetteController', RecetteController);
+	.controller('ControllerEditerRecette',ControllerEditerRecette);
 	
-	function RecetteController(RecetteFactory,TypePlatFactory){
-		var self = this;
+	function ControllerEditerRecette(TypePlatFactory){
+		var ctrl = this;
 		
-		self.mode = "table";
-		self.typesPlats = [];
-		self.listeRecettesComplete = [];
+		ctrl.typesPlats = [];
 		
-		self.editionTab = null;
+		ctrl.recetteTemp = {};
+		ctrl.editionTab = 'introduction';
 		
-		self.recetteTemp = {};
 		
-		self.listeTypesPlats = function() {
+		ctrl.listeTypesPlats = function() {
 			TypePlatFactory.findAll()
 			.then(function success(response) {
-				self.typesPlats = response.data; 
+				ctrl.typesPlats = response.data; 
 			}, function error(response) {
 
 			});
 		};
 		
-		self.listerRecettes = function(){
-			
-			RecetteFactory.findAll()
-			.then(
-					function success(response) {
-						self.listeRecettesComplete = response.data; 
-					}, 
-					function error(response) {
-
-					}
-				);
-		}
-		
-		self.calculTempsTotal=function(recette){
+		ctrl.setOngletEdition=function(tab){ctrl.editionTab=tab;};
+		ctrl.isOngletEdition=function(tab){return ctrl.editionTab===tab;};
+		ctrl.calculTempsTotal=function(recette){
 			var retour="";var min=0;var h=0;var j=0;var temp="";
 			if(recette.tempsPreparation){temp=recette.tempsPreparation.substring(recette.tempsPreparation.search("<unite>")+7,recette.tempsPreparation.search("</unite>"));
 			if(temp==="min"){min=min+parseInt(recette.tempsPreparation.substring(recette.tempsPreparation.search("<nombre>")+8,recette.tempsPreparation.search("</nombre>")));}
@@ -54,22 +41,12 @@
 			if(j>0){retour=retour+j+" j ";}if(h>0){retour=retour+h+" h ";}if(min>0){retour=retour+min+" min";}return retour;
 		};
 		
-		self.setOngletEdition=function(tab){self.editionTab=tab;};
-		self.isOngletEdition=function(tab){return self.editionTab===tab;};
-		
-		self.addRecette = function(){
-			self.recetteTemp = {};
+		ctrl.addRecette = function(){
+			ctrl.recetteTemp = {};
 		};
 		
-		self.creerCollection=function(entier){var collection=[];for(var i=1;i<=entier;i++){collection.push(i);}return collection;};
+		ctrl.creerCollection=function(entier){var collection=[];for(var i=1;i<=entier;i++){collection.push(i);}return collection;};
 		
-		self.listeTypesPlats();
-		self.listerRecettes();
-	}
-		
+		ctrl.listeTypesPlats();
+	};
 })();
-
-
-
-
-

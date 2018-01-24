@@ -142,7 +142,11 @@ public class UtilisateurController {
 	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<List<Utilisateur>> findAll(){
 		try {
-			return new ResponseEntity<>(utiRepo.findAllWithoutCode(),HttpStatus.OK);
+			List<Utilisateur> tmp = utiRepo.findAll();
+			for(Utilisateur utilisateur : tmp) {
+				utilisateur.setPassword(null);
+			}
+			return new ResponseEntity<>(tmp,HttpStatus.OK);
 		}
 		catch(Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

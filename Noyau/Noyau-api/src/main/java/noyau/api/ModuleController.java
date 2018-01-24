@@ -26,7 +26,7 @@ public class ModuleController {
 	private ModuleRepository modRepo;
 	
 	/**
-	 * MÃ©thode de rÃ©cupÃ©ration de tous les modules actifs.
+	 * Méthode de récupération de tous les modules actifs.
 	 * 
 	 * @author frankybo57
 	 * @since 1.0

@@ -1,0 +1,11 @@
+<meta charset="UTF-8">
+<div class="col-sm-2">
+	<ul class="nav nav-pills nav-stacked">
+		<li class="nav-link">
+			<a ng-href="ingredients/edition">Ajouter un ingrédient</a>
+		</li>
+		<li ng-repeat="typeIngredient in listeIngredientsCtrl.types" class="nav-link" id={{typeIngredient.ancre}}>
+			<a href="" ng-click="gotoAnchor(typeIngredient.ancre)">{{typeIngredient.label}}</a>
+		</li>
+	</ul>
+</div>

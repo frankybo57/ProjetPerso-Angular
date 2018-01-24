@@ -20,14 +20,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat-start="typePlat in recetteCtrl.typesPlats"
+				<tr ng-repeat-start="typePlat in recetteCtrl.types"
 					id="anchor{{typePlat.ancre}}">
 					<td colspan="6"><label>{{typePlat.label}}</label></td>
 				</tr>
 				<tr ng-repeat-end
-					ng-repeat="recette in recetteCtrl.listeRecettesComplete"
+					ng-repeat="recette in recetteCtrl.liste"
 					ng-if="recette.typePlat.id == typePlat.id">
-					<td><label style="padding-left: 20px; font-weight: normal">{{console.log(recette)}}{{recette.label}}</label>
+					<td><label style="padding-left: 20px; font-weight: normal">{{recette.label}}</label>
 					</td>
 					<td><span
 						ng-repeat="n in recetteCtrl.creerCollection(recette.difficulte)"
@@ -51,7 +51,7 @@
 							<button class="btn btn-info btn-sm">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</button>
-							<button ng-show="sessionCtrl.droits === 'Administrateur'"
+							<button ng-show="sessionCtrl.droits === 'ADMINISTRATEUR'"
 								class="btn btn-danger btn-sm">
 								<span class="glyphicon glyphicon-trash"></span>
 							</button>

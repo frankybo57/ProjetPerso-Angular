@@ -1,6 +1,6 @@
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 
-<ul class="nav nav-pills">
+<ul class="nav nav-pills" ng-controller="ControllerNavigation as moduleCtrl">
 	<li ng-class="{active:moduleCtrl.isOnglet('Acceuil')}">
 		<a ng-href="acceuil" ng-click="moduleCtrl.setOnglet('Acceuil')">
 			Acceuil
@@ -28,7 +28,7 @@
 			</li>
 			<li ng-class="{active:moduleCtrl.isSousOnglet('ListeIngredients')}">
 				<a ng-href="recettes/ingredients/liste" ng-click="moduleCtrl.setSousOnglet('Recettes','listeIngredients') ">
-					Liste des ingrédients
+					Liste des ingrÃ©dients
 				</a>
 			</li>
 		</ul>

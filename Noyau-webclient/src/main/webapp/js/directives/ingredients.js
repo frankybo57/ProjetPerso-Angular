@@ -1,6 +1,7 @@
 (function(){
 	
 	angular.module('ingredientsDirective',[])
+	.directive('navigationTableIngredients', directiveNavigationTableIngredients)
 	.directive('navigationEditionIngredient', directiveNavigationEditionIngredient)
 	.directive('editionIngredient', directiveEditionIngredient)
 	.directive('editionIngredientIntroduction', directiveEditionIngredientIntroduction)
@@ -11,6 +12,7 @@
 	.directive('editionIngredientConseils', directiveEditionIngredientConseils)
 	.directive('editionIngredientFinalisation', directiveEditionIngredientFinalisation)
 	
+	function directiveNavigationTableIngredients(){return{restrict:'E',templateUrl:'templates/pages/recettes/liste-ingredients/navigation.html'};};
 	function directiveNavigationEditionIngredient(){return{restrict:'E',templateUrl:'templates/pages/recettes/edition-ingredient/navigation.html'};};
 	function directiveEditionIngredient(){return{restrict:'E',templateUrl:'templates/pages/recettes/edition-ingredient/editionIngredient.html'};};
 	function directiveEditionIngredientIntroduction(){return{restrict:'E',templateUrl:'templates/pages/recettes/edition-ingredient/editionIngredientIntroduction.html'};};

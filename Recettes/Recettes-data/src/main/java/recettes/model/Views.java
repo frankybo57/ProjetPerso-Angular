@@ -22,6 +22,10 @@ public class Views {
 		
 	}
 	
+	public static class Ingredient extends Common {
+
+	}
+	
 	public static class TypeIngredient extends Common {
 
 	}

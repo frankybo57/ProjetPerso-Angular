@@ -1,11 +1,12 @@
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 
 <div class="panel panel-default">
 	<div class="panel panel-heading">
 		<h1>Mode admin</h1>
 	</div>
 	<div class="panel panel-body">
-		<div class="col-sm-6" ng-controller="UtilisateurController as UtilisateurCtrl">
+		<div class="col-sm-6"
+			ng-controller="ControllerAfficherListeUtilisateurs as UtilisateurCtrl">
 			<div class="panel panel-heading">
 				<h2>Gestion des utilisateurs</h2>
 			</div>
@@ -14,34 +15,35 @@
 					<thead>
 						<tr>
 							<td><label>Login</label></td>
-							<td><label>Password</label></td>
 							<td><label>Droits</label></td>
-							<td><label>Opérations</label></td>
+							<td><label>OpÃ©rations</label></td>
 						</tr>
 					</thead>
 					<tbody id="tableUtilisateurs">
 						<tr>
-							<tr ng-repeat="utilisateur in UtilisateurCtrl.utilisateurs">
+						<tr ng-repeat="utilisateur in UtilisateurCtrl.listeUtilisateurs">
 							<td>{{utilisateur.login}}</td>
-							<td>{{utilisateur.password}}</td>
 							<td>{{utilisateur.droits}}</td>
 							<td>
 								<div class="btn-group">
-									<button class='btn btn-success btn-sm' ng-click="UtilisateurCtrl.edit(utilisateur.id)">
+									<button class='btn btn-success btn-sm'
+										ng-click="UtilisateurCtrl.edit(utilisateur.id)">
 										<span class='glyphicon glyphicon-pencil'></span>
 									</button>
-									<button class='btn btn-danger btn-sm' ng-click="UtilisateurCtrl.remove(utilisateur.id)">
+									<button class='btn btn-danger btn-sm'
+										ng-click="UtilisateurCtrl.remove(utilisateur.id)">
 										<span class='glyphicon glyphicon-trash'></span>
 									</button>
 								</div>
-								
+
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
-		<div class="col-sm-6">
+		<div class="col-sm-6"
+			ng-controller="ControllerAfficherListeModules as moduleCtrl">
 			<div class="panel panel-heading">
 				<h2>Gestion des modules</h2>
 			</div>
@@ -51,7 +53,7 @@
 						<tr>
 							<td><label>Module</label></td>
 							<td><label>Etat</label></td>
-							<td><label>Opérations</label></td>
+							<td><label>OpÃ©rations</label></td>
 						</tr>
 					</thead>
 					<tbody id="tableModules">
@@ -60,13 +62,16 @@
 							<td>{{module.etat}}</td>
 							<td>
 								<div class="btn-group">
-									<button class='btn btn-success btn-sm' ng-click="moduleCtrl.edit(module.id)">
+									<button class='btn btn-success btn-sm'
+										ng-click="moduleCtrl.edit(module.id)">
 										<span class='glyphicon glyphicon-pencil'></span>
 									</button>
-									<button class='btn btn-success btn-sm' ng-click="moduleCtrl.toggle(module.id)">
+									<button class='btn btn-success btn-sm'
+										ng-click="moduleCtrl.toggle(module.id)">
 										<span class='glyphicon glyphicon-refresh'></span>
 									</button>
-									<button class='btn btn-danger btn-sm' ng-click="moduleCtrl.remove(module.id)">
+									<button class='btn btn-danger btn-sm'
+										ng-click="moduleCtrl.remove(module.id)">
 										<span class='glyphicon glyphicon-trash'></span>
 									</button>
 								</div>
@@ -74,29 +79,32 @@
 						</tr>
 						<tr>
 							<td colspan="3">
-								<button class='btn btn-success btn-sm' ng-click="moduleCtrl.add()">
+								<button class='btn btn-success btn-sm'
+									ng-click="moduleCtrl.add()">
 									<span class='glyphicon glyphicon-plus'></span>
 								</button>
 							</td>
-						</tr>	
+						</tr>
 					</tbody>
 				</table>
-			<div class="panel panel-default" style="margin-top: 20px"
+				<div class="panel panel-default" style="margin-top: 20px"
 					ng-show="moduleCtrl.module">
-				<div class="panel-heading">Edition du module</div>
+					<div class="panel-heading">Edition du module</div>
 					<div class="panel-body">
-						<form name="moduleCtrl.moduleForm" ng-submit="moduleCtrl.moduleForm.$valid && moduleCtrl.save()" novalidate>
-							<input type="hidden" ng-model="moduleCtrl.module.id" /> 
-							<input type="hidden" ng-model="moduleCtrl.module.version" />
+						<form name="moduleCtrl.moduleForm"
+							ng-submit="moduleCtrl.moduleForm.$valid && moduleCtrl.save()"
+							novalidate>
+							<input type="hidden" ng-model="moduleCtrl.module.id" /> <input
+								type="hidden" ng-model="moduleCtrl.module.version" />
 							<div class="form-group">
-								<label for="nom">Module</label>
-								<input type="text" class="form-control" style="width: 400px"
-								ng-model="moduleCtrl.module.nom" required/>
+								<label for="nom">Module</label> <input type="text"
+									class="form-control" style="width: 400px"
+									ng-model="moduleCtrl.module.nom" required />
 							</div>
 							<div class="form-group">
-								<label for="duree">Etat</label> 
-								<select class="form-control" style="width: 400px" ng-model="moduleCtrl.module.etat" required>
-									<option ng-repeat="etat in moduleCtrl.etats" value="{{etat}}">{{etat}}</option>	
+								<label for="duree">Etat</label> <select class="form-control"
+									style="width: 400px" ng-model="moduleCtrl.module.etat" required>
+									<option ng-repeat="etat in moduleCtrl.etats" value="{{etat}}">{{etat}}</option>
 								</select>
 							</div>
 							<button class="btn btn-success" type="submit">

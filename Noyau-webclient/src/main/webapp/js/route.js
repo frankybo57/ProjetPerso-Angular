@@ -34,7 +34,7 @@
 		
 		.when('/recettes/edition',{
 			templateUrl:'templates/pages/recettes/edition-recette/index.html',
-			controller:'ControllerEditionRecette',
+			controller:'ControllerEditerRecette',
 			controllerAs:'recetteCtrl',
 		})
 		
@@ -46,7 +46,7 @@
 		
 		.when('/recettes/ingredients/edition',{
 			templateUrl:'templates/pages/recettes/edition-ingredient/index.html',
-			controller:'ControllerEditionIngredient',
+			controller:'ControllerEditerIngredient',
 			controllerAs:'editionIngredientsCtrl',
 		})
 		

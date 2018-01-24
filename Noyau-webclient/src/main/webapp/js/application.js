@@ -2,11 +2,17 @@
 	
 	angular.module('application', 
 			[	
+				/* Librairies */
 				'ngRoute',
 				
 				/* Controllers */
+				'ControllerAfficherListeIngredient',
+				'ControllerAfficherListeModules',
 				'ControllerAfficherListeRecette',
-				'recettesController',
+				'ControllerAfficherListeUtilisateurs',
+				'ControllerEditerIngredient',
+				'ControllerEditerRecette',
+				'ControllerNavigation',
 				'sessionController',
 				
 				/* Directives */
@@ -16,11 +22,13 @@
 				'sessionDirective',
 				
 				/* Services */
+				'IngredientService',
+				'ModuleService',
 				'RecetteService',
+				'TypeIngredientService',
 				'TypePlatService',
 				'UtilisateurService',
 				
-				'modules',
 				'utilisateurs',
 				]);
 		

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import recettes.model.TypeIngredient;
 import recettes.model.Views;
 import recettes.repository.TypeIngredientRepository;
 
@@ -20,9 +19,10 @@ public class TypeIngredientController {
 	@Autowired
 	private TypeIngredientRepository tiRepo;
 	
+	@SuppressWarnings("rawtypes")
 	@GetMapping("/type-ingredient/liste/")
-	@JsonView(Views.TypeIngredient.class)
-	public ResponseEntity<List<TypeIngredient>> findAll() {
+	@JsonView(Views.Common.class)
+	public ResponseEntity<List> findAll() {
 		return new ResponseEntity<>(tiRepo.findAll(), HttpStatus.OK);
 	}
 }

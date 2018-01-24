@@ -9,7 +9,7 @@ Service typePlat
 	function serviceTypePlatFactory($http){
 		return{
 			findAll : function(){
-				return $http({method:"GET", url:'api/typesPlats/'})
+				return $http({method:"GET", url:'api/types-plats/liste/'})
 			},
 		};
 	};

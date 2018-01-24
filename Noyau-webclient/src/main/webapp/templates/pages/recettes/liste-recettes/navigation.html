@@ -7,7 +7,7 @@
 		<li class="nav-link">
 			<a ng-href="recettes/ingredients/edition">Ajouter un ingrédient</a>
 		</li>
-		<li ng-repeat="typePlat in recetteCtrl.typesPlats" class="nav-link" id={{typePlat.ancre}}>
+		<li ng-repeat="typePlat in recetteCtrl.types" class="nav-link" id={{typePlat.ancre}}>
 			<a href="" ng-click="gotoAnchor(typePlat.ancre)">{{typePlat.label}}</a>
 		</li>
 	</ul>

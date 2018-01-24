@@ -1,7 +1,54 @@
 <meta charset="UTF-8">
 
-<div>
+<div ng-controller="ingredientsScrollController">
 
+	<navigation-table-ingredients></navigation-table-ingredients>
+
+	<div class="panel panel-default col-sm-10">
+		<div class="panel-heading">
+			<h1>Liste des ingredients</h1>
+		</div>
+		<table class="table table-striped" id="listeIngredients">
+			<thead>
+				<tr>
+					<td><label>Label</label></td>
+					<td><label>Coût</label></td>
+					<td><label>Opérations</label></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat-start="typeIngredient in listeIngredientsCtrl.types"
+					id="anchor{{typeIngredient.ancre}}">
+					<td colspan="6"><label>{{typeIngredient.label}}</label></td>
+				</tr>
+				<tr ng-repeat-end ng-repeat="ingredient in listeIngredientsCtrl.liste"
+					ng-if="ingredient.typeIngredient.id == typeIngredient.id">
+					<td><label style="padding-left: 20px; font-weight: normal">{{ingredient.label}}</label>
+					</td>
+					<td><span
+						ng-repeat="n in listeIngredientsCtrl.creerCollection(ingredient.cout)"
+						class="glyphicon glyphicon-euro"></span></td>
+					<td>
+						<div clas="btn btn-group">
+							<button class="btn btn-success btn-sm">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+							<button class="btn btn-success btn-sm">
+								<span class='glyphicon glyphicon-print'></span>
+							</button>
+							<button class="btn btn-info btn-sm">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button>
+							<button ng-show="sessionCtrl.droits === 'ADMINISTRATEUR'"
+								class="btn btn-danger btn-sm">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 
 

@@ -26,7 +26,7 @@ public class TypePlatController {
 	 * @return la liste des types de plats en base.
 	 */
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/typesPlats/")
+	@GetMapping("/types-plats/liste/")
 	@JsonView(Views.Common.class)
 	public ResponseEntity<List> findAll() {
 		return new ResponseEntity<>(tpRepo.findAllOrderByIdAsc(), HttpStatus.OK);
@@ -38,7 +38,7 @@ public class TypePlatController {
 	 * @return -
 	 */
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/typesPlats/{typeplat}")
+	@GetMapping("/types-plats/{typeplat}")
 	@JsonView(Views.Common.class)
 	@Deprecated
 	public ResponseEntity<List> findAll(@PathVariable("typeplat") TypePlat typePlat) {
