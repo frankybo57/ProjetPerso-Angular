@@ -1,22 +1,22 @@
 <meta charset="UTF-8">
 <div class="col-sm-2">
 	<ul class="nav nav-pills nav-stacked">
-		<li ng-click="recetteCtrl.mode='table'" class="nav-link">
-			<a>Annuler</a>
+		<li class="nav-link">
+			<a ng-href="recettes/ingredients/liste">Annuler</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('intituleIngredient')" ng-class="{active:recetteCtrl.isOngletEdition('intituleIngredient')}">
+		<li class="nav-link" ng-click="editionIngredientsCtrl.setOngletEdition('intitule')" ng-class="{active:editionIngredientsCtrl.isOngletEdition('intitule')}">
 			<a>Intitulé</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('typeIngredient')" ng-class="{active:recetteCtrl.isOngletEdition('typeIngredient')}">
+		<li class="nav-link" ng-click="editionIngredientsCtrl.setOngletEdition('type')" ng-class="{active:editionIngredientsCtrl.isOngletEdition('type')}">
 			<a>Type d'ingrédient</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('coutIngredient')" ng-class="{active:recetteCtrl.isOngletEdition('coutIngredient')}">
+		<li class="nav-link" ng-click="editionIngredientsCtrl.setOngletEdition('cout')" ng-class="{active:editionIngredientsCtrl.isOngletEdition('cout')}">
 			<a>Coût</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('imageIngredient')" ng-class="{active:recetteCtrl.isOngletEdition('imageIngredient')}">
+		<li class="nav-link" ng-click="editionIngredientsCtrl.setOngletEdition('image')" ng-class="{active:editionIngredientsCtrl.isOngletEdition('image')}">
 			<a>Image</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('conseilsIngredient')" ng-class="{active:recetteCtrl.isOngletEdition('conseilsIngredient')}">
+		<li class="nav-link" ng-click="editionIngredientsCtrl.setOngletEdition('conseils')" ng-class="{active:editionIngredientsCtrl.isOngletEdition('conseils')}">
 			<a>Conseils</a>
 		</li>
 	</ul>

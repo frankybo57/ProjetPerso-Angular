@@ -1,0 +1,44 @@
+<meta charset="UTF-8">
+
+<div class="panel panel-default col-sm-10">
+	<div class="panel-heading">
+		<h1 class="text-center">{{recetteCtrl.recetteTemp.intitule}}</h1>
+		<h2 class="text-center">{{recetteCtrl.recetteTemp.typePlat.label}}</h2>
+	</div>
+	<div class="panel-body">
+		<div>
+			<div class="col-sm-4" ng-show="recetteCtrl.recetteTemp.difficulte">
+				<label>Difficulté : </label>
+				<span class="glyphicon glyphicon-apple"
+				ng-repeat="n in recetteCtrl.creerCollection(recetteCtrl.recetteTemp.difficulte)"></span>
+			</div>
+			<div class="col-sm-4" ng-show="recetteCtrl.recetteTemp.nombreCouverts">
+				<label>Nombre de couverts : {{recetteCtrl.recetteTemp.nombreCouverts}}</label>
+				<span ng-if="recetteCtrl.recetteTemp.nombreCouverts > 0" class="glyphicon glyphicon-cutlery"></span>
+			</div>
+			<div class="col-sm-3 pull-right" ng-show="recetteCtrl.recetteTemp.cout">
+				<label>Coût :</label>
+				<span class="glyphicon glyphicon-euro"
+				ng-repeat="n in recetteCtrl.creerCollection(recetteCtrl.recetteTemp.cout)"></span>
+			</div>
+		</div>
+		<div>
+		<div class="col-sm-4" ng-show="recetteCtrl.recetteTemp.tempsPreparation">
+			<label>Préparation : {{recetteCtrl.recetteTemp.tempsPreparation}}</label>
+		</div>
+		<div class="col-sm-4" ng-show="recetteCtrl.recetteTemp.tempsRepos">
+			<label>Repos : {{recetteCtrl.recetteTemp.tempsRepos}}</label>
+		</div>
+		<div class="col-sm-3" ng-show="recetteCtrl.recetteTemp.tempsCuisson">
+			<label>Cuisson : {{recetteCtrl.recetteTemp.tempsCuisson}}</label>
+		</div>
+		</div>
+		<div class="col-sm-6"  ng-show="recetteCtrl.recetteTemp.ingredients">
+			<label>Ingrédients :</label>
+			<ul>
+				<li></li>
+			</ul>
+		</div>
+		<div class="col-sm-4 border"  ng-show="recetteCtrl.recetteTemp.image">Image</div>
+	</div>
+</div>	

@@ -8,9 +8,9 @@
 	<div class="panel-body">
 		<div class="form-group">
 			<label for="cout">Coût</label>
-			<select class="form-control" ng-options="n as n for n in [1,2,3,4,5] track by n" style="width: 400px" ng-model="recetteCtrl.recetteTemp.cout" required></select>
+			<select class="form-control" ng-options="n as n for n in [1,2,3,4,5] track by n" style="width: 400px" ng-model="editionIngredientsCtrl.temp.cout" required></select>
 		</div>
-		<a class="btn btn-info pull-right" ng-click="recetteCtrl.setOngletEdition('imageIngredient')">
+		<a class="btn btn-info pull-right" ng-click="editionIngredientsCtrl.setOngletEdition('image')">
 			Suivant
 		</a>
 	</div>

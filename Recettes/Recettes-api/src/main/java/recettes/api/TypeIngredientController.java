@@ -12,17 +12,20 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import recettes.model.Views;
 import recettes.repository.TypeIngredientRepository;
+import recettes.service.ListeTypeIngredient;
 
 
 @RestController
 public class TypeIngredientController {
 	@Autowired
 	private TypeIngredientRepository tiRepo;
+	@Autowired
+	private ListeTypeIngredient listeTypeIngredient;
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/type-ingredient/liste/")
 	@JsonView(Views.Common.class)
 	public ResponseEntity<List> findAll() {
-		return new ResponseEntity<>(tiRepo.findAll(), HttpStatus.OK);
+		return new ResponseEntity<>(listeTypeIngredient.getListe(), HttpStatus.OK);
 	}
 }

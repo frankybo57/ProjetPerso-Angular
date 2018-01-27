@@ -1,0 +1,17 @@
+<meta charset="UTF-8">
+
+<div class="panel panel-default col-sm-10">
+	<div class="panel-heading">
+		<h1>Edition de l'ingrédient</h1>
+		<h2>Type d'ingrédient</h2>
+	</div>
+	<div class="panel-body">
+		<div class="form-group">
+			<label for="typeIngredient">Type de l'ingrédient</label>
+			<select class="form-control"ng-options="type as type.label for type in editionIngredientsCtrl.types track by type.id" style="width: 400px" ng-model="editionIngredientsCtrl.temp.typeIngredient" required></select>
+		</div>
+		<a class="btn btn-info pull-right" ng-click="editionIngredientsCtrl.setOngletEdition('cout')">
+			Suivant
+		</a>
+	</div>
+</div>	

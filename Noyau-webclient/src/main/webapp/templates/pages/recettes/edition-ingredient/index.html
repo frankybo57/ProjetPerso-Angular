@@ -1,7 +1,28 @@
 <meta charset="UTF-8">
 
 <div>
-	<navigation-edition-ingredient ng-show="recetteCtrl.mode === 'edition_ingredient'"></navigation-edition-ingredient>
-	
-	<edition-ingredient ng-show="recetteCtrl.mode === 'edition_ingredient'"></edition-ingredient>
+	<navigation-edition-ingredient></navigation-edition-ingredient>
+
+	<form name="editionIngredientsCtrl.recetteForm"
+		ng-submit="editionIngredientsCtrl.recetteForm.$valid && editionIngredientsCtrl.save()"
+		novalidate>
+		<input type="hidden" ng-model="editionIngredientsCtrl.temp.id" /> <input
+			type="hidden" ng-model="editionIngredientsCtrl.temp.version" />
+		<edition-ingredient-introduction
+			ng-show="editionIngredientsCtrl.isOngletEdition('introduction')"></edition-ingredient-introduction>
+		<edition-ingredient-intitule
+			ng-show="editionIngredientsCtrl.isOngletEdition('intitule')"></edition-ingredient-intitule>
+		<edition-ingredient-type-ingredient
+			ng-show="editionIngredientsCtrl.isOngletEdition('type')"></edition-ingredient-type-ingredient>
+		<edition-ingredient-cout
+			ng-show="editionIngredientsCtrl.isOngletEdition('cout')"></edition-ingredient-cout>
+		<edition-ingredient-image
+			ng-show="editionIngredientsCtrl.isOngletEdition('image')"></edition-ingredient-image>
+		<edition-ingredient-conseils
+			ng-show="editionIngredientsCtrl.isOngletEdition('conseils')"></edition-ingredient-conseils>
+		<edition-ingredient-finalisation
+			ng-show="editionIngredientsCtrl.isOngletEdition('validation')"></edition-ingredient-finalisation>
+	</form>
+
+	<vue-ingredient></vue-ingredient>
 </div>

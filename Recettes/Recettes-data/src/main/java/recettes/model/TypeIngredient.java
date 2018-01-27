@@ -31,6 +31,10 @@ public class TypeIngredient {
 	@JsonView(Views.Common.class)
 	private int version;
 	
+	@Column(name="niveau")
+	@JsonView(Views.Common.class)
+	private Short niveau;
+	
 	@Column(name="label")
 	@JsonView(Views.Common.class)
 	private String label;
@@ -44,7 +48,7 @@ public class TypeIngredient {
 	private List<TypeIngredient> typesFils;
 	
 	@ManyToOne
-	@JoinColumn(name="type_fils_id")
+	@JoinColumn(name="type_pere_id")
 	@JsonView(Views.TypeIngredient.class)
 	private TypeIngredient typePere;
 	
@@ -77,6 +81,14 @@ public class TypeIngredient {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	public Short getNiveau() {
+		return niveau;
+	}
+
+	public void setNiveau(Short niveau) {
+		this.niveau = niveau;
 	}
 
 	public String getLabel() {

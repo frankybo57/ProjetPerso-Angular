@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	
+
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<artifactId>ProjetPerso</artifactId>
 		<groupId>frankybo57</groupId>
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	
+
 
 	<artifactId>Noyau-webclient</artifactId>
 	<packaging>war</packaging>
@@ -78,7 +78,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-	
+
 		<!-- Dépendances web -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -98,9 +98,9 @@
 					<artifactId>spring-context</artifactId>
 				</exclusion>
 				<exclusion>
-		    		<groupId>org.springframework</groupId>
-		    		<artifactId>spring-core</artifactId>
-		    	</exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -121,9 +121,9 @@
 					<artifactId>spring-context</artifactId>
 				</exclusion>
 				<exclusion>
-		    		<groupId>org.springframework</groupId>
-		    		<artifactId>spring-core</artifactId>
-		    	</exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -144,10 +144,10 @@
 					<artifactId>spring-context</artifactId>
 				</exclusion>
 				<exclusion>
-		    		<groupId>org.springframework</groupId>
-		    		<artifactId>spring-core</artifactId>
-		    	</exclusion>
-		    	<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-web</artifactId>
 				</exclusion>
@@ -167,7 +167,7 @@
 			<version>2.9.2</version>
 		</dependency>
 	</dependencies>
-	
+
 	<reporting>
 		<plugins>
 			<plugin>
@@ -198,47 +198,113 @@
 	</reporting>
 
 	<!-- <build>
+		<finalName>${name}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
+				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<webResources>
+						<resource>
+							this is relative to the pom.xml directory
+ 							<directory>src/main/properties/${securityMode}
+							</directory>
+							<targetPath>WEB-INF</targetPath>
+							<excludes>
+								<exclude>gfast_log4j.properties
+								</exclude>
+								<exclude>gfast_messages.properties
+								</exclude>
+							</excludes>
+						</resource>
+					</webResources>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
 				</configuration>
-			</plugin> -->
-			<!-- <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-    			<artifactId>maven-javadoc-plugin</artifactId>
-    			<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>	 -->
-			<!-- <plugin>
-				<groupId>org.jacoco</groupId>
-    			<artifactId>jacoco-maven-plugin</artifactId>
-    			<configuration>
-    				<source>1.8</source>
-					<target>1.8</target>
-    			</configuration>
 			</plugin>
 			<plugin>
-			  	<groupId>org.apache.maven.plugins</groupId>
-			  	<artifactId>maven-surefire-plugin</artifactId>
-			  	<version>2.13</version>
-			  	<configuration>
-			   		<argLine>-XX:-UseSplitVerifier</argLine>
-			   		<includes>
-			    		<include>**/*Test.java</include>
-			    		<include>**/*Tests.java</include>
-			   		</includes>
-			   		<excludes>
-			    		<exclude>**/it/*IT.java</exclude>
-			   		</excludes>
-			  	</configuration>
-			 </plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assembly/assemble-webapp.xml</descriptor>
+						<descriptor>src/main/assembly/assemble-src.xml</descriptor>
+					</descriptors>
+					<outputDirectory>../war</outputDirectory>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build> -->
-
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.13</version>
+					<configuration>
+						<argLine>-XX:-UseSplitVerifier</argLine>
+						<includes>
+							<include>**/*Test.java</include>
+							<include>**/*Tests.java</include>
+						</includes>
+						<excludes>
+							<exclude>**/it/*IT.java</exclude>
+						</excludes>
+					</configuration>
+				 </plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>

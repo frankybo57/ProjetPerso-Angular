@@ -21,7 +21,7 @@
 	.directive('editionRecetteConseils', directiveEditionRecetteConseils)
 	.directive('editionRecetteFinalisation', directiveEditionRecetteFinalisation);
 	
-	function directiveVueRecette(){return{restrict:'E',templateUrl:'templates/pages/recettes/vueRecette.html'};};
+	function directiveVueRecette(){return{restrict:'E',templateUrl:'templates/pages/recettes/edition-recette/vue-recette.html'};};
 	function directiveNavigationTableRecettes(){return{restrict:'E',templateUrl:'templates/pages/recettes/liste-recettes/navigation.html'};};
 	function directiveNavigationEditionRecette(){return{restrict:'E',templateUrl:'templates/pages/recettes/edition-recette/navigation.html'};};
 	function directiveEditionRecetteIntroduction(){return{restrict:'E',templateUrl:'templates/pages/recettes/edition-recette/editionRecetteIntroduction.html'};};

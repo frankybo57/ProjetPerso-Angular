@@ -17,7 +17,7 @@
 	<jpa:repositories base-package="noyau.repository, recettes.repository"/>
 	
 	<!-- Activation annotations et scan des classes du package -->
-	<context:component-scan base-package="noyau.repository, recettes.repository"/>
+	<context:component-scan base-package="noyau.repository, recettes.repository, recettes.service"/>
 
 	<context:property-placeholder location="classpath:sgbd.properties"/>
 
