@@ -5,18 +5,20 @@
 	.controller("UtilisateurController", UtilisateurController);
 	
 	function UtilisateurController(){
-		var self = this;
+		var ctrl = this;
 		
-		self.utilisateurs = [];
+		ctrl.utilisateurs = [];
+		ctrl.isUser = isUser;
+		ctrl.getUserByLogin = getUserByLogin;
 		
-		self.isUser = function(login){
+		function isUser(login){
 			for(var utilisateur of utilisateurs){
 				if(utilisateur.login === login)return true;
 			}
 			return false;
 		};
 
-		self.getUserByLogin = function(login){
+		function getUserByLogin(login){
 			for(var utilisateur of utilisateurs){
 				if(utilisateur.login === login)return utilisateur;
 			}

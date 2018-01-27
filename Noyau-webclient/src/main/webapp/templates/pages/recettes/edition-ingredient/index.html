@@ -1,8 +1,11 @@
 <meta charset="UTF-8">
 
 <div>
+	<div class="col-sm-2">
 	<navigation-edition-ingredient></navigation-edition-ingredient>
+	</div>
 
+	<div class="panel panel-default col-sm-10">
 	<form name="editionIngredientsCtrl.recetteForm"
 		ng-submit="editionIngredientsCtrl.recetteForm.$valid && editionIngredientsCtrl.save()"
 		novalidate>
@@ -23,6 +26,7 @@
 		<edition-ingredient-finalisation
 			ng-show="editionIngredientsCtrl.isOngletEdition('validation')"></edition-ingredient-finalisation>
 	</form>
+	</div>
 
 	<vue-ingredient></vue-ingredient>
 </div>

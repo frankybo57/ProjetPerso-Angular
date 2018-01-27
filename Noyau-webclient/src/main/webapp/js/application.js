@@ -5,6 +5,8 @@
 				/* Librairies */
 				'ngRoute',
 				
+				/* Constantes */
+				
 				/* Controllers */
 				'ControllerAfficherListeIngredient',
 				'ControllerAfficherListeModules',
@@ -28,6 +30,9 @@
 				'TypeIngredientService',
 				'TypePlatService',
 				'UtilisateurService',
+				
+				/* Values */
+				'ValueIngredientEdite',
 				
 				'utilisateurs',
 				]);

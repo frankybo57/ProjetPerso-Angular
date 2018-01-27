@@ -19,7 +19,23 @@
 			<tbody>
 				<tr ng-repeat-start="typeIngredient in listeIngredientsCtrl.types"
 					id="anchor{{typeIngredient.ancre}}">
-					<td colspan="6"><label>{{typeIngredient.label}}</label></td>
+					<td colspan="2">
+						<label ng-style="{'padding-left': (typeIngredient.niveau*20)}">
+							{{typeIngredient.label}}
+						</label>
+					</td>
+					<td>
+						<div clas="btn btn-group">
+							<button class="btn btn-info btn-sm">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button>
+							<button ng-show="sessionCtrl.droits === 'ADMINISTRATEUR'"
+								ng-click="listeIngredientsCtrl.remove(typeIngredient.id)"
+								class="btn btn-danger btn-sm">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
+						</div>
+					</td>
 				</tr>
 				<tr ng-repeat-end ng-repeat="ingredient in listeIngredientsCtrl.liste"
 					ng-if="ingredient.typeIngredient.id == typeIngredient.id">
@@ -36,11 +52,14 @@
 							<button class="btn btn-success btn-sm">
 								<span class='glyphicon glyphicon-print'></span>
 							</button>
-							<button class="btn btn-info btn-sm">
+							<button class="btn btn-info btn-sm"
+							ng-click="listeIngredientsCtrl.editer(ingredient)"
+							ng-href="">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</button>
 							<button ng-show="sessionCtrl.droits === 'ADMINISTRATEUR'"
-								class="btn btn-danger btn-sm">
+								class="btn btn-danger btn-sm"
+								ng-click="listeIngredientsCtrl.supprimer(ingredient.id)">
 								<span class="glyphicon glyphicon-trash"></span>
 							</button>
 						</div>

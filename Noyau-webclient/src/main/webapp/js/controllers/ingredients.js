@@ -13,7 +13,9 @@
 		
 		self.listeIngredients = [];
 		
-		self.liste = function() {
+		self.liste = liste;
+		
+		function liste() {
 			$http({
 				method : 'GET',
 				url : 'api/ingredients/'

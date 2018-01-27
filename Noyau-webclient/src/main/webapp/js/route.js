@@ -50,6 +50,12 @@
 			controllerAs:'editionIngredientsCtrl',
 		})
 		
+		.when('/recettes/ingredients/edition/:id',{
+			templateUrl:'templates/pages/recettes/edition-ingredient/index.html',
+			controller:'ControllerEditerIngredient',
+			controllerAs:'editionIngredientsCtrl',
+		})
+		
 		
 		
 		.otherwise({redirectTo:'/'});

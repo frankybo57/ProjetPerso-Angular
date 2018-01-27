@@ -1,17 +1,16 @@
 <meta charset="UTF-8">
 
-<div class="panel panel-default col-sm-10">
-	<div class="panel-heading">
-		<h1>Edition de l'ingrédient</h1>
-		<h2>Image</h2>
+<div class="panel-heading">
+	<h1>Edition de l'ingrédient</h1>
+	<h2>Image</h2>
+</div>
+<div class="panel-body">
+	<div class="form-group">
+		<label for="image">Image de l'ingrédient</label> <input type="text"
+			class="form-control" style="width: 400px"
+			ng-model="editionIngredientsCtrl.temp.image" required />
 	</div>
-	<div class="panel-body">
-		<div class="form-group">
-			<label for="image">Image de l'ingrédient</label>
-			<input type="text" class="form-control" style="width: 400px" ng-model="editionIngredientsCtrl.temp.image" required/>
-		</div>
-		<a class="btn btn-info pull-right" ng-click="editionIngredientsCtrl.setOngletEdition('conseils')">
-			Suivant
-		</a>
-	</div>
-</div>	
+	<a class="btn btn-info pull-right"
+		ng-click="editionIngredientsCtrl.setOngletEdition('conseils')">
+		Suivant </a>
+</div>

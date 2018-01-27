@@ -26,6 +26,13 @@ public class TypeIngredientController {
 	@GetMapping("/type-ingredient/liste/")
 	@JsonView(Views.Common.class)
 	public ResponseEntity<List> findAll() {
+		return new ResponseEntity<>(tiRepo.findAll(), HttpStatus.OK);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@GetMapping("/type-ingredient/liste-hierarchisee/")
+	@JsonView(Views.Common.class)
+	public ResponseEntity<List> findAllHierarchie() {
 		return new ResponseEntity<>(listeTypeIngredient.getListe(), HttpStatus.OK);
 	}
 }

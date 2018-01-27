@@ -11,9 +11,15 @@ Service ingredient
 			findAll : function(){
 				return $http({method:"GET", url:'api/ingredients/liste/'})
 			},
+			find : function(id){
+				return $http({method:"GET", url:'api/ingredients/' + id})
+			},
 			create : function(recette){
 				return $http({method:"POST", url:'api/ingredient', data: utilisateur})
-			}
+			},
+			supprimer : function(id){
+				return $http({method:"DELETE", url:'api/ingredients/' + id})
+			},
 		};
 	};
 
