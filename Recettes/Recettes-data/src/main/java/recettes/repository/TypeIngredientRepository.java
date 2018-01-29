@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import recettes.model.TypeIngredient;
 
 
-public interface TypeIngredientRepository extends JpaRepository<TypeIngredient, Short>{
+public interface TypeIngredientRepository extends JpaRepository<TypeIngredient, Long>{
 	@Query("from TypeIngredient ti where ti.typePere = :typePere")
 	public List<TypeIngredient> findAllTypeIngredientFils(@Param("typePere") TypeIngredient typePere);
 }

@@ -1,65 +1,66 @@
 <!DOCTYPE html>
-<html ng-app="application" ng-controller="SessionController as sessionCtrl">
+<html ng-app="application"
+	ng-controller="SessionController as sessionCtrl">
 <head>
-	<meta charset="UTF-8">
-	<title>Noyau</title>
-	<!-- Librairies -->
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="lib/bootstrap.min.js"></script>
-	<!-- <script type="text/javascript" src="lib/angular.min.js"></script> -->
-	<script type="text/javascript" src="lib/angular.js"></script>
-	<!-- <script type="text/javascript" src="lib/angular-route.min.js"></script> -->
-	<script type="text/javascript" src="lib/angular-route.js"></script>
-	
-	<script type="text/javascript" src="js/application.js"></script>
-	<script type="text/javascript" src="js/route.js"></script>
-	
-	<!-- Controllers -->
-	<script type="text/javascript" src="js/controllers/afficherListeIngredient.js"></script>
-	<script type="text/javascript" src="js/controllers/afficherListeModules.js"></script>
-	<script type="text/javascript" src="js/controllers/afficherListeRecette.js"></script>
-	<script type="text/javascript" src="js/controllers/afficherListeUtilisateurs.js"></script>
-	<script type="text/javascript" src="js/controllers/editerRecette.js"></script>
-	<script type="text/javascript" src="js/controllers/editerIngredient.js"></script>
-	<script type="text/javascript" src="js/controllers/ingredients.js"></script>
-	<script type="text/javascript" src="js/controllers/navigation.js"></script>	
-	<script type="text/javascript" src="js/controllers/scrollTableIngredients.js"></script>
-	<script type="text/javascript" src="js/controllers/scrollTableRecettes.js"></script>	
-	<script type="text/javascript" src="js/controllers/session.js"></script>
-	<script type="text/javascript" src="js/controllers/utilisateurs.js"></script>
-	
-	<!-- Directives -->
-	<script type="text/javascript" src="js/directives/ingredients.js"></script>
-	<script type="text/javascript" src="js/directives/navigation.js"></script>
-	<script type="text/javascript" src="js/directives/recettes.js"></script>
-	<script type="text/javascript" src="js/directives/session.js"></script>
-	
-	<!-- Services -->
-	<script type="text/javascript" src="js/services/ingredient.js"></script>
-	<script type="text/javascript" src="js/services/module.js"></script>
-	<script type="text/javascript" src="js/services/recettes.js"></script>
-	<script type="text/javascript" src="js/services/type-ingredient.js"></script>
-	<script type="text/javascript" src="js/services/type-plat.js"></script>
-	<script type="text/javascript" src="js/services/utilisateur.js"></script>
-	
-	<!-- Values -->
-	<script type="text/javascript" src="js/values/ingredientEdite.js"></script>
-	
-	<base href="/Noyau-webclient/">
+<meta charset="UTF-8">
+<title>Noyau</title>
+<!-- Librairies -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="lib/angular.min.js"></script> -->
+<script type="text/javascript" src="lib/angular.js"></script>
+<!-- <script type="text/javascript" src="lib/angular-route.min.js"></script> -->
+<script type="text/javascript" src="lib/angular-route.js"></script>
+
+<script type="text/javascript" src="js/application.js"></script>
+<script type="text/javascript" src="js/route.js"></script>
+
+<!-- Controllers -->
+<script type="text/javascript"
+	src="js/controllers/afficherListeIngredient.js"></script>
+<script type="text/javascript"
+	src="js/controllers/afficherListeModules.js"></script>
+<script type="text/javascript"
+	src="js/controllers/afficherListeRecette.js"></script>
+<script type="text/javascript"
+	src="js/controllers/afficherListeUtilisateurs.js"></script>
+<script type="text/javascript" src="js/controllers/editerRecette.js"></script>
+<script type="text/javascript" src="js/controllers/editerIngredient.js"></script>
+<script type="text/javascript" src="js/controllers/navigation.js"></script>
+<script type="text/javascript"
+	src="js/controllers/scrollTableIngredients.js"></script>
+<script type="text/javascript"
+	src="js/controllers/scrollTableRecettes.js"></script>
+<script type="text/javascript" src="js/controllers/session.js"></script>
+<script type="text/javascript" src="js/controllers/utilisateurs.js"></script>
+
+<!-- Directives -->
+<script type="text/javascript" src="js/directives/ingredients.js"></script>
+<script type="text/javascript" src="js/directives/navigation.js"></script>
+<script type="text/javascript" src="js/directives/recettes.js"></script>
+<script type="text/javascript" src="js/directives/session.js"></script>
+
+<!-- Services -->
+<script type="text/javascript" src="js/services/ingredient.js"></script>
+<script type="text/javascript" src="js/services/module.js"></script>
+<script type="text/javascript" src="js/services/recettes.js"></script>
+<script type="text/javascript" src="js/services/type-ingredient.js"></script>
+<script type="text/javascript" src="js/services/type-plat.js"></script>
+<script type="text/javascript" src="js/services/utilisateur.js"></script>
+
+<!-- Values -->
+<script type="text/javascript" src="js/values/ingredientEdite.js"></script>
+<script type="text/javascript" src="js/values/utilisateur.js"></script>
+
+<base href="/Noyau-webclient/">
 </head>
+
 <body>
-
-	<div id = "container" class="container">
-	
+	<div id="container" class="container">
 		<ecran-connexion ng-hide="sessionCtrl.droits"></ecran-connexion>
-	
 		<barre-navigation ng-show="sessionCtrl.droits"></barre-navigation>
-		
-		<div ng-view ng-show="sessionCtrl.droits"></div>	
+		<div ng-view ng-show="sessionCtrl.droits"></div>
 	</div>
-	
-
-
 </body>
 </html>

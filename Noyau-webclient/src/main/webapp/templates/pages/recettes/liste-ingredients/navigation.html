@@ -4,7 +4,7 @@
 		<li class="nav-link">
 			<a ng-href="recettes/ingredients/edition">Ajouter un ingrédient</a>
 		</li>
-		<li ng-repeat="typeIngredient in listeIngredientsCtrl.types" class="nav-link" id={{typeIngredient.ancre}}>
+		<li ng-repeat="typeIngredient in listeIngredientsCtrl.types track by typeIngredient.id" class="nav-link" id={{typeIngredient.ancre}}>
 			<a href="" ng-click="gotoAnchor(typeIngredient.ancre)">{{typeIngredient.label}}</a>
 		</li>
 	</ul>

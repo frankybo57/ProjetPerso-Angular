@@ -17,7 +17,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat-start="typeIngredient in listeIngredientsCtrl.types"
+				<tr ng-repeat-start="typeIngredient in listeIngredientsCtrl.types track by typeIngredient.id"
 					id="anchor{{typeIngredient.ancre}}">
 					<td colspan="2">
 						<label ng-style="{'padding-left': (typeIngredient.niveau*20)}">
@@ -37,7 +37,7 @@
 						</div>
 					</td>
 				</tr>
-				<tr ng-repeat-end ng-repeat="ingredient in listeIngredientsCtrl.liste"
+				<tr ng-repeat-end ng-repeat="ingredient in listeIngredientsCtrl.liste track by ingredient.id"
 					ng-if="ingredient.typeIngredient.id == typeIngredient.id">
 					<td><label style="padding-left: 20px; font-weight: normal">{{ingredient.label}}</label>
 					</td>

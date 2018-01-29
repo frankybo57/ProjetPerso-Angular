@@ -30,15 +30,15 @@ public class GenerationRecettes {
 	
 	@Test
 	public void generationTypePlat() {
-		TypePlat typePlat = new TypePlat("EntrÃ©e froide","entree_froide");
+		TypePlat typePlat = new TypePlat("Entrée froide","entree_froide");
 		tpRepo.save(typePlat);
-		typePlat = new TypePlat("EntrÃ©e chaude","entree_chaude");
+		typePlat = new TypePlat("Entrée chaude","entree_chaude");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Soupe","soupe");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Cake / Terrine","cake_terrine");
 		tpRepo.save(typePlat);
-		typePlat = new TypePlat("LÃ©gumes / Gratin","legumes_gratin");
+		typePlat = new TypePlat("Légumes / Gratin","legumes_gratin");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Oeufs / Fromage","oeufs_fromage");
 		tpRepo.save(typePlat);

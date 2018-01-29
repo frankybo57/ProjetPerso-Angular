@@ -1,47 +1,60 @@
 <meta charset="UTF-8">
 <div class="col-sm-2">
 	<ul class="nav nav-pills nav-stacked">
-		<li ng-click="recetteCtrl.mode='table'" class="nav-link">
-			<a>Annuler</a>
+		<li ng-click="recettes/liste" class="nav-link"><a>Annuler</a></li>
+		<li class="nav-link"
+			ng-click="recetteCtrl.setOngletEdition('intitule')"
+			ng-class="{active:recetteCtrl.isOngletEdition('intitule')}"><a>Intitulé</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('intitule')" ng-class="{active:recetteCtrl.isOngletEdition('intitule')}">
-			<a>Intitulé</a>
+		<li class="nav-link"
+			ng-click="recetteCtrl.setOngletEdition('typePlat')"
+			ng-class="{active:recetteCtrl.isOngletEdition('typePlat')}"><a>Type
+				de plat</a></li>
+		<li class="nav-link"
+			ng-click="recetteCtrl.setOngletEdition('difficulte')"
+			ng-class="{active:recetteCtrl.isOngletEdition('difficulte')}"><a>Difficulté</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('typePlat')" ng-class="{active:recetteCtrl.isOngletEdition('typePlat')}">
-			<a>Type de plat</a>
-		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('difficulte')" ng-class="{active:recetteCtrl.isOngletEdition('difficulte')}">
-			<a>Difficulté</a>
-		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('nombreCouverts')" ng-class="{active:recetteCtrl.isOngletEdition('nombreCouverts')}">
+		<li class="nav-link"
+			ng-click="recetteCtrl.setOngletEdition('nombreCouverts')"
+			ng-class="{active:recetteCtrl.isOngletEdition('nombreCouverts')}">
 			<a>Nombre de couverts</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('cout')" ng-class="{active:recetteCtrl.isOngletEdition('cout')}">
-			<a>Coût</a>
+		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('cout')"
+			ng-class="{active:recetteCtrl.isOngletEdition('cout')}"><a>Coût</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('tempsPreparation')" ng-class="{active:recetteCtrl.isOngletEdition('tempsPreparation')}">
+		<li class="nav-link"
+			ng-click="recetteCtrl.setOngletEdition('tempsPreparation')"
+			ng-class="{active:recetteCtrl.isOngletEdition('tempsPreparation')}">
 			<a>Temps de préparation</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('tempsRepos')" ng-class="{active:recetteCtrl.isOngletEdition('tempsRepos')}">
-			<a>Temps de repos</a>
-		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('tempsCuisson')" ng-class="{active:recetteCtrl.isOngletEdition('tempsCuisson')}">
+		<li class="nav-link"
+			ng-click="recetteCtrl.setOngletEdition('tempsRepos')"
+			ng-class="{active:recetteCtrl.isOngletEdition('tempsRepos')}"><a>Temps
+				de repos</a></li>
+		<li class="nav-link"
+			ng-click="recetteCtrl.setOngletEdition('tempsCuisson')"
+			ng-class="{active:recetteCtrl.isOngletEdition('tempsCuisson')}">
 			<a>Temps de cuisson</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('image')" ng-class="{active:recetteCtrl.isOngletEdition('image')}">
-			<a>Image</a>
+		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('image')"
+			ng-class="{active:recetteCtrl.isOngletEdition('image')}"><a>Image</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('video')" ng-class="{active:recetteCtrl.isOngletEdition('video')}">
-			<a>Vidéo</a>
+		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('video')"
+			ng-class="{active:recetteCtrl.isOngletEdition('video')}"><a>Vidéo</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('ingredients')" ng-class="{active:recetteCtrl.isOngletEdition('ingredients')}">
+		<li class="nav-link"
+			ng-click="recetteCtrl.setOngletEdition('ingredients')"
+			ng-class="{active:recetteCtrl.isOngletEdition('ingredients')}">
 			<a>Ingrédients</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('instructions')" ng-class="{active:recetteCtrl.isOngletEdition('instructions')}">
+		<li class="nav-link"
+			ng-click="recetteCtrl.setOngletEdition('instructions')"
+			ng-class="{active:recetteCtrl.isOngletEdition('instructions')}">
 			<a>Instructions</a>
 		</li>
-		<li class="nav-link" ng-click="recetteCtrl.setOngletEdition('conseils')" ng-class="{active:recetteCtrl.isOngletEdition('conseils')}">
-			<a>Conseils</a>
+		<li class="nav-link"
+			ng-click="recetteCtrl.setOngletEdition('conseils')"
+			ng-class="{active:recetteCtrl.isOngletEdition('conseils')}"><a>Conseils</a>
 		</li>
 	</ul>
 </div>

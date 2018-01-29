@@ -8,6 +8,7 @@ package constantes;
  *
  */
 public class Constantes {
+	public static final int PRIME = 31;
 	
 	public static final String UTILISATEUR_NON_TROUVE = "Utilisateur non trouvé.";
 	public static final String NOUVEL_UTILISATEUR_AVEC_ID ="Problème : le nouvel utilisateur ne devrait pas avoir d'id.";

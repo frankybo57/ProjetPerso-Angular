@@ -4,60 +4,46 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import entites.EntitePossedee;
+import jsonviews.Common;
+
 @Entity
-@SequenceGenerator(name="sequenceRecette",sequenceName="SequenceRecette")
-public class Recette {
-	@Id @GeneratedValue(generator="sequenceRecette")
-	@Column(name="id")
-	@JsonView(Views.Common.class)
-	private Integer id;
-	
-	@Version
-	@Column(name="version")
-	@JsonView(Views.Common.class)
-	private int version;
-	
-	@Column(name="label")
-	@JsonView(Views.Common.class)
-	private String label;
-	
+@SequenceGenerator(name = "default_gen",sequenceName="SequenceRecette")
+public class Recette extends EntitePossedee{	
 	@ManyToOne
 	@JoinColumn(name="type_plat_id")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	private TypePlat typePlat;
 	
 	@Column(name="difficulte")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	private Short difficulte;
 	
 	@Column(name="temps_preparation")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	private String tempsPreparation;
 	
 	@Column(name="temps_repos")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	private String tempsRepos;
 	
 	@Column(name="temps_cuisson")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	private String tempsCuisson;
 	
 	@Column(name="nombre_couverts")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	private Short nombreCouverts;
 	
 	@Column(name="cout")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	private Short cout;
 	
 	@OneToMany(mappedBy="recette")
@@ -80,39 +66,8 @@ public class Recette {
 	@JsonView(Views.Recette.class)
 	private byte[] video;
 	
-	@Column(name="utilisateur")
-	private Integer utilisateur;
-	
-	@Column(name="visibilite")
-	private Boolean prive;
-	
-	
 	public Recette(){
 		super();
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
 	}
 
 	public TypePlat getTypePlat() {
@@ -210,24 +165,14 @@ public class Recette {
 	public void setVideo(byte[] video) {
 		this.video = video;
 	}
-
-	public Integer getUtilisateur() {
-		return utilisateur;
-	}
-
-	public void setUtilisateur(Integer utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
-	public Boolean getPrive() {
-		return prive;
-	}
-
-	public void setPrive(Boolean prive) {
-		this.prive = prive;
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
 	}
 	
-	public boolean isVisible() {
-		return this.prive.booleanValue();
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 }

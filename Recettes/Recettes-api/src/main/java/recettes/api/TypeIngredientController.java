@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import recettes.model.Views;
+import jsonviews.Common;
 import recettes.repository.TypeIngredientRepository;
 import recettes.service.ListeTypeIngredient;
 
@@ -24,14 +24,14 @@ public class TypeIngredientController {
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/type-ingredient/liste/")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity<List> findAll() {
 		return new ResponseEntity<>(tiRepo.findAll(), HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/type-ingredient/liste-hierarchisee/")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity<List> findAllHierarchie() {
 		return new ResponseEntity<>(listeTypeIngredient.getListe(), HttpStatus.OK);
 	}

@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import jsonviews.Common;
 import recettes.model.Ingredient;
 import recettes.model.Recette;
 import recettes.model.TypeIngredient;
-import recettes.model.Views;
 import recettes.repository.IngredientRepository;
 
 @RestController
@@ -26,7 +26,7 @@ public class IngredientController {
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/ingredients/{id}")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity find(@PathVariable("id") Long id){
 		Ingredient tmp = ingRepo.findOne(id);
 		
@@ -40,7 +40,7 @@ public class IngredientController {
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/ingredients/liste/")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity<List> findAll(){
 		List tmp = ingRepo.findAll();
 		
@@ -54,7 +54,7 @@ public class IngredientController {
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/ingredients/{typeingredient}")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity<List> findAllByTypeIngredient(TypeIngredient typeIngredient){
 		List tmp = ingRepo.findAllByTypeIngredient(typeIngredient);
 		
@@ -68,7 +68,7 @@ public class IngredientController {
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/ingredients/{recette}")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity<List> findAllByRecette(@PathVariable("recette") Recette recette){
 		List tmp = ingRepo.findAllIngredientByRecette(recette);
 		
@@ -82,7 +82,7 @@ public class IngredientController {
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/ingredients/{cout}")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity<List> findAllByPrix(@PathVariable("cout") Short cout){
 		List tmp = ingRepo.findAllByCout(cout);
 		
@@ -96,7 +96,7 @@ public class IngredientController {
 	
 	@SuppressWarnings("rawtypes")
 	@DeleteMapping("/ingredients/{id}")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity delete(@PathVariable("id") Long id){
 		ingRepo.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);

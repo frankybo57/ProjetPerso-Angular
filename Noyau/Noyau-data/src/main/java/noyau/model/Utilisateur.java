@@ -4,34 +4,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
+
+import constantes.Constantes;
+import entites.Entite;
 
 /**
  * @author Francois 2
  * @version 0.0.1-Snapshot
  */
 @Entity
-@SequenceGenerator(name = "sequenceUtilisateur",sequenceName="sequenceUtilisateur")
+@SequenceGenerator(name = "default_gen",sequenceName="sequenceUtilisateur")
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "login"))
-public class Utilisateur {
-	
-	@Id @GeneratedValue(generator = "sequenceUtilisateur")
-	@Column(name="id")
-	@JsonView(Views.Common.class)
-	private Integer id;
-	
-	@Version
-	@Column(name="version")
-	@JsonView(Views.Common.class)
-	private int version;
-	
+public class Utilisateur extends Entite{
 	@Column(name="login")
 	@JsonView(Views.Utilisateur.class)
 	private String login;
@@ -61,34 +50,6 @@ public class Utilisateur {
 		this.login = login;
 		this.password = password;
 		this.droits = droits;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	/**
-	 * @return the version
-	 */
-	public int getVersion() {
-		return version;
-	}
-	
-	/**
-	 * @param version the version to set
-	 */
-	public void setVersion(int version) {
-		this.version = version;
 	}
 
 	/**
@@ -138,12 +99,9 @@ public class Utilisateur {
 	 */
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((droits == null) ? 0 : droits.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		int result = super.hashCode();
+		result = Constantes.PRIME * result + ((login == null) ? 0 : login.hashCode());
+		result = Constantes.PRIME * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
 
@@ -152,19 +110,9 @@ public class Utilisateur {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		// Les deux références pointent sur le même objet.
-		if (this == obj) return true;
-		
-		// L'objet comparé est nul ou a une classe différente
-		if ((obj == null) || (getClass() != obj.getClass())) return false;
+		if(!super.equals(obj))return false;
 		
 		Utilisateur other = (Utilisateur) obj;
-		
-		// Tests sur l'id
-		if (id == null) {
-			if (other.id != null) return false;
-		} 
-		else if (!id.equals(other.id)) return false;
 		
 		// Test sur le login
 		if (login == null) {
@@ -176,9 +124,7 @@ public class Utilisateur {
 		if (password == null) {
 			if (other.password != null) return false;
 		} 
-		else if (!password.equals(other.password)) return false;
-		
-		// Comparaison des droits
-		return (droits == other.droits);
+		else return password.equals(other.password);
+		return true;
 	}
 }

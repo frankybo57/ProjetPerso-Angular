@@ -2,14 +2,14 @@ package noyau.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Version;
-
 import com.fasterxml.jackson.annotation.JsonView;
+
+import constantes.Constantes;
+import entites.Entite;
+import jsonviews.Common;
 
 /**
  * @author Francois 2
@@ -17,18 +17,12 @@ import com.fasterxml.jackson.annotation.JsonView;
  */
 @Entity
 @Table(name = "modules")
-@SequenceGenerator(name = "sequenceModule", sequenceName = "SequenceModule")
-public class Module {
-	@JsonView(Views.Common.class)
-	@Id @GeneratedValue(generator = "sequenceModule")
-	private Integer id;
-	@JsonView(Views.Common.class)
-	@Version
-	private int version;
-	@JsonView(Views.Common.class)
+@SequenceGenerator(name = "default_gen", sequenceName = "SequenceModule")
+public class Module extends Entite {
+	@JsonView(Common.class)
 	@Column(name = "nom")
 	private String nom;
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	@Column(name="header")
 	private String header;
 	@JsonView(Views.Module.class)
@@ -49,28 +43,6 @@ public class Module {
 		this.nom = nom;
 		this.header = header;
 		this.etat = etat;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
 	}
 
 	/**
@@ -114,9 +86,8 @@ public class Module {
 	 */
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		int result = super.hashCode();
+		result = Constantes.PRIME * result + ((nom == null) ? 0 : nom.hashCode());
 		return result;
 	}
 
@@ -125,10 +96,7 @@ public class Module {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		if (!super.equals(obj)) return false;
 		Module other = (Module) obj;
 		if (nom == null) {
 			if (other.nom != null)

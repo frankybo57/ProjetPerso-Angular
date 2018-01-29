@@ -20,6 +20,8 @@
 		
 		.when('/compte-utilisateur',{
 			templateUrl:'templates/pages/compte-utilisateur/index.html',
+			controller:'UtilisateurController',
+			controllerAs:'UtilisateurCtrl',
 		})
 		
 		.when('/recettes',{

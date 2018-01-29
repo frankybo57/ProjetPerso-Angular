@@ -21,7 +21,7 @@
 					</thead>
 					<tbody id="tableUtilisateurs">
 						<tr>
-						<tr ng-repeat="utilisateur in UtilisateurCtrl.listeUtilisateurs">
+						<tr ng-repeat="utilisateur in UtilisateurCtrl.listeUtilisateurs track by utilisateur.id">
 							<td>{{utilisateur.login}}</td>
 							<td>{{utilisateur.droits}}</td>
 							<td>
@@ -57,7 +57,7 @@
 						</tr>
 					</thead>
 					<tbody id="tableModules">
-						<tr ng-repeat="module in moduleCtrl.modules">
+						<tr ng-repeat="module in moduleCtrl.modules track by module.id">
 							<td>{{module.nom}}</td>
 							<td>{{module.etat}}</td>
 							<td>

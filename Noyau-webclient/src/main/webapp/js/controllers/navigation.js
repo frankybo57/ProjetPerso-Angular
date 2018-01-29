@@ -8,11 +8,28 @@
 
 		var ctrl = this;
 
-		ctrl.onglet = "Accueil";
+		// Variables d'instance
+		ctrl.onglet = null;
 		ctrl.sousonglet = null;
 		ctrl.modulesActifs = [];
-
-		ctrl.listeActifs = function() {
+		
+		// Méthodes de classe
+		ctrl.initialisation = initialisation;
+		ctrl.isActif = isActif;
+		ctrl.isOnglet = isOnglet;
+		ctrl.isSousOnglet = isSousOnglet;
+		ctrl.listeActifs = listeActifs;
+		ctrl.setOnglet = setOnglet;
+		ctrl.setSousOnglet = setSousOnglet;
+		
+		// Implémentation
+		function initialisation(){
+			ctrl.listeActifs();
+			ctrl.onglet = "Accueil";
+			ctrl.sousonglet = null;
+		};
+		
+		function listeActifs() {
 			ModuleFactory.findAllActifs()
 			.then(
 					function success(response) {
@@ -23,33 +40,33 @@
 					}
 			);
 		};
-
-		ctrl.setOnglet = function(onglet){
-			ctrl.onglet = onglet;
-			ctrl.sousonglet = null;
-		};
-
-		ctrl.isOnglet = function(onglet){
-			return ctrl.onglet === onglet;
-		};
-
-		ctrl.setSousOnglet = function(onglet,sousonglet){
-			ctrl.onglet = onglet;
-			ctrl.sousonglet = sousonglet;
-		};
-
-		ctrl.isSousOnglet = function(sousonglet){
-			return ctrl.sousonglet === sousonglet;
-		};
-
-		ctrl.isActif = function(header){
+		
+		function isActif(header){
 			for(module of ctrl.modulesActifs){
 				if(module.header === header)return true;
 			}
 			return false;
 		}
+		
+		function isOnglet(onglet){
+			return ctrl.onglet === onglet;
+		};
 
-		ctrl.listeActifs();
+		function isSousOnglet(sousonglet){
+			return ctrl.sousonglet === sousonglet;
+		};
+		
+		function setOnglet(onglet){
+			ctrl.onglet = onglet;
+			ctrl.sousonglet = null;
+		};
+		
+		function setSousOnglet(onglet,sousonglet){
+			ctrl.onglet = onglet;
+			ctrl.sousonglet = sousonglet;
+		};
+
+		ctrl.initialisation();
 	};
 
 })();

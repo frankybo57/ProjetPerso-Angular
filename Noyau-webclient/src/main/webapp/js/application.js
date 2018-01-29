@@ -33,6 +33,7 @@
 				
 				/* Values */
 				'ValueIngredientEdite',
+				'ValueUtilisateurConnecte',
 				
 				'utilisateurs',
 				]);

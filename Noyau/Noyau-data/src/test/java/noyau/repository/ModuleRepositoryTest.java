@@ -21,7 +21,7 @@ public class ModuleRepositoryTest {
 	@Test
 	public void testfindSaveEtFind(){
 		Module module = new Module("test");	
-		int id = modRepo.save(module).getId();
+		long id = modRepo.save(module).getId();
 		
 		Module test = modRepo.findOne(id);
 		
@@ -33,7 +33,7 @@ public class ModuleRepositoryTest {
 	@Test
 	public void testfindAllByEtat(){
 		int size = modRepo.findAllByEtat(Etat.ACTIF).size();
-		int id = modRepo.save(new Module("test","test",Etat.ACTIF)).getId();
+		long id = modRepo.save(new Module("test","test",Etat.ACTIF)).getId();
 		
 		size = modRepo.findAllByEtat(Etat.ACTIF).size() - size;
 		

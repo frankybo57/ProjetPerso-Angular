@@ -53,7 +53,7 @@ public class ListeTypeIngredient {
 		int niveau = 0;
 		TypeIngredient tmp;
 		TypeIngredient tmp2;
-		Short id;
+		Long id;
 		Iterator<TypeIngredient> it;
 		ListIterator<TypeIngredient> lIt;
 		while(!set.isEmpty()) {

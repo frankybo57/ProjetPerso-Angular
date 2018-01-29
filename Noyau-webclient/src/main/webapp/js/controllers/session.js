@@ -3,147 +3,103 @@
 	angular.module('sessionController',[])
 	.controller('SessionController', SessionController);
 	
-	function SessionController($http){
-		var self = this;
-		self.creation = false;
-		self.droits = null;
+	function SessionController(UtilisateurFactory, utilisateurConnecte){
+		var ctrl = this;
 		
-		self.utilisateur = {};
-		self.utilisateurTemporaireLogin = null;
-		self.utilisateurTemporaireCreation = null;
+		// Variables
+		ctrl.creation = false;
+		ctrl.droits = null;
+		ctrl.utilisateur = {};
+		ctrl.utilisateurTemporaireLogin = null;
+		ctrl.utilisateurTemporaireCreation = null;
+		ctrl.utilisateurNonTrouve = false;
 		
-		self.utilisateurNonTrouve = false;
+		// Méthodes
+		ctrl.connexion = connexion;
+		ctrl.creerUtilisateur = creerUtilisateur;
+		ctrl.deconnexion = deconnexion;
+		ctrl.effacer = effacer;
+		ctrl.retourConnexion = retourConnexion;
+		ctrl.saveUtilisateur = saveUtilisateur;
 		
-		self.cgLogin = false;
-		self.cgMdp = false;
+		// Implémentation
+		function connexion(){
+			UtilisateurFactory.findOneCode(ctrl.utilisateurTemporaireLogin.login,ctrl.utilisateurTemporaireLogin.password)
+			.then(function success(response) {
+				ctrl.utilisateur = response.data;
+				
+				utilisateurConnecte.id = response.data.id;
+				utilisateurConnecte.version = response.data.version;
+				utilisateurConnecte.login = response.data.login;
+				utilisateurConnecte.password = response.data.password;
+				utilisateurConnecte.droits = response.data.droits;
+				
+				ctrl.droits = ctrl.utilisateur.droits;
+				ctrl.utilisateurNonTrouve = false;
+				ctrl.utilisateurTemporaireLogin = null;
+			}, function error(response) {
+				ctrl.utilisateurNonTrouve = true;
+			});
+		};
 		
-		self.creerUtilisateur = function(){
-			if(!self.creation){
-				self.creation = true;
-				self.utilisateurTemporaireCreation = {};
-				self.utilisateurCreationForm.$setPristine();
+		function creerUtilisateur(){
+			if(!ctrl.creation){
+				ctrl.creation = true;
+				ctrl.utilisateurTemporaireCreation = {};
+				ctrl.utilisateurCreationForm.$setPristine();
 			}
 			else{
-				self.creation = false;
+				ctrl.creation = false;
 			}
 		};
 		
-		self.saveUtilisateur = function(){
-			$http({
-				method : 'POST',
-				url : 'api/utilisateur/code/',
-				data : self.utilisateurTemporaireCreation
-			}).then(function success(response) {
-				self.utilisateur = response.data;
-				self.droits = self.utilisateur.droits;
-				self.utilisateurTemporaireCreation = null;
-				self.utilisateurNonTrouve = false;			
+		function deconnexion(){
+			ctrl.utilisateur = null;
+			
+			utilisateurConnecte.id = null;
+			utilisateurConnecte.version = null;
+			utilisateurConnecte.login = null;
+			utilisateurConnecte.password = null;
+			utilisateurConnecte.droits = null;
+			
+			ctrl.utilisateurTemporaireCreation = null;
+			ctrl.utilisateurTemporaireLogin = null;
+			ctrl.droits = null;
+			ctrl.utilisateurForm.$setPristine();
+			ctrl.utilisateurCreationForm.$setPristine();
+		};
+		
+		function effacer(){
+			ctrl.utilisateurTemporaireLogin = {};
+			ctrl.utilisateurForm.$setPristine();
+			ctrl.utilisateurNonTrouve = false;
+		};
+		
+		function retourConnexion(){
+			ctrl.creation = false;
+			ctrl.utilisateurTemporaireCreation = null;
+			ctrl.utilisateurTemporaireCreation = {};
+			ctrl.utilisateurForm.$setPristine();
+			ctrl.utilisateurCreationForm.$setPristine();
+		};
+		
+		function saveUtilisateur(){
+			UtilisateurFactory.createCode(ctrl.utilisateurTemporaireCreation)
+			.then(function success(response) {
+				ctrl.utilisateur = response.data;
+				
+				utilisateurConnecte.id = response.data.id;
+				utilisateurConnecte.version = response.data.version;
+				utilisateurConnecte.login = response.data.login;
+				utilisateurConnecte.password = response.data.password;
+				utilisateurConnecte.droits = response.data.droits;
+				
+				ctrl.droits = ctrl.utilisateur.droits;
+				ctrl.utilisateurTemporaireCreation = null;
+				ctrl.utilisateurNonTrouve = false;			
 			}, function error(response) {
-				self.utilisateurNonTrouve = true;
-			});
-		}
-		
-		self.pasDBol = function(){
-			alert("Pas d'bol !");
-		};
-		
-		self.effacer = function(){
-			self.utilisateurTemporaireLogin = {};
-			self.utilisateurForm.$setPristine();
-			self.utilisateurNonTrouve = false;
-		};
-		
-		self.connexion = function(){
-			$http({
-				method : 'GET',
-				url : 'api/utilisateur/code/'
-					+ self.utilisateurTemporaireLogin.login
-					+ ':'
-					+ self.utilisateurTemporaireLogin.password
-			}).then(function success(response) {
-				self.utilisateur = response.data;
-				self.droits = self.utilisateur.droits;
-				self.utilisateurNonTrouve = false;
-				self.utilisateurTemporaireLogin = null;
-			}, function error(response) {
-				self.utilisateurNonTrouve = true;
+				ctrl.utilisateurNonTrouve = true;
 			});
 		};
-		
-//		self.changerLogin = function(){
-//			self.cgLogin = true;
-//			self.cgMdp = false;
-//			$http({
-//				method : 'GET',
-//				url : 'api/utilisateur_login/'+self.utilisateur.login
-//			}).then(function success(response) {
-//				self.utilisateurTemporaire = response.data; 
-//			}, function error(response) {
-//			});
-//		};
-//		
-//		self.changerMdp = function(){
-//			self.cgLogin = false;
-//			self.cgMdp = true;
-//			$http({
-//				method : 'GET',
-//				url : 'api/utilisateur_login/'+self.utilisateur.login
-//			}).then(function success(response) {
-//				self.utilisateurTemporaire = response.data; 
-//			}, function error(response) {
-//			});
-//		};
-		
-//		self.save = function(){
-//			$http({
-//				method : 'PUT',
-//				url : 'api/utilisateur_login/'+self.temp.login,
-//				data : self.utilisateurTemporaire
-//			}).then(function success(response) {
-//				self.utilisateur = response.data;
-//				self.temp = null;
-//				self.cancel();
-//			}, function error(response) {
-//
-//			});
-//		};
-		
-		self.cancel = function(){
-			self.cgLogin = false;
-			self.cgMdp = false;
-		};
-		
-//		self.supprimer = function(){
-//			$http(
-//				{
-//					method : 'DELETE',
-//					url : 'api/utilisateurs/' + self.utilisateur.id
-//					}).then(function success(response) {
-//						self.role = null;
-//						self.temp = null;
-//						self.utilisateurNonTrouve = false;
-//						self.utilisateur = {};
-//						self.utilisateurForm.$setPristine();
-//						self.utilisateurCreationForm.$setPristine();
-//				}, function error(response) {
-//			});
-//		};
-		
-		self.retourConnexion = function(){
-			self.creation = false;
-			self.utilisateurTemporaireCreation = null;
-			self.utilisateurTemporaireCreation = {};
-			self.utilisateurForm.$setPristine();
-			self.utilisateurCreationForm.$setPristine();
-		};
-		
-		self.deconnexion = function(){
-			self.utilisateur = null;
-			self.utilisateurTemporaireCreation = null;
-			self.utilisateurTemporaireLogin = null;
-			self.droits = null;
-			self.utilisateurForm.$setPristine();
-			self.utilisateurCreationForm.$setPristine();
-		};
-	}
+	};
 })();

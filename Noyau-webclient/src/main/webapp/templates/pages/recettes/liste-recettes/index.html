@@ -20,12 +20,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat-start="typePlat in recetteCtrl.types"
+				<tr ng-repeat-start="typePlat in recetteCtrl.types track by typePlat.id"
 					id="anchor{{typePlat.ancre}}">
 					<td colspan="6"><label>{{typePlat.label}}</label></td>
 				</tr>
 				<tr ng-repeat-end
-					ng-repeat="recette in recetteCtrl.liste"
+					ng-repeat="recette in recetteCtrl.liste track by recette.id"
 					ng-if="recette.typePlat.id == typePlat.id">
 					<td><label style="padding-left: 20px; font-weight: normal">{{recette.label}}</label>
 					</td>

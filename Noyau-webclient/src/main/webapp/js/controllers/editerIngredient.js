@@ -22,7 +22,7 @@
 		ctrl.setOngletEdition=function(tab){ctrl.editionTab=tab;};
 		
 
-		
+		// Implémentation
 		function creer(){
 			ctrl.temp = {};
 		};

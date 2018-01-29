@@ -16,7 +16,7 @@ import noyau.model.Module;
  * @version 1.0
  *
  */
-public interface ModuleRepository extends JpaRepository<Module, Integer> {
+public interface ModuleRepository extends JpaRepository<Module, Long> {
 	@Transactional(readOnly=true)
 	public Module findByNom(String nom);
 	

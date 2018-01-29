@@ -111,7 +111,7 @@ public class ModuleController {
 	 */
 	@GetMapping("/modules/{id}")
 	@JsonView(Views.Module.class)
-	public ResponseEntity<Module> findOne(@PathVariable("id") Integer id) {
+	public ResponseEntity<Module> findOne(@PathVariable("id") Long id) {
 		Module tmp = modRepo.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -166,7 +166,7 @@ public class ModuleController {
 
 	@DeleteMapping("/modules/{id}")
 	@JsonView(Views.Module.class)
-	public ResponseEntity<Module> delete(@PathVariable("id") Integer id) {
+	public ResponseEntity<Module> delete(@PathVariable("id") Long id) {
 		Module tmp = modRepo.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

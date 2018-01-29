@@ -5,12 +5,12 @@
 	<parent>
 		<artifactId>ProjetPerso</artifactId>
 		<groupId>frankybo57</groupId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>0.0.0-SNAPSHOT</version>
 		<relativePath>../../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>Recettes-api</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>0.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Recettes-api</name>
@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>frankybo57</groupId>
 			<artifactId>Recettes-data</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>0.0.0-SNAPSHOT</version>
 			<exclusions>
 				<exclusion>
 					<groupId>com.fasterxml.jackson.core</groupId>
@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>frankybo57</groupId>
 			<artifactId>Utilitaires</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>0.1.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -180,7 +180,7 @@
 		</dependency>
 	</dependencies>
 
-	<build>
+	<!-- <build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -240,5 +240,5 @@
 				 </plugin>
 			</plugins>
 		</pluginManagement>
-	</build>
+	</build> -->
 </project>

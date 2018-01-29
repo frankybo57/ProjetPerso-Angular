@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import recettes.model.TypePlat;
 
-public interface TypePlatRepository extends JpaRepository<TypePlat, Short> {
+public interface TypePlatRepository extends JpaRepository<TypePlat, Long> {
 	@Transactional(readOnly = true)
 	@Query("from TypePlat tp order by tp.id asc")
 	public List<TypePlat> findAllOrderByIdAsc();

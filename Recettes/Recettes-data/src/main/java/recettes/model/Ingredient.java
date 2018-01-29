@@ -4,44 +4,21 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import entites.EntitePossedee;
+import jsonviews.Common;
+
 @Entity
-@SequenceGenerator(name="sequenceIngredient", sequenceName="SequenceIngredient")
-public class Ingredient {
-	
-	@Id @GeneratedValue(generator="sequenceIngredient")
-	@Column(name="id")
-	@JsonView(Views.Common.class)
-	private Long id;
-	
-	@Version
-	@Column(name="version")
-	@JsonView(Views.Common.class)
-	private int version;
-	
-	@Column(name="label")
-	@JsonView(Views.Common.class)
-	private String label;
-	
-	@Column(name="utilisateur")
-	@JsonView(Views.Common.class)
-	private Integer utilisateur;
-	
-	@Column(name="visibilite")
-	@JsonView(Views.Common.class)
-	private Boolean prive;
-	
+@SequenceGenerator(name = "default_gen", sequenceName="SequenceIngredient")
+public class Ingredient extends EntitePossedee{
 	@Column(name="cout")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	private Short cout;
 	
 	@OneToMany(mappedBy="ingredient")
@@ -50,58 +27,28 @@ public class Ingredient {
 	
 	@ManyToOne
 	@JoinColumn(name="type_ingredient_id")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	private TypeIngredient typeIngredient;
+	
+	@Column(name="conseils")
+	@JsonView(Common.class)
+	private String conseils;
+	
+	@Column(name="image")
+	@JsonView(Views.Ingredient.class)
+	private byte[] image;
 
 	public Ingredient() {
 		super();
 	}
 
 	public Ingredient(String label) {
-		super();
-		this.label = label;
+		super(label);
 	}
 
 	public Ingredient(String label, TypeIngredient typeIngredient) {
-		super();
-		this.label = label;
+		super(label);
 		this.typeIngredient = typeIngredient;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	public Integer getUtilisateur() {
-		return utilisateur;
-	}
-
-	public void setUtilisateur(Integer utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
-	public Boolean getPrive() {
-		return prive;
-	}
-
-	public void setPrive(Boolean prive) {
-		this.prive = prive;
-	}
-	
-	public boolean isVisible() {
-		return this.prive.booleanValue();
 	}
 
 	public Short getCout() {
@@ -110,14 +57,6 @@ public class Ingredient {
 
 	public void setCout(Short cout) {
 		this.cout = cout;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
 	}
 
 	public List<RecetteIngredient> getListeRecetteIngredient() {
@@ -135,6 +74,30 @@ public class Ingredient {
 	public void setTypeIngredient(TypeIngredient typeIngredient) {
 		this.typeIngredient = typeIngredient;
 	}
+
+	public String getConseils() {
+		return conseils;
+	}
+
+	public void setConseils(String conseils) {
+		this.conseils = conseils;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 }

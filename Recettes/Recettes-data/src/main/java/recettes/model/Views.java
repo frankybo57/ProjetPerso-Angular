@@ -1,16 +1,10 @@
 package recettes.model;
 
+import jsonviews.Common;
+
 public class Views {
 	
 	private Views() {
-		
-	}
-	
-	public static class Common{
-		
-		private Common() {
-			
-		}
 		
 	}
 	

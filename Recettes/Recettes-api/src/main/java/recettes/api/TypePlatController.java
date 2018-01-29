@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import jsonviews.Common;
 import recettes.model.TypePlat;
-import recettes.model.Views;
 import recettes.repository.TypePlatRepository;
 
 
@@ -27,7 +27,7 @@ public class TypePlatController {
 	 */
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/types-plats/liste/")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity<List> findAll() {
 		return new ResponseEntity<>(tpRepo.findAllOrderByIdAsc(), HttpStatus.OK);
 	}
@@ -39,7 +39,7 @@ public class TypePlatController {
 	 */
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/types-plats/{typeplat}")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	@Deprecated
 	public ResponseEntity<List> findAll(@PathVariable("typeplat") TypePlat typePlat) {
 		return new ResponseEntity<>(tpRepo.findAllOrderByIdAsc(), HttpStatus.OK);

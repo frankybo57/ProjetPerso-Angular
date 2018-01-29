@@ -17,7 +17,7 @@ import noyau.model.Utilisateur;
  * @version 1.0
  *
  */
-public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer> {
+public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
 	@Transactional(readOnly=true)
 	public Utilisateur findByLogin(String login);
 	

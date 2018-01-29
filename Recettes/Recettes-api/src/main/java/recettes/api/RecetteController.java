@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import jsonviews.Common;
 import recettes.model.Ingredient;
 import recettes.model.TypePlat;
-import recettes.model.Views;
 import recettes.repository.RecetteRepository;
 
 @RestController
@@ -23,28 +23,28 @@ public class RecetteController {
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/recettes/liste/")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity<List> findAll() {
 		return new ResponseEntity<>(recRepo.findAll(), HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/recettes/{typeplat}")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity<List> findAll(@PathVariable("typeplat") TypePlat typePlat) {
 		return new ResponseEntity<>(recRepo.findAllByTypePlat(typePlat), HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/recettes/{ingredient}")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity<List> findAll(@PathVariable("ingredient") Ingredient ingredient) {
 		return new ResponseEntity<>(recRepo.findAll(), HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/recettes/{difficulte}")
-	@JsonView(Views.Common.class)
+	@JsonView(Common.class)
 	public ResponseEntity<List> findAllByDifficulte(@PathVariable("difficulte") Short difficulte){
 		List tmp = recRepo.findAllByDifficulte(difficulte);
 		

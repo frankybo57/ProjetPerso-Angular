@@ -27,8 +27,8 @@ public class ModuleTest {
 	public void testAccesseursId(){
 		Module module = new Module();
 		
-		module.setId(1);	
-		Assert.assertEquals((Integer)1, module.getId());
+		module.setId(1L);	
+		Assert.assertEquals((Long)1L, module.getId());
 	}
 	
 	/**

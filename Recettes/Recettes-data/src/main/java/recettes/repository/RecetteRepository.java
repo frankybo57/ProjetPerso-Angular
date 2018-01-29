@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import recettes.model.Recette;
 import recettes.model.TypePlat;
 
-public interface RecetteRepository extends JpaRepository<Recette, Integer> {
+public interface RecetteRepository extends JpaRepository<Recette, Long> {
 	@SuppressWarnings("rawtypes")
 	@Transactional(readOnly = true)
 	public List findAllByTypePlat(TypePlat typePlat);

@@ -20,9 +20,9 @@ public class UtilisateurTest {
 	@Test
 	public void testAccesseursId() {
 		Utilisateur utilisateur = new Utilisateur();
-		utilisateur.setId(0);
+		utilisateur.setId(0L);
 		
-		Assert.assertEquals((Integer)0, utilisateur.getId());
+		Assert.assertEquals((Long)0L, utilisateur.getId());
 	}
 	
 	/**
@@ -75,6 +75,14 @@ public class UtilisateurTest {
 		
 		utilisateur.setDroits(Droit.UTILISATEUR);
 		Assert.assertEquals(Droit.UTILISATEUR, utilisateur.getDroits());
+	}
+	
+	@Test
+	public void testEqualsUtilisateursBlancs(){
+		Utilisateur utilisateur = new Utilisateur();
+		Utilisateur utilisateur2 = new Utilisateur();
+		
+		Assert.assertEquals(true, utilisateur.equals(utilisateur2));
 	}
 	
 	/**
@@ -184,7 +192,7 @@ public class UtilisateurTest {
 		Utilisateur utilisateur = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
 		Utilisateur utilisateur2 = new Utilisateur("module1", "mdp");
 		
-		Assert.assertEquals(false, utilisateur.equals(utilisateur2));
+		Assert.assertEquals(true, utilisateur.equals(utilisateur2));
 	}
 	
 	/**
@@ -196,7 +204,7 @@ public class UtilisateurTest {
 	public void testEqualsIdNull(){
 		Utilisateur utilisateur = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
 		Utilisateur utilisateur2 = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
-		utilisateur2.setId(1);
+		utilisateur2.setId(1L);
 		
 		Assert.assertEquals(false, utilisateur.equals(utilisateur2));
 	}
@@ -209,11 +217,57 @@ public class UtilisateurTest {
 	@Test
 	public void testEqualsIdInegaux(){
 		Utilisateur utilisateur = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
-		utilisateur.setId(0);
+		utilisateur.setId(0L);
 		Utilisateur utilisateur2 = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
-		utilisateur2.setId(1);
+		utilisateur2.setId(1L);
 		
 		Assert.assertEquals(false, utilisateur.equals(utilisateur2));
 	}
+	
+	@Test
+	public void testHashcodeEgalite() {
+		Utilisateur utilisateur1 = new Utilisateur("identifiant", "mot de passe", Droit.UTILISATEUR);
+		Utilisateur utilisateur2 = new Utilisateur("identifiant", "mot de passe", Droit.UTILISATEUR);
+		
+		Assert.assertEquals(utilisateur1.hashCode(), utilisateur2.hashCode());
+	}
+	
+	@Test
+	public void testHashcodeEgaliteParId() {
+		Utilisateur utilisateur1 = new Utilisateur();
+		utilisateur1.setId(42L);
+		Utilisateur utilisateur2 = new Utilisateur();
+		utilisateur2.setId(42L);
+		
+		Assert.assertEquals(utilisateur1.hashCode(), utilisateur2.hashCode());
+	}
+	
+	@Test
+	public void testEqualsIdEgaux(){
+		Utilisateur utilisateur = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
+		utilisateur.setId(37L);
+		Utilisateur utilisateur2 = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
+		utilisateur2.setId(37L);
+		
+		Assert.assertEquals(true, utilisateur.equals(utilisateur2));
+	}
+	
+	@Test
+	public void testEqualsIdsNullLoginNull1(){
+		Utilisateur utilisateur = new Utilisateur();
+		Utilisateur utilisateur2 = new Utilisateur();
+		utilisateur2.setLogin("login");
+		
+		Assert.assertEquals(false, utilisateur.equals(utilisateur2));
+	}
+	
+//	@Test
+//	public void testEqualsIdsNullLoginNull1(){
+//		Utilisateur utilisateur = new Utilisateur();
+//		Utilisateur utilisateur2 = new Utilisateur();
+//		utilisateur2.setLogin("login");
+//		
+//		Assert.assertEquals(false, utilisateur.equals(utilisateur2));
+//	}
 	
 }
