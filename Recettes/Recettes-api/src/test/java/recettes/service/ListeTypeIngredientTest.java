@@ -18,7 +18,7 @@ import recettes.model.TypeIngredient;
 import recettes.repository.TypeIngredientRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/applicationContext.xml")
+@ContextConfiguration("/applicationtestContext.xml")
 public class ListeTypeIngredientTest {
 
 	@Autowired

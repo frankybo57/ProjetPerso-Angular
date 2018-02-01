@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @version 0.0.1-Snapshot
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/applicationContext.xml")
+@ContextConfiguration("/applicationtestContext.xml")
 public class IngredientTest {
 
 	@Test
@@ -125,7 +125,7 @@ public class IngredientTest {
 		ingredient.setPrive(Boolean.TRUE);
 		
 		Assert.assertEquals(Boolean.TRUE,ingredient.getPrive());
-		Assert.assertEquals(true,ingredient.isVisible());
+		Assert.assertFalse(ingredient.isVisible());
 	}
 	
 	@Test
@@ -160,5 +160,19 @@ public class IngredientTest {
 		Ingredient ingredient2 = new Ingredient("ingredient1");
 		
 		Assert.assertEquals(ingredient1.hashCode(), ingredient2.hashCode());
+	}
+	
+	@Test
+	public void testEqualsEgaux() {
+		Ingredient ingredient1 = new Ingredient();
+		ingredient1.setId(1L);
+		ingredient1.setVersion(0);
+		ingredient1.setLabel("ingredient");
+		Ingredient ingredient2 = new Ingredient();
+		ingredient2.setId(1L);
+		ingredient2.setVersion(0);
+		ingredient2.setLabel("ingredient");
+		
+		Assert.assertEquals(ingredient1, ingredient2);
 	}
 }

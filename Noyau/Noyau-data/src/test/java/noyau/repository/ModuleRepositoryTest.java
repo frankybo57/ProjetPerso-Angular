@@ -13,7 +13,7 @@ import noyau.repository.ModuleRepository;
 import org.springframework.test.context.ContextConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/applicationContext.xml")
+@ContextConfiguration("/applicationtestContext.xml")
 public class ModuleRepositoryTest {
 	@Autowired
 	public ModuleRepository modRepo;
@@ -27,30 +27,46 @@ public class ModuleRepositoryTest {
 		
 		Assert.assertEquals("test", test.getNom());
 		
-		modRepo.delete(id);
+		modRepo.deleteAll();
 	}
 	
 	@Test
 	public void testfindAllByEtat(){
+		modRepo.save(new Module("mod1",null, Etat.ACTIF));
+		modRepo.save(new Module("mod2", null, Etat.ACTIF));
+		modRepo.save(new Module("mod3",null, Etat.INACTIF));
 		int size = modRepo.findAllByEtat(Etat.ACTIF).size();
-		long id = modRepo.save(new Module("test","test",Etat.ACTIF)).getId();
+		
+		modRepo.save(new Module("mod4", null, Etat.ACTIF));
 		
 		size = modRepo.findAllByEtat(Etat.ACTIF).size() - size;
 		
 		Assert.assertEquals(1, size);
 		
-		modRepo.delete(id);
+		modRepo.deleteAll();
 	}
 	
 	@Test
 	public void testFindByNom(){
+		modRepo.save(new Module("module"));
+		modRepo.save(new Module("Noyau"));
+		modRepo.save(new Module("test"));
+		
 		Module module = modRepo.findByNom("Noyau");	
+		
 		Assert.assertNotNull(module);
+		
+		modRepo.deleteAll();
 	}
 	
 	@Test
 	public void testFindByNomInexistant(){
+		modRepo.save(new Module("module"));
+		modRepo.save(new Module("Noyau"));
+		modRepo.save(new Module("test"));
 		Module module = modRepo.findByNom("Noya");	
 		Assert.assertNull(module);
+		
+		modRepo.deleteAll();
 	}
 }

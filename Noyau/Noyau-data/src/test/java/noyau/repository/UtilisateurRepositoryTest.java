@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/applicationContext.xml")
+@ContextConfiguration("/applicationtestContext.xml")
 public class UtilisateurRepositoryTest {
 	@Autowired
 	private static UtilisateurRepository utiRepo;

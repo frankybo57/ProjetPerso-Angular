@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @version 0.0.1-Snapshot
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/applicationContext.xml")
+@ContextConfiguration("/applicationtestContext.xml")
 public class TypeIngredientTest {
 
 	@Test
@@ -133,5 +133,12 @@ public class TypeIngredientTest {
 		TypeIngredient resultat = typeIngredient.getTypePere();
 		Assert.assertNotNull(resultat);
 		Assert.assertEquals("fruit et légume", resultat.getLabel());
+	}
+	
+	@Test
+	public void testHashCode() {
+		TypeIngredient typeIngredient = new TypeIngredient();
+		
+		Assert.assertEquals((Integer)(31*31*31), (Integer)typeIngredient.hashCode());
 	}
 }

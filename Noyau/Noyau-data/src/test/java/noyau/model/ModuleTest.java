@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;;
  * @version 0.0.1-Snapshot
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/applicationContext.xml")
+@ContextConfiguration("/applicationtestContext.xml")
 public class ModuleTest {
 	
 	/**
@@ -172,7 +172,7 @@ public class ModuleTest {
 		Module module1 = new Module("module1","module1",Etat.ACTIF);
 		Module module2 = new Module("module1");
 		
-		Assert.assertEquals(true, module2.hashCode()==module1.hashCode());
+		Assert.assertEquals(module2.hashCode(), module1.hashCode());
 	}
 	
 	/**
@@ -185,7 +185,7 @@ public class ModuleTest {
 		Module module1 = new Module("module1","module1",Etat.ACTIF);
 		Module module2 = new Module("module2");
 		
-		Assert.assertEquals(false, module2.hashCode()==module1.hashCode());
+		Assert.assertNotEquals(module2.hashCode(), module1.hashCode());
 	}
 	
 	/**
@@ -198,7 +198,7 @@ public class ModuleTest {
 		Module module1 = new Module();
 		Module module2 = new Module();
 		
-		Assert.assertEquals(true, module2.hashCode()==module1.hashCode());
+		Assert.assertEquals(module2.hashCode(), module1.hashCode());
 	}
 	
 	/**
@@ -211,6 +211,6 @@ public class ModuleTest {
 		Module module1 = new Module("module1","module1",Etat.ACTIF);
 		Module module2 = new Module();
 		
-		Assert.assertEquals(false, module2.hashCode()==module1.hashCode());
+		Assert.assertNotEquals(module2.hashCode(), module1.hashCode());
 	}
 }

@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @version 0.0.1-Snapshot
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/applicationContext.xml")
+@ContextConfiguration("/applicationtestContext.xml")
 public class RecetteTest {
 
 	@Test
@@ -191,6 +191,30 @@ public class RecetteTest {
 		recette.setPrive(Boolean.TRUE);
 		
 		Assert.assertEquals(Boolean.TRUE,recette.getPrive());
-		Assert.assertEquals(true,recette.isVisible());
+		Assert.assertFalse(recette.isVisible());
+	}
+	
+	@Test
+	public void testHash() {
+		Recette recette = new Recette();
+		
+		Assert.assertEquals((Integer) (31*31*31), (Integer)recette.hashCode());
+	}
+	
+	@Test
+	public void testEquals() {
+		Recette recette1 = new Recette();
+		recette1.setId(1L);
+		recette1.setVersion(0);
+		recette1.setLabel("marecette");
+		recette1.setTypePlat(new TypePlat("type1", null));
+		
+		Recette recette2 = new Recette();
+		recette2.setId(1L);
+		recette2.setVersion(0);
+		recette2.setLabel("marecette");
+		recette2.setTypePlat(new TypePlat("type2", null));
+		
+		Assert.assertEquals(recette1, recette2);
 	}
 }

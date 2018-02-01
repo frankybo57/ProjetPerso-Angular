@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @version 0.0.1-Snapshot
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/applicationContext.xml")
+@ContextConfiguration("/applicationtestContext.xml")
 public class TypePlatTest {
 
 	@Test
@@ -90,6 +90,13 @@ public class TypePlatTest {
 		Assert.assertEquals(2, liste.size());
 		Assert.assertEquals("Compote", resultat.get(0).getLabel());
 		Assert.assertEquals("terrine", resultat.get(1).getLabel());
+	}
+	
+	@Test
+	public void testHashCode() {
+		TypePlat typePlat = new TypePlat();
+		
+		Assert.assertEquals((Integer)(31*31*31), (Integer)typePlat.hashCode());
 	}
 	
 }

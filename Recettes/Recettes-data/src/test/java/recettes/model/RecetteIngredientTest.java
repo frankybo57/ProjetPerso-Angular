@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @version 0.0.1-Snapshot
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/applicationContext.xml")
+@ContextConfiguration("/applicationtestContext.xml")
 public class RecetteIngredientTest {
 	
 	@Test
@@ -64,5 +64,12 @@ public class RecetteIngredientTest {
 		recetteIngredient.setQuantite("10 kilos");
 		
 		Assert.assertEquals("10 kilos", recetteIngredient.getQuantite());
+	}
+	
+	@Test
+	public void testHash() {
+		RecetteIngredient rectteIngredient = new RecetteIngredient();
+		
+		Assert.assertEquals((Integer)(31*31), (Integer)rectteIngredient.hashCode());
 	}
 }
