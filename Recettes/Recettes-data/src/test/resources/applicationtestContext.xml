@@ -14,12 +14,12 @@
 	<!-- Activation des annotations standards (inutile si présence de <context:component-scan/> -->
 	<context:annotation-config/>
 	
-	<jpa:repositories base-package="noyau.repositories, modulerecettes.repository"/>
+	<jpa:repositories base-package="noyau.repository,recettes.repository"/>
 	
 	<!-- Activation annotations et scan des classes du package -->
-	<context:component-scan base-package="noyau.repositories, modulerecettes.repository"/>
+	<context:component-scan base-package="noyau.repository,recettes.repository,recettes.service"/>
 
-	<context:property-placeholder location="classpath:sgbd.properties"/>
+	<context:property-placeholder location="classpath:test.sgbd.properties"/>
 
 	<!-- Création d'une dataSource DBCP (Connection Pooling) -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -35,7 +35,7 @@
     <bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="noyau.model, modulerecettes.model" />
+		<property name="packagesToScan" value="noyau.model,recettes.model,entites" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="databasePlatform" value="${hb.dialect}" />
@@ -45,7 +45,7 @@
 		</property>
 		<property name="jpaProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 			</props>
 		</property>
 	</bean>

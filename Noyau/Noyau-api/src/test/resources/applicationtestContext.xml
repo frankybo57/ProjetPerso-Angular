@@ -19,7 +19,7 @@
 	<!-- Activation annotations et scan des classes du package -->
 	<context:component-scan base-package="noyau.repository,recettes.repository,recettes.service"/>
 
-	<context:property-placeholder location="classpath:sgbd.properties"/>
+	<context:property-placeholder location="classpath:test.sgbd.properties"/>
 
 	<!-- Création d'une dataSource DBCP (Connection Pooling) -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -45,7 +45,7 @@
 		</property>
 		<property name="jpaProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 			</props>
 		</property>
 	</bean>
