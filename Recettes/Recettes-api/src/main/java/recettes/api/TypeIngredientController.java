@@ -30,7 +30,7 @@ public class TypeIngredientController {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/type-ingredient/liste-hierarchisee/")
+	@GetMapping("/type-ingredient/liste/hierarchisee/")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAllHierarchie() {
 		return new ResponseEntity<>(listeTypeIngredient.getListe(), HttpStatus.OK);

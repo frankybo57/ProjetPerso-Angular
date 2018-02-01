@@ -6,13 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jsonviews.Common;
-import recettes.model.TypePlat;
 import recettes.repository.TypePlatRepository;
 
 
@@ -29,19 +27,6 @@ public class TypePlatController {
 	@GetMapping("/types-plats/liste/")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAll() {
-		return new ResponseEntity<>(tpRepo.findAllOrderByIdAsc(), HttpStatus.OK);
-	}
-	
-	/**
-	 * @deprecated
-	 * @param typePlat -
-	 * @return -
-	 */
-	@SuppressWarnings("rawtypes")
-	@GetMapping("/types-plats/{typeplat}")
-	@JsonView(Common.class)
-	@Deprecated
-	public ResponseEntity<List> findAll(@PathVariable("typeplat") TypePlat typePlat) {
 		return new ResponseEntity<>(tpRepo.findAllOrderByIdAsc(), HttpStatus.OK);
 	}
 }

@@ -14,44 +14,48 @@ import java.security.NoSuchAlgorithmException;
  */
 public abstract class Verrou {
 	
-//	private static final Logger logger = LogManager.getLogger(Verrou.class);
+	//	private static final Logger logger = LogManager.getLogger(Verrou.class);
 	
 	private static final String SEL = "sel";
+	private static final String UTF_8 = "UTF-8";
 	
 	
-	private Verrou() {
+	protected Verrou() {
 		
 	}
 	
-	public static String cryptage(String password) {
-		return sha512(password,SEL);
+	public static String cryptage(final String password) {
+		return cryptage(password,SEL,TypeHashage.SHA512.toString());
 	}
 	
-	// TODO à compléter
-	public static String cryptage(String password, TypeHashage type) {
+	public static String cryptage(final String password, final TypeHashage type) {
 		switch(type) {
 		case MD5 :
-			return md5(password);
+			return cryptage(password,SEL,TypeHashage.MD5.toString());
+		case SHA1 :
+			return cryptage(password,SEL,TypeHashage.SHA1.toString());
+		case SHA256 :
+			return cryptage(password,SEL,TypeHashage.SHA256.toString());
 		case SHA512 :
-			return sha512(password,SEL);
+			return cryptage(password,SEL,TypeHashage.SHA512.toString());
 		default:
 			return password;
 		}
 	}
 	
-	private static String sha512(String password, String salt){
+	private static String cryptage(final String password, final String salt, final String algorithme) {
 		String generatedPassword = null;
 	    try {
-	         MessageDigest md = MessageDigest.getInstance("SHA-512");
-	         md.update(salt.getBytes("UTF-8"));
-	         byte[] bytes = md.digest(password.getBytes("UTF-8"));
+	         final MessageDigest md = MessageDigest.getInstance(algorithme);
+	         md.update(salt.getBytes(UTF_8));
+	         final byte[] bytes = md.digest(password.getBytes(UTF_8));
 	         StringBuilder sb = new StringBuilder();
 	         for(int i=0; i< bytes.length ;i++){
 	            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
 	         }
 	         generatedPassword = sb.toString();
 	    } 
-	    catch (NoSuchAlgorithmException e) {
+	    catch (final NoSuchAlgorithmException e) {
 //	    	if(logger.isErrorEnabled()) {
 //	    		logger.error("Erreur lors de la tentative de hashage : le hashage SHA-512 n'est pas disponible dans l'environnement");
 //	    	}
@@ -59,7 +63,7 @@ public abstract class Verrou {
 //	    		logger.debug(e);
 //	    	}
 	    }
-	    catch (UnsupportedEncodingException e){
+	    catch (final UnsupportedEncodingException e){
 //	    	if(logger.isErrorEnabled()) {
 //	    		logger.error("Erreur lors de la tentative de hashage : l'encodage en UTF-8 n'est pas supporté");
 //	    	}
@@ -69,11 +73,6 @@ public abstract class Verrou {
 	    }
 	    
 	    return generatedPassword;
-	}
-	
-	// TODO à faire
-	private static String md5(String password) {
-		return password;
 	}
 	
 }

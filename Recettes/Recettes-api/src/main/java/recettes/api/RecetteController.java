@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -29,16 +30,16 @@ public class RecetteController {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/recettes/{typeplat}")
+	@GetMapping("/recettes/")
 	@JsonView(Common.class)
-	public ResponseEntity<List> findAll(@PathVariable("typeplat") TypePlat typePlat) {
+	public ResponseEntity<List> findAll(@RequestBody TypePlat typePlat) {
 		return new ResponseEntity<>(recRepo.findAllByTypePlat(typePlat), HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/recettes/{ingredient}")
+	@GetMapping("/recettes/")
 	@JsonView(Common.class)
-	public ResponseEntity<List> findAll(@PathVariable("ingredient") Ingredient ingredient) {
+	public ResponseEntity<List> findAll(@RequestBody Ingredient ingredient) {
 		return new ResponseEntity<>(recRepo.findAll(), HttpStatus.OK);
 	}
 	

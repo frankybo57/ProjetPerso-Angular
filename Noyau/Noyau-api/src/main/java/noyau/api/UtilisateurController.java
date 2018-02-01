@@ -29,14 +29,6 @@ public class UtilisateurController {
 	private UtilisateurRepository utiRepo;
 	
 	/**
-	 * Logger de la classe.
-	 */
-//	private static final Logger logger = LogManager.getLogger(UtilisateurController.class);
-//	private static final String TENTATIVE_CREATION = "Tentative de création d'un nouvel utilisateur : ";
-//	private static final String TENTATIVE_UPDATE = "Tentative d'update de l'utilisateur : ";
-//	private static final String DROITS = ", avec les droits : ";
-	
-	/**
 	 * Méthode de récupération d'un utilisateur à partir de son nom d'utilisateur et de son mot de passe sans hashage du mot de passe.
 	 * 
 	 * @author frankybo57
@@ -53,7 +45,7 @@ public class UtilisateurController {
 	 */
 	@GetMapping("/utilisateur/{login}:{password}")
 	@JsonView(Views.Utilisateur.class)
-	public ResponseEntity<Utilisateur> findOne(@PathVariable("login") String login, @PathVariable("password") String password){
+	public ResponseEntity<Utilisateur> findOne(@PathVariable("login") final String login, @PathVariable("password") final String password){
 		Utilisateur tmp;
 		
 		try {
@@ -83,11 +75,9 @@ public class UtilisateurController {
 	 */
 	@GetMapping("/utilisateur/code/{login}:{password}")
 	@JsonView(Views.Utilisateur.class)
-	public ResponseEntity<Utilisateur> findOneCode(@PathVariable("login") String login, @PathVariable("password") String password){
-		Utilisateur tmp;
-		
+	public ResponseEntity<Utilisateur> findOneCode(@PathVariable("login") final String login, @PathVariable("password") final String password){
 		try {
-			tmp = findOne(login,password,true);
+			final Utilisateur tmp = findOne(login,password,true);
 			tmp.setPassword("");
 			return new ResponseEntity<>(tmp, HttpStatus.OK);
 		} catch(UtilisateurException ue) {
@@ -111,7 +101,7 @@ public class UtilisateurController {
 	 * @return Utilisateur
 	 * 		
 	 */
-	private Utilisateur findOne(String login, String password, boolean hash) throws UtilisateurException{
+	private Utilisateur findOne(final String login, final String password, final boolean hash) throws UtilisateurException{
 		Utilisateur tmp;
 		if(hash) {
 			tmp = utiRepo.findOneByLoginAndByPassword(login,Verrou.cryptage(password));
@@ -120,9 +110,6 @@ public class UtilisateurController {
 			tmp = utiRepo.findOneByLoginAndByPassword(login,password);
 		}
 		if (tmp == null) {
-//			if(logger.isErrorEnabled()) {
-//				logger.error(UTILISATEUR_NON_TROUVE);
-//			}
 			throw new UtilisateurException(Constantes.UTILISATEUR_NON_TROUVE);
 		} else {
 			tmp.setPassword("");
@@ -142,7 +129,8 @@ public class UtilisateurController {
 	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<List<Utilisateur>> findAll(){
 		try {
-			List<Utilisateur> tmp = utiRepo.findAll();
+			final List<Utilisateur> tmp = utiRepo.findAll();
+			if(tmp.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			for(Utilisateur utilisateur : tmp) {
 				utilisateur.setPassword(null);
 			}
@@ -223,32 +211,17 @@ public class UtilisateurController {
 	 * 		Utilisateur créé.
 	 * 		
 	 */
-	private Utilisateur createOne(Utilisateur obj, boolean hash) throws UtilisateurException {
+	private Utilisateur createOne(Utilisateur obj, final boolean hash) throws UtilisateurException {
 		String message;
-		
-		// Logging de la tentative de création.
-//		if(logger.isInfoEnabled()) {
-//			logger.info(TENTATIVE_CREATION + obj.getLogin() + DROITS + Droit.UTILISATEUR.getLabel());
-//		}
 		
 		// Test d'unicité du login.
 		if (utiRepo.findByLogin(obj.getLogin())!=null) {
 			message = "Un compte avec le nom d'utilisateur \""+ obj.getLogin() + "\" existe déjà.";
-			
-//			if(logger.isInfoEnabled()) {
-//				logger.info(message);
-//			}
-			
 			throw new UtilisateurException(message);
 		}
 		
 		// Test de nullité de l'id du nouvel utilisateur.
 		if (obj.getId() != null) {
-			
-//			if(logger.isDebugEnabled()) {
-//				logger.debug(NOUVEL_UTILISATEUR_AVEC_ID);
-//			}
-			
 			throw new UtilisateurException(Constantes.NOUVEL_UTILISATEUR_AVEC_ID);
 		}
 		
@@ -260,13 +233,6 @@ public class UtilisateurController {
 		obj.setDroits(Droit.UTILISATEUR);
 		obj = utiRepo.save(obj);
 		obj.setPassword("");
-		
-		// Logging de la création d'un utilisateur.
-//		if(logger.isInfoEnabled()) {
-//			logger.info("Un nouvel utilisateur : " + obj.getLogin()
-//					+ DROITS + Droit.UTILISATEUR.getLabel()
-//					+ "a été créé.");
-//		}
 		
 		return obj;
 	}
@@ -286,7 +252,7 @@ public class UtilisateurController {
 	 */
 	@PutMapping("/utilisateur/")
 	@JsonView(Views.Utilisateur.class)
-	public ResponseEntity<Utilisateur> update(@RequestBody Utilisateur obj) {
+	public ResponseEntity<Utilisateur> update(@RequestBody final Utilisateur obj) {
 		
 		try {
 			update(obj,false);
@@ -313,7 +279,7 @@ public class UtilisateurController {
 	 */
 	@PutMapping("/utilisateur/code")
 	@JsonView(Views.Utilisateur.class)
-	public ResponseEntity<Utilisateur> updateCode(@RequestBody Utilisateur obj) {
+	public ResponseEntity<Utilisateur> updateCode(@RequestBody final Utilisateur obj) {
 		
 		try {
 			update(obj,true);
@@ -338,17 +304,10 @@ public class UtilisateurController {
 	 * 		Utilisateur mis à jour.
 	 * 		
 	 */
-	private Utilisateur update(Utilisateur obj, boolean hash) throws UtilisateurException{
-		// Logging de la tentative d'update.
-//		if(logger.isInfoEnabled()) {
-//			logger.info(TENTATIVE_UPDATE + obj.getLogin() + DROITS + Droit.UTILISATEUR.getLabel());
-//		}
+	private Utilisateur update(final Utilisateur obj, final boolean hash) throws UtilisateurException{
 		
 		// Test de nullité de l'id du nouvel utilisateur.
 		if(obj.getId() == null) {
-//			if(logger.isDebugEnabled()) {
-//				logger.debug(UTILISATEUR_SANS_ID);
-//			}
 			throw new UtilisateurException(Constantes.UTILISATEUR_SANS_ID);
 		}
 		
@@ -362,9 +321,6 @@ public class UtilisateurController {
 			utiRepo.save(obj);
 			obj.setPassword("");
 		} catch(Exception e) {
-//			if(logger.isErrorEnabled()) {
-//				logger.error("L'utilisateur" + obj.getLogin() + "n'a pas pu être mis à jour.");
-//			}
 			throw new UtilisateurException("L'utilisateur" + obj.getLogin() + "n'a pas pu être mis à jour.");
 		}
 		

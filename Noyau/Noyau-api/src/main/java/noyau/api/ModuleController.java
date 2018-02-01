@@ -37,10 +37,10 @@ public class ModuleController {
 	 * 		
 	 */
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/modules-actifs")
+	@GetMapping("/modules/actifs")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<List> findAllModulesActifs() {
-		List tmp = modRepo.findAllByEtat(Etat.ACTIF);
+		final List tmp = modRepo.findAllByEtat(Etat.ACTIF);
 		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -64,7 +64,7 @@ public class ModuleController {
 	@GetMapping("/modulesbyid")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<List> findAllOrderById() {
-		List tmp = modRepo.findAllOrderByIdAsc();
+		final List tmp = modRepo.findAllOrderByIdAsc();
 		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -88,7 +88,7 @@ public class ModuleController {
 	@GetMapping("/modules")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<List> findAll() {
-		List tmp = modRepo.findAll();
+		final List tmp = modRepo.findAll();
 		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -111,8 +111,8 @@ public class ModuleController {
 	 */
 	@GetMapping("/modules/{id}")
 	@JsonView(Views.Module.class)
-	public ResponseEntity<Module> findOne(@PathVariable("id") Long id) {
-		Module tmp = modRepo.findOne(id);
+	public ResponseEntity<Module> findOne(@PathVariable("id") final Long id) {
+		final Module tmp = modRepo.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
@@ -166,8 +166,8 @@ public class ModuleController {
 
 	@DeleteMapping("/modules/{id}")
 	@JsonView(Views.Module.class)
-	public ResponseEntity<Module> delete(@PathVariable("id") Long id) {
-		Module tmp = modRepo.findOne(id);
+	public ResponseEntity<Module> delete(@PathVariable("id") final Long id) {
+		final Module tmp = modRepo.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
@@ -176,7 +176,7 @@ public class ModuleController {
 		}
 	}
 	
-	@GetMapping("/etats")
+	@GetMapping("/modules/etats")
 	public ResponseEntity<Etat[]> findAllEtats() {
 		return new ResponseEntity<>(Etat.values(), HttpStatus.OK);
 	}

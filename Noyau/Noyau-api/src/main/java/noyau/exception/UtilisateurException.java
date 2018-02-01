@@ -11,20 +11,20 @@ public class UtilisateurException extends Exception {
 		super();
 	}
 
-	public UtilisateurException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
+	public UtilisateurException(final String message, final Throwable cause, final boolean enableSuppression,
+			final boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
 
-	public UtilisateurException(String message, Throwable cause) {
+	public UtilisateurException(final String message, final Throwable cause) {
 		super(message, cause);
 	}
 
-	public UtilisateurException(String message) {
+	public UtilisateurException(final String message) {
 		super(message);
 	}
 
-	public UtilisateurException(Throwable cause) {
+	public UtilisateurException(final Throwable cause) {
 		super(cause);
 	}
 }

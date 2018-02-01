@@ -20,13 +20,13 @@ import jsonviews.Common;
 @SequenceGenerator(name = "default_gen", sequenceName = "SequenceModule")
 public class Module extends Entite {
 	@JsonView(Common.class)
-	@Column(name = "nom")
+	@Column(name = "nom", nullable=false)
 	private String nom;
 	@JsonView(Common.class)
 	@Column(name="header")
 	private String header;
 	@JsonView(Views.Module.class)
-	@Column(name = "etat")
+	@Column(name = "etat", nullable=false)
 	private Etat etat;
 	
 	public Module(){

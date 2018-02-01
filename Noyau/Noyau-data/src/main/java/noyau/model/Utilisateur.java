@@ -21,15 +21,15 @@ import entites.Entite;
 @SequenceGenerator(name = "default_gen",sequenceName="sequenceUtilisateur")
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "login"))
 public class Utilisateur extends Entite{
-	@Column(name="login")
+	@Column(name="login", nullable=false)
 	@JsonView(Views.Utilisateur.class)
 	private String login;
 	
-	@Column(name="password",columnDefinition="TEXT")
+	@Column(name="password",columnDefinition="TEXT", nullable=false)
 	@JsonView(Views.Utilisateur.class)
 	private String password;
 	
-	@Column(name="droits")
+	@Column(name="droits", nullable=false)
 	@JsonView(Views.Utilisateur.class)
 	@Enumerated(EnumType.STRING)
 	private Droit droits;

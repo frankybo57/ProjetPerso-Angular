@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -53,9 +54,9 @@ public class IngredientController {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/ingredients/{typeingredient}")
+	@GetMapping("/ingredients/")
 	@JsonView(Common.class)
-	public ResponseEntity<List> findAllByTypeIngredient(TypeIngredient typeIngredient){
+	public ResponseEntity<List> findAllByTypeIngredient(@RequestBody TypeIngredient typeIngredient){
 		List tmp = ingRepo.findAllByTypeIngredient(typeIngredient);
 		
 		if(tmp.isEmpty()) {
@@ -67,9 +68,9 @@ public class IngredientController {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/ingredients/{recette}")
+	@GetMapping("/ingredients/")
 	@JsonView(Common.class)
-	public ResponseEntity<List> findAllByRecette(@PathVariable("recette") Recette recette){
+	public ResponseEntity<List> findAllByRecette(@RequestBody Recette recette){
 		List tmp = ingRepo.findAllIngredientByRecette(recette);
 		
 		if(tmp.isEmpty()) {
