@@ -16,7 +16,7 @@ import jsonviews.Common;
  */
 @MappedSuperclass
 public abstract class EntitePossedee extends Entite {
-	@Column(name="label")
+	@Column(name="label", nullable=false)
 	@JsonView(Common.class)
 	private String label;
 	
@@ -75,7 +75,7 @@ public abstract class EntitePossedee extends Entite {
 	}
 	
 	public boolean isVisible() {
-		return this.prive.booleanValue();
+		return !this.prive.booleanValue();
 	}
 	
 	@Override

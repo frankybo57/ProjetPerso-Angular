@@ -27,7 +27,7 @@ public abstract class Entite {
 	protected Long id;
 	
 	@Version
-	@Column(name="version")
+	@Column(name="version", nullable=false)
 	@JsonView(Common.class)
 	protected int version;
 	
