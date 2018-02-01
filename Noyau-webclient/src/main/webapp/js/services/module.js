@@ -15,7 +15,7 @@ Service module
 				return $http({method:"GET", url:'api/modules/' + id})
 			},
 			findAllActifs : function(){
-				return $http({method:"GET", url:'api/modules-actifs'})
+				return $http({method:"GET", url:'api/modules/actifs'})
 			},
 			findAllOrderById : function(){
 				return $http({method:"GET", url:'api/modulesbyid'})
@@ -30,7 +30,7 @@ Service module
 				return $http({method:"DELETE", url:'api/modules/' + id})
 			},
 			findAllEtats : function(){
-				return $http({method:"GET", url:'api/etats'})
+				return $http({method:"GET", url:'api/modules/etats'})
 			},
 		};
 	};

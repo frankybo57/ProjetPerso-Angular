@@ -1,43 +1,48 @@
 <meta charset="UTF-8">
 
-<ul class="nav nav-pills" ng-controller="ControllerNavigation as moduleCtrl">
-	<li ng-class="{active:moduleCtrl.isOnglet('Acceuil')}">
-		<a ng-href="acceuil" ng-click="moduleCtrl.setOnglet('Acceuil')">
-			Acceuil
-		</a>
+<ul class="nav nav-pills"
+	ng-controller="ControllerNavigation as navigationCtrl">
+	<li ng-class="{active:navigationCtrl.isOnglet('Acceuil')}"><a
+		ng-href="acceuil" ng-click="navigationCtrl.setOnglet('Acceuil')">
+			Acceuil </a></li>
+	<li ng-class="{active:navigationCtrl.isOnglet('Compte utilisateur')}">
+		<a ng-href="compte-utilisateur"
+		ng-click="navigationCtrl.setOnglet('Compte utilisateur')"> Compte
+			utilisateur </a>
 	</li>
-	<li ng-class="{active:moduleCtrl.isOnglet('Compte utilisateur')}">
-		<a ng-href="compte-utilisateur" ng-click="moduleCtrl.setOnglet('Compte utilisateur')">
-			Compte utilisateur
-		</a>
+	<li ng-class="{active:navigationCtrl.isOnglet('Administration')}"
+		ng-show="navigationCtrl.isActif('Administration') && navigationCtrl.getDroitsUtilisateur()==='ADMINISTRATEUR'">
+		<a ng-href="administration"
+		ng-click="navigationCtrl.setOnglet('Administration')">
+			Administration </a>
 	</li>
-	<li ng-class="{active:moduleCtrl.isOnglet('Administration')}" ng-show="moduleCtrl.isActif('Administration') && sessionCtrl.droits==='ADMINISTRATEUR'">
-		<a ng-href="administration" ng-click="moduleCtrl.setOnglet('Administration')">
-			Administration
-		</a>
-	</li>
-	<li ng-class="{active:moduleCtrl.isOnglet('Recettes')}" ng-show="moduleCtrl.isActif('Recettes')">
-		<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-			Recettes <span class="caret"></span> 
-		</a>
+	<li ng-class="{active:navigationCtrl.isOnglet('Recettes')}"
+		ng-show="navigationCtrl.isActif('Recettes')"><a
+		class="dropdown-toggle" data-toggle="dropdown" role="button"
+		aria-haspopup="true" aria-expanded="false"> Recettes <span
+			class="caret"></span>
+	</a>
 		<ul class="dropdown-menu">
-			<li ng-class="{active:moduleCtrl.isSousOnglet('ListeRecettes')}">
-				<a ng-href="recettes/liste" ng-click="moduleCtrl.setSousOnglet('Recettes','listeRecettes') ">
-					Liste des recettes
-				</a>
+			<li ng-class="{active:navigationCtrl.isSousOnglet('ListeRecettes')}">
+				<a ng-href="recettes/liste"
+				ng-click="navigationCtrl.setSousOnglet('Recettes','listeRecettes') ">
+					Liste des recettes </a>
 			</li>
-			<li ng-class="{active:moduleCtrl.isSousOnglet('ListeIngredients')}">
-				<a ng-href="recettes/ingredients/liste" ng-click="moduleCtrl.setSousOnglet('Recettes','listeIngredients') ">
-					Liste des ingrédients
-				</a>
+			<li
+				ng-class="{active:navigationCtrl.isSousOnglet('ListeIngredients')}">
+				<a ng-href="recettes/ingredients/liste"
+				ng-click="navigationCtrl.setSousOnglet('Recettes','listeIngredients') ">
+					Liste des ingrédients </a>
 			</li>
-		</ul>
-	</li>
+		</ul></li>
+	<li ng-class="{active:navigationCtrl.isOnglet('Stock')}"
+		ng-show="navigationCtrl.isActif('Stock')"><a ng-href="stock"
+		ng-click="navigationCtrl.setOnglet('Stock')"> Stock </a></li>
 </ul>
-			
 
 
-		
+
+
 
 
 
