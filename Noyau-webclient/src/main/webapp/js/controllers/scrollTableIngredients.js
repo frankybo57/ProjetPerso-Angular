@@ -1,9 +1,9 @@
 (function(){
-	
+
 	angular.module('ingredientsScroll', [])
-	
+
 	.controller('ingredientsScrollController', ['$anchorScroll', '$location', '$scope', IngredientsScrollController]);
-	
+
 	function IngredientsScrollController($anchorScroll, $location, $scope) {
 	    $scope.gotoAnchor = function(x) {
 	    	var newHash = 'anchor' + x;
@@ -17,5 +17,5 @@
 	    		$anchorScroll();
 	    	}
 	    };
-	};
+	}
 })();

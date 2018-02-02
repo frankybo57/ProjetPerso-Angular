@@ -13,16 +13,16 @@
 			UtilisateurFactory.findAll()
 			.then(
 					function success(response) {
-						ctrl.listeUtilisateurs = response.data; 
-					}, 
+						ctrl.listeUtilisateurs = response.data;
+					},
 					function error(response) {
 
 					}
 			);
 		};
-		
+
 		ctrl.liste();
 
-	};
+	}
 
 })();

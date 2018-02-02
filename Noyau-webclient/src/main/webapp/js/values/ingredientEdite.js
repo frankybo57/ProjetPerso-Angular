@@ -1,7 +1,7 @@
 (function(){
-	
+
 	angular.module('ValueIngredientEdite',[])
-	
+
 	.value('ingredientEdite',{
 		id:null,
 		version:null,
@@ -11,5 +11,5 @@
 		cout:null,
 		typeIngredient:null
 	});
-	
+
 })();

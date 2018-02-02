@@ -5,7 +5,7 @@ Service typePlat
 (function(){
 	angular.module('TypeIngredientService',[])
 	.factory('TypeIngredientFactory', serviceTypeIngredientFactory);
-	
+
 	function serviceTypeIngredientFactory($http){
 		return{
 			findAll : function(){
@@ -18,6 +18,6 @@ Service typePlat
 				return $http({method:"DELETE", url:'api/type-ingredient/' + id})
 			},
 		};
-	};
+	}
 
 })();

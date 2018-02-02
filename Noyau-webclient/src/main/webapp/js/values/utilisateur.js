@@ -1,7 +1,7 @@
 (function(){
-	
+
 	angular.module('ValueUtilisateurConnecte',[])
-	
+
 	.value('utilisateurConnecte',{
 		id:null,
 		version:null,
@@ -9,5 +9,5 @@
 		password:null,
 		droits:null,
 	});
-	
+
 })();

@@ -5,7 +5,7 @@ Service module
 (function(){
 	angular.module('ModuleService',[])
 	.factory('ModuleFactory', serviceModuleFactory);
-	
+
 	function serviceModuleFactory($http){
 		return{
 			findAll : function(){
@@ -33,6 +33,6 @@ Service module
 				return $http({method:"GET", url:'api/modules/etats'})
 			},
 		};
-	};
+	}
 
 })();

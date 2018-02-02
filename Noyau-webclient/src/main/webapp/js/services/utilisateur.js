@@ -5,7 +5,7 @@ Service utilisateur
 (function(){
 	angular.module('UtilisateurService',[])
 	.factory('UtilisateurFactory', serviceUtilisateurFactory);
-	
+
 	function serviceUtilisateurFactory($http){
 		return{
 			findAll : function(){
@@ -33,6 +33,6 @@ Service utilisateur
 				return $http({method:"DELETE", url:"api/utilisateur/"+id});
 			},
 		};
-	};
+	}
 
 })();

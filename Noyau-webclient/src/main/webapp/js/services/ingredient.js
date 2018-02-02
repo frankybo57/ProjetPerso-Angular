@@ -5,7 +5,7 @@ Service ingredient
 (function(){
 	angular.module('IngredientService',[])
 	.factory('IngredientFactory', serviceIngredientFactory);
-	
+
 	function serviceIngredientFactory($http){
 		return{
 			findAll : function(){
@@ -33,6 +33,6 @@ Service ingredient
 				return $http({method:"DELETE", url:'api/ingredients/' + id})
 			},
 		};
-	};
+	}
 
 })();

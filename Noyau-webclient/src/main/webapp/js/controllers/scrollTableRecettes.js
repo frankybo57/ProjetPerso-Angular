@@ -1,9 +1,9 @@
 (function(){
-	
+
 	angular.module('recettesScroll', [])
-	
+
 	.controller('recetteScrollController', ['$anchorScroll', '$location', '$scope', RecettesScrollController]);
-	
+
 	function RecettesScrollController($anchorScroll, $location, $scope) {
 	    $scope.gotoAnchor = function(x) {
 	    	var newHash = 'anchor' + x;
@@ -17,8 +17,5 @@
 	    		$anchorScroll();
 	    	}
 	    };
-	};
+	}
 })();
-
-
-

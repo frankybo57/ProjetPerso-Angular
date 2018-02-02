@@ -1,12 +1,12 @@
 (function(){
-	
-	angular.module('application', 
-			[	
+
+	angular.module('application',
+			[
 				/* Librairies */
 				'ngRoute',
-				
+
 				/* Constantes */
-				
+
 				/* Controllers */
 				'ControllerAfficherListeIngredient',
 				'ControllerAfficherListeModules',
@@ -16,13 +16,13 @@
 				'ControllerEditerRecette',
 				'ControllerNavigation',
 				'sessionController',
-				
+
 				/* Directives */
 				'ingredientsDirective',
 				'navigationDirective',
 				'recettesDirective',
 				'sessionDirective',
-				
+
 				/* Services */
 				'IngredientService',
 				'ModuleService',
@@ -30,14 +30,14 @@
 				'TypeIngredientService',
 				'TypePlatService',
 				'UtilisateurService',
-				
+
 				/* Values */
 				'ValueIngredientEdite',
 				'ValueUtilisateurConnecte',
-				
+
 				'utilisateurs',
 				]);
-		
+
 })();
 
 
