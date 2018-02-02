@@ -54,7 +54,7 @@ public class IngredientController {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/ingredients/")
+	@GetMapping("/ingredients/liste/type-ingredient")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAllByTypeIngredient(@RequestBody TypeIngredient typeIngredient){
 		List tmp = ingRepo.findAllByTypeIngredient(typeIngredient);
@@ -68,7 +68,7 @@ public class IngredientController {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/ingredients/")
+	@GetMapping("/ingredients/liste/recette")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAllByRecette(@RequestBody Recette recette){
 		List tmp = ingRepo.findAllIngredientByRecette(recette);

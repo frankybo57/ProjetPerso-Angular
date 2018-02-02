@@ -30,14 +30,14 @@ public class RecetteController {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/recettes/")
+	@GetMapping("/recettes/liste/type-plat")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAll(@RequestBody TypePlat typePlat) {
 		return new ResponseEntity<>(recRepo.findAllByTypePlat(typePlat), HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("rawtypes")
-	@GetMapping("/recettes/")
+	@GetMapping("/recettes/liste/ingredient")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAll(@RequestBody Ingredient ingredient) {
 		return new ResponseEntity<>(recRepo.findAll(), HttpStatus.OK);

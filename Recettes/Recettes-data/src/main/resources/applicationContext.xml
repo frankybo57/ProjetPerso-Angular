@@ -14,7 +14,7 @@
 	<!-- Activation des annotations standards (inutile si présence de <context:component-scan/> -->
 	<context:annotation-config/>
 	
-	<jpa:repositories base-package="noyau.repository,recettes.repository"/>
+	<jpa:repositories base-package="noyau.repository,recettes.repository,recettes.service"/>
 	
 	<!-- Activation annotations et scan des classes du package -->
 	<context:component-scan base-package="noyau.repository,recettes.repository"/>
