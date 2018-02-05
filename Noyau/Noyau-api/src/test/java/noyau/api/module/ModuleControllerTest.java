@@ -1,4 +1,4 @@
-package noyau.api;
+package noyau.api.module;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package noyau.api;
+package noyau.api.module;
 
 import java.util.List;
 
@@ -18,12 +18,13 @@ import com.fasterxml.jackson.annotation.JsonView;
 import noyau.model.Etat;
 import noyau.model.Module;
 import noyau.model.Views;
-import noyau.repository.ModuleRepository;
+import noyau.service.ModuleService;
 
 @RestController
 public class ModuleController {
+	
 	@Autowired
-	private ModuleRepository modRepo;
+	ModuleService modService;
 	
 	/**
 	 * Méthode de récupération de tous les modules actifs.
@@ -40,7 +41,7 @@ public class ModuleController {
 	@GetMapping("/modules/actifs")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<List> findAllModulesActifs() {
-		final List tmp = modRepo.findAllByEtat(Etat.ACTIF);
+		final List tmp = modService.findAllByEtat(Etat.ACTIF);
 		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -64,7 +65,7 @@ public class ModuleController {
 	@GetMapping("/modulesbyid")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<List> findAllOrderById() {
-		final List tmp = modRepo.findAllOrderByIdAsc();
+		final List tmp = modService.findAllOrderByIdAsc();
 		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -88,7 +89,7 @@ public class ModuleController {
 	@GetMapping("/modules")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<List> findAll() {
-		final List tmp = modRepo.findAll();
+		final List tmp = modService.findAll();
 		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -112,7 +113,7 @@ public class ModuleController {
 	@GetMapping("/modules/{id}")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<Module> findOne(@PathVariable("id") final Long id) {
-		final Module tmp = modRepo.findOne(id);
+		final Module tmp = modService.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
@@ -138,7 +139,7 @@ public class ModuleController {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		obj = modRepo.save(obj);
+		obj = modService.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.CREATED);
 	}
@@ -159,7 +160,7 @@ public class ModuleController {
 		if (obj.getId() == null) {
 			return create(obj);
 		}
-		obj = modRepo.save(obj);
+		obj = modService.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
@@ -167,11 +168,11 @@ public class ModuleController {
 	@DeleteMapping("/modules/{id}")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<Module> delete(@PathVariable("id") final Long id) {
-		final Module tmp = modRepo.findOne(id);
+		final Module tmp = modService.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			modRepo.delete(id);
+			modService.delete(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
