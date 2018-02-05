@@ -1,4 +1,4 @@
-package noyau;
+package noyau.service;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

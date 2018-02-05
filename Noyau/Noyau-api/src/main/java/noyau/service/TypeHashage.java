@@ -1,4 +1,4 @@
-package noyau;
+package noyau.service;
 
 /**
  * Enumération des différents types de hashages disponibles.
