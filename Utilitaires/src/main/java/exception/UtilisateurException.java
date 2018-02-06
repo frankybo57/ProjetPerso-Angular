@@ -1,6 +1,6 @@
-package noyau.exception;
+package exception;
 
-public class UtilisateurException extends Exception {
+public class UtilisateurException extends FonctionnelleException {
 
 	/**
 	 * 
