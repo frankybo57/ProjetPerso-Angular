@@ -21,62 +21,6 @@ public class ModifierUtilisateurController {
 
 	@Autowired
 	private UtilisateurService utiService;
-	
-	/**
-	 * Méthode d'update d'un utilisateur sans hashage.
-	 * 
-	 * @author frankybo57
-	 * @since 1.0
-	 * @param obj
-	 * 		Utilisateur à créer.
-	 * @return
-	 * 		HttpStatus.CREATED + Utilisateur si l'utilisateur est trouvé.
-	 * 		ou
-	 * 		HttpStatus.INTERNAL_SERVER_ERROR si l'utilisateur n'est pas trouvé.
-	 * 		
-	 */
-	@PutMapping("/utilisateur/")
-	@JsonView(Views.Utilisateur.class)
-	public ResponseEntity<Utilisateur> update(@RequestBody final Utilisateur obj) {
-
-		try {
-			utiService.update(obj,false);
-			return new ResponseEntity<>(obj, HttpStatus.CREATED);
-		}
-		catch(UtilisateurException ue) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-
-	}
-
-	/**
-	 * Méthode d'update d'un utilisateur avec hashage.
-	 * 
-	 * @author frankybo57
-	 * @since 1.0
-	 * @param obj
-	 * 		Utilisateur à créer.
-	 * @return
-	 * 		HttpStatus.CREATED + Utilisateur si l'utilisateur est trouvé.
-	 * 		ou
-	 * 		HttpStatus.INTERNAL_SERVER_ERROR si l'utilisateur n'est pas trouvé.
-	 * 		
-	 */
-	@PutMapping("/utilisateur/code")
-	@JsonView(Views.Utilisateur.class)
-	public ResponseEntity<Utilisateur> updateCode(@RequestBody final Utilisateur obj) {
-
-		try {
-			utiService.update(obj,true);
-			return new ResponseEntity<>(obj, HttpStatus.CREATED);
-		}
-		catch(UtilisateurException ue) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-
-	}
-
-	
 
 	/**
 	 * Méthode d'update du login d'un utilisateur sans hashage.
@@ -96,16 +40,16 @@ public class ModifierUtilisateurController {
 	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> updateLogin(@RequestBody final Map obj) {
 		if (obj == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		Map utilisateurJson = (Map) obj.get("utilisateur");
+		Map utilisateurJson = (Map) obj.get(UtilisateurService.UTILISATEUR);
 		Utilisateur utilisateur = utiService.getUtilisateurFromJson(utilisateurJson);
 
-		String nouveauLogin = (String) obj.get("login");
+		String nouveauLogin = (String) obj.get(UtilisateurService.LOGIN);
 
 		if(nouveauLogin == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		try {
-			utiService.updateLogin(utilisateur, nouveauLogin, false);
+			utiService.update(utilisateur, nouveauLogin, UtilisateurService.LOGIN, false);
 			return new ResponseEntity<>(utilisateur, HttpStatus.CREATED);
 		}
 		catch(UtilisateurException ue) {
@@ -132,16 +76,88 @@ public class ModifierUtilisateurController {
 	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> updateCodeLogin(@RequestBody final Map obj) {
 		if (obj == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		Map utilisateurJson = (Map) obj.get("utilisateur");
+		Map utilisateurJson = (Map) obj.get(UtilisateurService.UTILISATEUR);
 		Utilisateur utilisateur = utiService.getUtilisateurFromJson(utilisateurJson);
 
-		String nouveauLogin = (String) obj.get("login");
+		String nouveauLogin = (String) obj.get(UtilisateurService.LOGIN);
 
 		if(nouveauLogin == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		try {
-			utiService.updateLogin(utilisateur, nouveauLogin, true);
+			utiService.update(utilisateur, nouveauLogin, UtilisateurService.LOGIN, true);
+			return new ResponseEntity<>(utilisateur, HttpStatus.CREATED);
+		}
+		catch(UtilisateurException ue) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+	
+	/**
+	 * Méthode d'update du login d'un utilisateur sans hashage.
+	 * 
+	 * @author frankybo57
+	 * @since 1.0
+	 * @param obj Utilisateur à créer.
+	 * @param login nouveau login.
+	 * @return
+	 * 		HttpStatus.CREATED + Utilisateur si l'utilisateur est trouvé.
+	 * 		ou
+	 * 		HttpStatus.INTERNAL_SERVER_ERROR si l'utilisateur n'est pas trouvé.
+	 * 		
+	 */
+	@SuppressWarnings("rawtypes")
+	@PutMapping("/utilisateur/update/password/")
+	@JsonView(Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> updatePassword(@RequestBody final Map obj) {
+		if (obj == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		Map utilisateurJson = (Map) obj.get(UtilisateurService.UTILISATEUR);
+		Utilisateur utilisateur = utiService.getUtilisateurFromJson(utilisateurJson);
+
+		String nouveauPassword = (String) obj.get(UtilisateurService.MOT_DE_PASSE);
+
+		if(nouveauPassword == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		try {
+			utiService.update(utilisateur, nouveauPassword, UtilisateurService.MOT_DE_PASSE, false);
+			return new ResponseEntity<>(utilisateur, HttpStatus.CREATED);
+		}
+		catch(UtilisateurException ue) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+
+	/**
+	 * Méthode d'update du login d'un utilisateur avec hashage.
+	 * 
+	 * @author frankybo57
+	 * @since 1.0
+	 * @param obj Utilisateur à créer.
+	 * @param login nouveau login.
+	 * @return
+	 * 		HttpStatus.CREATED + Utilisateur si l'utilisateur est trouvé.
+	 * 		ou
+	 * 		HttpStatus.INTERNAL_SERVER_ERROR si l'utilisateur n'est pas trouvé.
+	 * 		
+	 */
+	@SuppressWarnings("rawtypes")
+	@PutMapping("/utilisateur/code/update/password/")
+	@JsonView(Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> updateCodePassword(@RequestBody final Map obj) {
+		if (obj == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		Map utilisateurJson = (Map) obj.get(UtilisateurService.UTILISATEUR);
+		Utilisateur utilisateur = utiService.getUtilisateurFromJson(utilisateurJson);
+
+		String nouveauPassword = (String) obj.get(UtilisateurService.MOT_DE_PASSE);
+
+		if(nouveauPassword == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		try {
+			utiService.update(utilisateur, nouveauPassword, UtilisateurService.MOT_DE_PASSE, true);
 			return new ResponseEntity<>(utilisateur, HttpStatus.CREATED);
 		}
 		catch(UtilisateurException ue) {

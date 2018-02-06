@@ -40,30 +40,33 @@ public class ListeTypeIngredient {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void initialisation() {
-		Set set = new HashSet(tiRepo.findAll());
-		List list = new LinkedList();
-		
-		remplirNiveauZero(list, set);
-		
-		remplirNiveauxInferieurs(list, set);
+		liste = new LinkedList();
+		List temp = tiRepo.findAll();
+		if(temp != null) {
+			Set set = new HashSet(temp);
+			
+			remplirNiveauZero(liste, set);
+			
+			remplirNiveauxInferieurs(liste, set);
+		}
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void remplirNiveauxInferieurs(final List list, final Set set) {
+	protected void remplirNiveauxInferieurs(final List target, final Set source) {
 		int niveau = 0;
 		TypeIngredient tmp;
 		TypeIngredient tmp2;
 		Long id;
 		Iterator<TypeIngredient> it;
 		ListIterator<TypeIngredient> lIt;
-		while(!set.isEmpty()) {
+		while(!source.isEmpty()) {
 			niveau++;
-			lIt = list.listIterator();
+			lIt = target.listIterator();
 			while(lIt.hasNext()) {
 				tmp = lIt.next();
 				id = tmp.getId();
 				if(tmp.getNiveau()==niveau-1) {
-					it = set.iterator();
+					it = source.iterator();
 					while(it.hasNext()) {
 						tmp2 = it.next();
 						if(tmp2.getTypePere().getId()==id) {
@@ -74,18 +77,17 @@ public class ListeTypeIngredient {
 				}
 			}
 		}
-		
-		liste = list;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void remplirNiveauZero(final List list, final Set set) {
+	protected void remplirNiveauZero(final List target, final Set source) {
 		TypeIngredient tmp;
-		Iterator<TypeIngredient> it = set.iterator();
+		Iterator<TypeIngredient> it = source.iterator();
 		while(it.hasNext()) {
 			tmp = it.next();
-			if(tmp.getNiveau()==0) {
-				list.add(tmp);
+
+			if(tmp.getNiveau() != null &&tmp.getNiveau()==0) {
+				target.add(tmp);
 				it.remove();
 			}
 		}

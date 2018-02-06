@@ -8,6 +8,9 @@ import noyau.model.Utilisateur;
 
 public interface UtilisateurService {
 
+	public static final String UTILISATEUR = "utilisateur";
+	public static final String LOGIN = "login";
+	public static final String MOT_DE_PASSE = "password";
 	
 	/**
 	 * Méthode de création d'un utilisateur à partir de son nom d'utilisateur et de son mot de passe avec ou sans hashage du mot de passe.
@@ -35,7 +38,7 @@ public interface UtilisateurService {
 	 * @author frankybo57
 	 * @since 1.0
 	 * @throws UtilisateurException
-	 * @param login
+	 * @param propriete
 	 * 		Nom d'utilisateur.
 	 * @param password
 	 * 		Mot de passe.
@@ -62,20 +65,6 @@ public interface UtilisateurService {
 	 * 		Utilisateur mis à jour.
 	 * 		
 	 */
-	public Utilisateur update(final Utilisateur obj, final boolean hash) throws UtilisateurException;
+	public Utilisateur update(final Utilisateur obj, final Object propriete, final String typePropriete, final boolean hash) throws UtilisateurException;
 	
-	/**
-	 * Méthode d'update d'un utilisateur avec ou sans hashage.
-	 * 
-	 * @author frankybo57
-	 * @since 1.0
-	 * @param obj
-	 * 		Utilisateur à créer.
-	 * @param hash
-	 * 		Si true alors hashage.
-	 * @return
-	 * 		Utilisateur mis à jour.
-	 * 		
-	 */
-	public Utilisateur updateLogin(final Utilisateur obj, final String login, final boolean hash) throws UtilisateurException;
 }

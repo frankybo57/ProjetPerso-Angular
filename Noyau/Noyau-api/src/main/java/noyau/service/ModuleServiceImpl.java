@@ -9,50 +9,75 @@ import noyau.model.Etat;
 import noyau.model.Module;
 import noyau.repository.ModuleRepository;
 
+
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class ModuleServiceImpl implements ModuleService {
-	
+
 	@Autowired
 	private ModuleRepository modRepo;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public List findAll() {
 		return modRepo.findAll();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public List findAllOrderByIdAsc() {
 		return modRepo.findAllOrderByIdAsc();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("rawtypes")
 	@Override
-	public List findAllByEtat(Etat etat) {
+	public List findAllByEtat(final Etat etat) {
 		return modRepo.findAllByEtat(etat);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Module findOne(Long id) {
+	public Module findOne(final Long id) {
 		return modRepo.findOne(id);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Module save(Module module) {
+	public Module save(final Module module) {
 		return modRepo.save(module);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Module update(Module module) {
+	public Module update(final Module module) {
 		return modRepo.save(module);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void delete(Long id) {
+	public void delete(final Long id) {
 		modRepo.delete(id);
 	}
 
-	
+
 
 }

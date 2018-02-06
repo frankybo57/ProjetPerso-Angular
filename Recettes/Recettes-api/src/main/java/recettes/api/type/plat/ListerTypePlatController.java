@@ -1,4 +1,4 @@
-package recettes.api;
+package recettes.api.type.plat;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import recettes.repository.TypePlatRepository;
 
 
 @RestController
-public class TypePlatController {
+public class ListerTypePlatController {
 	@Autowired
 	private TypePlatRepository tpRepo;
 	

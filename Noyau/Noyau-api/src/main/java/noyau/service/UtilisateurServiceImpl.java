@@ -71,7 +71,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	 * @author frankybo57
 	 * @since 1.0
 	 * @throws UtilisateurException
-	 * @param login
+	 * @param propriete
 	 * 		Nom d'utilisateur.
 	 * @param password
 	 * 		Mot de passe.
@@ -103,8 +103,8 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 
 		utilisateur.setId(Long.valueOf(((Integer) map.get("id"))));
 		utilisateur.setVersion((int) map.get("version"));
-		utilisateur.setLogin((String) map.get("login"));
-		utilisateur.setPassword((String) map.get("password"));
+		utilisateur.setLogin((String) map.get(UtilisateurService.LOGIN));
+		utilisateur.setPassword((String) map.get(UtilisateurService.MOT_DE_PASSE));
 		utilisateur.setDroits(Droit.valueOf((String) map.get("droits")));
 
 		return utilisateur;
@@ -124,44 +124,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	 * 		
 	 */
 	@Override
-	public Utilisateur update(final Utilisateur obj, final boolean hash) throws UtilisateurException{
-
-		// Test de nullité de l'id du nouvel utilisateur.
-		if(obj.getId() == null) {
-			throw new UtilisateurException(Constantes.UTILISATEUR_SANS_ID);
-		}
-
-		// Hashage du mot de passe si nécessaire.
-		if(hash) {
-			obj.setPassword(Verrou.cryptage(obj.getPassword()));
-		}
-
-		try {
-			// Tentative d'update de l'utilisateur.
-			utiRepo.save(obj);
-			obj.setPassword("");
-		} catch(Exception e) {
-			throw new UtilisateurException("L'utilisateur" + obj.getLogin() + "n'a pas pu être mis à jour.");
-		}
-
-		return obj;
-	}
-	
-	/**
-	 * Méthode d'update d'un utilisateur avec ou sans hashage.
-	 * 
-	 * @author frankybo57
-	 * @since 1.0
-	 * @param obj
-	 * 		Utilisateur à créer.
-	 * @param hash
-	 * 		Si true alors hashage.
-	 * @return
-	 * 		Utilisateur mis à jour.
-	 * 		
-	 */
-	@Override
-	public Utilisateur updateLogin(final Utilisateur obj, final String login, final boolean hash) throws UtilisateurException{
+	public Utilisateur update(final Utilisateur obj, final Object propriete, final String typePropriete, final boolean hash) throws UtilisateurException{
 
 		try {
 			// Test de nullité de l'id du nouvel utilisateur.
@@ -177,18 +140,35 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 				obj.setPassword(Verrou.cryptage(obj.getPassword()));
 			}
 			if (!temp.equals(obj))  throw new UtilisateurException(Constantes.UTILISATEUR_NON_CORRESPONDANT);
-
-			obj.setLogin(login);
+			
+			switch(typePropriete) {
+			case UtilisateurService.LOGIN:
+				obj.setLogin((String) propriete);
+				break;
+			case UtilisateurService.MOT_DE_PASSE:
+				if(hash)obj.setPassword(Verrou.cryptage((String) propriete));
+				else obj.setPassword((String) propriete);
+				break;
+			case "droit":
+				break;
+			default:
+				break;
+			}
+			
+			
 
 			// Tentative d'update de l'utilisateur.
 			utiRepo.save(obj);
 
 			obj.setPassword("");
 		} catch(Exception e) {
-			throw new UtilisateurException("L'utilisateur" + obj.getLogin() + "n'a pas pu être mis à jour.");
+			throw new UtilisateurException(messageNonMaJ(obj.getLogin()));
 		}
 
 		return obj;
 	}
 	
+	public String messageNonMaJ(final String login) {
+		return "L'utilisateur " + login + " n'a pas pu être mis à jour.";
+	}
 }

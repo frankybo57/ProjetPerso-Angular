@@ -19,7 +19,7 @@ import noyau.service.UtilisateurService;
 public class AjouterUtilisateurController {
 	
 	@Autowired
-	UtilisateurService utiMan;
+	UtilisateurService utiService;
 
 	/**
 	 * Méthode de création d'un utilisateur à partir de son nom d'utilisateur et de son mot de passe sans hashage du mot de passe.
@@ -39,7 +39,7 @@ public class AjouterUtilisateurController {
 	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> createOne(@RequestBody Utilisateur obj) {
 		try {
-			obj = utiMan.createOne(obj,false);
+			obj = utiService.createOne(obj,false);
 			return new ResponseEntity<>(obj, HttpStatus.CREATED);
 		}catch(UtilisateurException ue) {
 			if(Constantes.NOUVEL_UTILISATEUR_AVEC_ID.equals(ue.getMessage())) {
@@ -67,7 +67,7 @@ public class AjouterUtilisateurController {
 	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> createOneCode(@RequestBody Utilisateur obj) {
 		try {
-			obj = utiMan.createOne(obj,true);
+			obj = utiService.createOne(obj,true);
 			return new ResponseEntity<>(obj, HttpStatus.CREATED);
 		}catch(UtilisateurException ue) {
 			if(Constantes.NOUVEL_UTILISATEUR_AVEC_ID.equals(ue.getMessage())) {

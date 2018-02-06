@@ -1,8 +1,5 @@
 package noyau.api.utilisateur;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder;
@@ -26,6 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import constantes.Constantes;
 import noyau.model.Droit;
 import noyau.model.Utilisateur;
 import noyau.repository.UtilisateurRepository;
@@ -45,14 +42,6 @@ public class ModifierUtilisateurControllerTest {
     @Autowired
     private UtilisateurRepository utiRepo;
     
-    private static final ResultMatcher INTERNAL_SERVER_ERROR = status().isInternalServerError();
-    private static final ResultMatcher BAD_REQUEST = status().isBadRequest();
-    private static final ResultMatcher NOT_FOUND = status().isNotFound();
-    private static final ResultMatcher OK = status().isOk();
-    private static final ResultMatcher CREATED = status().isCreated();
-    private static final ResultMatcher JSON = content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-	private static final ResultMatcher NO_CONTENT = status().isNoContent();
-    
     @Before
     public void setup() {
     	MockitoAnnotations.initMocks(this);
@@ -61,6 +50,11 @@ public class ModifierUtilisateurControllerTest {
         
         utiRepo.save(new Utilisateur("",""));
         utiRepo.deleteAll();
+    }
+    
+    @Test
+    public void test() {
+    	Assert.assertNotNull(utiRepo);
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -80,8 +74,8 @@ public class ModifierUtilisateurControllerTest {
 																		.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
 																		.content(json);
 		this.mockMvc.perform(builder)
-					.andExpect(CREATED)
-					.andExpect(JSON);
+					.andExpect(Constantes.CREATED)
+					.andExpect(Constantes.JSON);
 		
 		final Utilisateur temp = utiRepo.findOne(utilisateur.getId());
 		Assert.assertNotNull(temp);
@@ -107,8 +101,8 @@ public class ModifierUtilisateurControllerTest {
 																		.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
 																		.content(json);
 		this.mockMvc.perform(builder)
-					.andExpect(CREATED)
-					.andExpect(JSON);
+					.andExpect(Constantes.CREATED)
+					.andExpect(Constantes.JSON);
 		
 		final Utilisateur temp = utiRepo.findOne(utilisateur.getId());
 		Assert.assertNotNull(temp);
@@ -133,7 +127,7 @@ public class ModifierUtilisateurControllerTest {
 																		.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
 																		.content(json);
 		this.mockMvc.perform(builder)
-					.andExpect(BAD_REQUEST);
+					.andExpect(Constantes.BAD_REQUEST);
 		
 		final Utilisateur temp = utiRepo.findOne(utilisateur.getId());
 		Assert.assertNotNull(temp);
@@ -159,11 +153,115 @@ public class ModifierUtilisateurControllerTest {
 																		.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
 																		.content(json);
 		this.mockMvc.perform(builder)
-					.andExpect(BAD_REQUEST);
+					.andExpect(Constantes.BAD_REQUEST);
 		
 		final Utilisateur temp = utiRepo.findOne(utilisateur.getId());
 		Assert.assertNotNull(temp);
 		Assert.assertEquals("ancienlogin", temp.getLogin());
+		
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Test
+	public void testUpdatePasswordNonCode() throws Exception  {
+		final Map map = new HashMap();
+		final String password = "nouveaupassword";
+		Utilisateur utilisateur = new Utilisateur("login","ancienpassword",Droit.UTILISATEUR);
+		utilisateur = utiRepo.save(utilisateur);
+	
+		map.put("utilisateur", utilisateur);
+		map.put("password", password);
+		
+		String json = MAPPER.writeValueAsString(map);
+		
+		MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.put("/utilisateur/update/password/")
+																		.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+																		.content(json);
+		this.mockMvc.perform(builder)
+					.andExpect(Constantes.CREATED)
+					.andExpect(Constantes.JSON);
+		
+		final Utilisateur temp = utiRepo.findOne(utilisateur.getId());
+		Assert.assertNotNull(temp);
+		Assert.assertEquals(password, temp.getPassword());
+		
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Test
+	public void testUpdatePasswordCode() throws Exception  {
+		final Map map = new HashMap();
+		final String password = "nouveaupassword";
+		Utilisateur utilisateur = new Utilisateur("login",Verrou.cryptage("ancienpassword"),Droit.UTILISATEUR);
+		utilisateur = utiRepo.save(utilisateur);
+	
+		utilisateur.setPassword("ancienpassword");
+		map.put("utilisateur", utilisateur);
+		map.put("password", password);
+		
+		String json = MAPPER.writeValueAsString(map);
+		
+		MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.put("/utilisateur/code/update/password/")
+																		.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+																		.content(json);
+		this.mockMvc.perform(builder)
+					.andExpect(Constantes.CREATED)
+					.andExpect(Constantes.JSON);
+		
+		final Utilisateur temp = utiRepo.findOne(utilisateur.getId());
+		Assert.assertNotNull(temp);
+		Assert.assertEquals(Verrou.cryptage(password), temp.getPassword());
+		
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Test
+	public void testUpdatePasswordNonCodeNouveauPasswordNull() throws Exception  {
+		final Map map = new HashMap();
+		final String password = null;
+		Utilisateur utilisateur = new Utilisateur("login","ancienpassword",Droit.UTILISATEUR);
+		utilisateur = utiRepo.save(utilisateur);
+	
+		map.put("utilisateur", utilisateur);
+		map.put("password", password);
+		
+		String json = MAPPER.writeValueAsString(map);
+		
+		MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.put("/utilisateur/update/password/")
+																		.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+																		.content(json);
+		this.mockMvc.perform(builder)
+					.andExpect(Constantes.BAD_REQUEST);
+		
+		final Utilisateur temp = utiRepo.findOne(utilisateur.getId());
+		Assert.assertNotNull(temp);
+		Assert.assertEquals("ancienpassword", temp.getPassword());
+		
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Test
+	public void testUpdatePasswordCodeNouveauPasswordNull() throws Exception  {
+		final Map map = new HashMap();
+		final String password = null;
+		Utilisateur utilisateur = new Utilisateur("login",Verrou.cryptage("ancienpassword"),Droit.UTILISATEUR);
+		utilisateur = utiRepo.save(utilisateur);
+	
+		utilisateur.setPassword("ancienpassword");
+		map.put("utilisateur", utilisateur);
+		map.put("password", password);
+		
+		String json = MAPPER.writeValueAsString(map);
+		
+		MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.put("/utilisateur/code/update/password/")
+																		.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+																		.content(json);
+		this.mockMvc.perform(builder)
+					.andExpect(Constantes.BAD_REQUEST);
+		
+		final Utilisateur temp = utiRepo.findOne(utilisateur.getId());
+		Assert.assertNotNull(temp);
+		Assert.assertEquals(Verrou.cryptage("ancienpassword"), temp.getPassword());
 		
 	}
 

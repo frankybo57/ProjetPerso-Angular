@@ -1,8 +1,5 @@
 package noyau.api.utilisateur;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder;
@@ -23,6 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import constantes.Constantes;
 import noyau.model.Droit;
 import noyau.model.Utilisateur;
 import noyau.repository.UtilisateurRepository;
@@ -41,14 +38,6 @@ public class AjouterUtilisateurControllerTest {
     @Autowired
     private UtilisateurRepository utiRepo;
     
-    private static final ResultMatcher INTERNAL_SERVER_ERROR = status().isInternalServerError();
-    private static final ResultMatcher BAD_REQUEST = status().isBadRequest();
-    private static final ResultMatcher NOT_FOUND = status().isNotFound();
-    private static final ResultMatcher OK = status().isOk();
-    private static final ResultMatcher CREATED = status().isCreated();
-    private static final ResultMatcher JSON = content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-	private static final ResultMatcher NO_CONTENT = status().isNoContent();
-    
     @Before
     public void setup() {
     	MockitoAnnotations.initMocks(this);
@@ -57,6 +46,11 @@ public class AjouterUtilisateurControllerTest {
         
         utiRepo.save(new Utilisateur("",""));
         utiRepo.deleteAll();
+    }
+    
+    @Test
+    public void test() {
+    	Assert.assertNotNull(utiRepo);
     }
     
     @Test
@@ -69,7 +63,7 @@ public class AjouterUtilisateurControllerTest {
         																.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
         																.content(string);
         this.mockMvc.perform(builder)
-                    .andExpect(CREATED);
+                    .andExpect(Constantes.CREATED);
         Assert.assertNotNull(utiRepo.findByLogin("admin"));
      }
 	
@@ -83,7 +77,7 @@ public class AjouterUtilisateurControllerTest {
         																.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
         																.content(string);
         this.mockMvc.perform(builder)
-                    .andExpect(CREATED);
+                    .andExpect(Constantes.CREATED);
         Assert.assertNotNull(utiRepo.findByLogin("admin"));
      }
 	
@@ -98,7 +92,7 @@ public class AjouterUtilisateurControllerTest {
         																.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
         																.content(string);
         this.mockMvc.perform(builder)
-                    .andExpect(INTERNAL_SERVER_ERROR);
+                    .andExpect(Constantes.INTERNAL_SERVER_ERROR);
         Assert.assertNull(utiRepo.findByLogin("admin"));
      }
 	
@@ -113,7 +107,7 @@ public class AjouterUtilisateurControllerTest {
         																.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
         																.content(string);
         this.mockMvc.perform(builder)
-                    .andExpect(INTERNAL_SERVER_ERROR);
+                    .andExpect(Constantes.INTERNAL_SERVER_ERROR);
         Assert.assertNull(utiRepo.findByLogin("admin"));
      }
 	
@@ -128,7 +122,7 @@ public class AjouterUtilisateurControllerTest {
         																.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
         																.content(string);
         this.mockMvc.perform(builder)
-                    .andExpect(BAD_REQUEST);
+                    .andExpect(Constantes.BAD_REQUEST);
         Assert.assertNotNull(utiRepo.findByLogin("admin"));
      }
 	
@@ -143,7 +137,7 @@ public class AjouterUtilisateurControllerTest {
         																.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
         																.content(string);
         this.mockMvc.perform(builder)
-                    .andExpect(BAD_REQUEST);
+                    .andExpect(Constantes.BAD_REQUEST);
         Assert.assertNotNull(utiRepo.findByLogin("admin"));
      }
 

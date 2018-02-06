@@ -15,7 +15,7 @@ import noyau.model.Views;
 import noyau.service.UtilisateurService;
 
 @RestController
-public class TrouverUtilisateur {
+public class TrouverUtilisateurController {
 
 	@Autowired
 	private UtilisateurService utiService;

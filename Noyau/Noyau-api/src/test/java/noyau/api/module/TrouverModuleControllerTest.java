@@ -1,4 +1,4 @@
-package noyau.api.utilisateur;
+package noyau.api.module;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
@@ -24,14 +24,14 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import constantes.Constantes;
-import noyau.model.Droit;
-import noyau.model.Utilisateur;
-import noyau.repository.UtilisateurRepository;
+import noyau.model.Etat;
+import noyau.model.Module;
+import noyau.repository.ModuleRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration("classpath*:/web-test.xml")
 @ContextConfiguration({"/applicationtestContext.xml","/dispatcher-servlet.xml"})
-public class ListerUtilisateurControllerTest {
+public class TrouverModuleControllerTest {
 
 	@Autowired
     private WebApplicationContext wac;
@@ -40,71 +40,74 @@ public class ListerUtilisateurControllerTest {
     private static final ObjectMapper MAPPER = new ObjectMapper();
     
     @Autowired
-    private UtilisateurRepository utiRepo;
+    private ModuleRepository modRepo;
     
     @Before
     public void setup() {
     	MockitoAnnotations.initMocks(this);
         DefaultMockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(this.wac);
         this.mockMvc = builder.build();
-        
-        utiRepo.save(new Utilisateur("",""));
-        utiRepo.deleteAll();
+        modRepo.save(new Module("module"));
+        modRepo.deleteAll();
     }
     
     @Test
     public void test() {
-    	Assert.assertNotNull(utiRepo);
+    	Assert.assertNotNull(modRepo);
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
 	@Test
-    public void testFindAll() throws Exception {
-    	Utilisateur utilisateur;
-    	List utilisateurs = new ArrayList();
+    public void testFindById() throws Exception {
+		modRepo.deleteAll();
+    	
+    	Module module;
+    	Module module2;
+    	List modules = new ArrayList();
     	String expected;
     	
-    	utilisateur = new Utilisateur("utilisateur1", "mdp");
-    	utilisateur.setDroits(Droit.ADMINISTRATEUR);
-    	utilisateur = utiRepo.save(utilisateur);
-    	utilisateur.setPassword(null);
-    	utilisateurs.add(utilisateur);
+    	module = new Module("module1");
+    	module.setEtat(Etat.ACTIF);
+    	module = modRepo.save(module);
+    	modules.add(module);
     	
-    	utilisateur = new Utilisateur("utilisateur2", "mdp2");
-    	utilisateur.setDroits(Droit.UTILISATEUR);
-    	utilisateur = utiRepo.save(utilisateur);
-    	utilisateur.setPassword(null);
-    	utilisateurs.add(utilisateur);
+    	module = new Module("module2");
+    	module.setEtat(Etat.ACTIF);
+    	module = modRepo.save(module);
+    	modules.add(module);
     	
     	
-    	utilisateur = new Utilisateur("utilisateur3", "mdp3");
-    	utilisateur.setDroits(Droit.UTILISATEUR);
-    	utilisateur = utiRepo.save(utilisateur);
-    	utilisateur.setPassword(null);
-    	utilisateurs.add(utilisateur);
+    	module2 = new Module("module3");
+    	module2.setEtat(Etat.INACTIF);
+    	module2 = modRepo.save(module2);
+    	modules.add(module2);
+    	final Long id = module2.getId();
     	
-    	utilisateur = new Utilisateur("utilisateur4", "mdp4");
-    	utilisateur.setDroits(Droit.UTILISATEUR);
-    	utilisateur = utiRepo.save(utilisateur);
-    	utilisateur.setPassword(null);
-    	utilisateurs.add(utilisateur);
+    	module = new Module("module4");
+    	module.setEtat(Etat.ACTIF);
+    	module = modRepo.save(module);
+    	modules.add(module);
     	
-    	expected = MAPPER.writeValueAsString(utilisateurs);
+    	expected = MAPPER.writeValueAsString(module2);
 
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/utilisateur/liste");
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/modules/"+id);
         this.mockMvc.perform(builder)
                     .andExpect(Constantes.OK)
                     .andExpect(Constantes.JSON)
                     .andExpect(content().json(expected));
+        
+        modRepo.deleteAll();
      }
 	
 	@Test
-    public void testFindAllSansUtilisateur() throws Exception {
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/utilisateur/liste");
+    public void testFindByIdSansModule() throws Exception {
+		
+    	modRepo.deleteAll();
+
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/modules/1");
         this.mockMvc.perform(builder)
                     .andExpect(Constantes.NOT_FOUND);
-        Assert.assertNotNull(utiRepo.findAll());
-        Assert.assertTrue(utiRepo.findAll().isEmpty());
+        
+        modRepo.deleteAll();
      }
-
 }

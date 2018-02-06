@@ -1,4 +1,4 @@
-package recettes.api;
+package recettes.api.recette;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import recettes.model.TypePlat;
 import recettes.repository.RecetteRepository;
 
 @RestController
-public class RecetteController {
+public class ListerRecetteController {
 	@Autowired
 	private RecetteRepository recRepo;
 	

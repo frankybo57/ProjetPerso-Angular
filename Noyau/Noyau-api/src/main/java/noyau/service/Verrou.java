@@ -14,11 +14,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public abstract class Verrou {
 	
-	//	private static final Logger logger = LogManager.getLogger(Verrou.class);
-	
 	private static final String SEL = "sel";
 	private static final String UTF_8 = "UTF-8";
-	
 	
 	protected Verrou() {
 		
@@ -56,20 +53,10 @@ public abstract class Verrou {
 	         generatedPassword = sb.toString();
 	    } 
 	    catch (final NoSuchAlgorithmException e) {
-//	    	if(logger.isErrorEnabled()) {
-//	    		logger.error("Erreur lors de la tentative de hashage : le hashage SHA-512 n'est pas disponible dans l'environnement");
-//	    	}
-//	    	if(logger.isDebugEnabled()) {
-//	    		logger.debug(e);
-//	    	}
+	    	
 	    }
 	    catch (final UnsupportedEncodingException e){
-//	    	if(logger.isErrorEnabled()) {
-//	    		logger.error("Erreur lors de la tentative de hashage : l'encodage en UTF-8 n'est pas supporté");
-//	    	}
-//	    	if(logger.isDebugEnabled()) {
-//	    		logger.debug(e);
-//	    	}
+	    	
 	    }
 	    
 	    return generatedPassword;

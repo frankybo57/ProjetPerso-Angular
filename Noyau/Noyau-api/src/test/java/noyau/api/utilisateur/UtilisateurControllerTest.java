@@ -1,20 +1,15 @@
 package noyau.api.utilisateur;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder;
@@ -23,6 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import constantes.Constantes;
 import noyau.model.Droit;
 import noyau.model.Utilisateur;
 import noyau.repository.UtilisateurRepository;
@@ -41,14 +37,6 @@ public class UtilisateurControllerTest {
     @Autowired
     private UtilisateurRepository utiRepo;
     
-    private static final ResultMatcher INTERNAL_SERVER_ERROR = status().isInternalServerError();
-    private static final ResultMatcher BAD_REQUEST = status().isBadRequest();
-    private static final ResultMatcher NOT_FOUND = status().isNotFound();
-    private static final ResultMatcher OK = status().isOk();
-    private static final ResultMatcher CREATED = status().isCreated();
-    private static final ResultMatcher JSON = content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-	private static final ResultMatcher NO_CONTENT = status().isNoContent();
-    
     @Before
     public void setup() {
     	MockitoAnnotations.initMocks(this);
@@ -57,6 +45,11 @@ public class UtilisateurControllerTest {
         
         utiRepo.save(new Utilisateur("",""));
         utiRepo.deleteAll();
+    }
+    
+    @Test
+    public void test() {
+    	Assert.assertNotNull(utiRepo);
     }
 	
 	@Test
@@ -69,7 +62,7 @@ public class UtilisateurControllerTest {
         																+ ":"
         																+ utilisateur.getPassword());
         this.mockMvc.perform(builder)
-                    .andExpect(OK);
+                    .andExpect(Constantes.OK);
      }
 	
 	@Test
@@ -82,7 +75,7 @@ public class UtilisateurControllerTest {
 																		+ ":"
 																		+ "admin");
         this.mockMvc.perform(builder)
-                    .andExpect(OK);
+                    .andExpect(Constantes.OK);
      }
 	
 	@Test
@@ -92,7 +85,7 @@ public class UtilisateurControllerTest {
         																+ ":"
         																+ "cqs");
         this.mockMvc.perform(builder)
-                    .andExpect(NOT_FOUND);
+                    .andExpect(Constantes.NOT_FOUND);
      }
 	
 	@Test
@@ -105,7 +98,7 @@ public class UtilisateurControllerTest {
 																		+ ":"
 																		+ "qfe");
         this.mockMvc.perform(builder)
-                    .andExpect(NOT_FOUND);
+                    .andExpect(Constantes.NOT_FOUND);
      }
 	
 	

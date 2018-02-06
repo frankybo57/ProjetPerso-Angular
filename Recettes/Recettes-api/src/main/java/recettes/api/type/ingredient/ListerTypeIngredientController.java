@@ -1,4 +1,4 @@
-package recettes.api;
+package recettes.api.type.ingredient;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import recettes.service.ListeTypeIngredient;
 
 
 @RestController
-public class TypeIngredientController {
+public class ListerTypeIngredientController {
 	@Autowired
 	private TypeIngredientRepository tiRepo;
 	@Autowired
