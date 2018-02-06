@@ -29,6 +29,12 @@ Service utilisateur
 			updateCode : function(utilisateur){
 				return $http({method:"PUT", url:"api/utilisateur/code/", data: utilisateur});
 			},
+			updateLogin : function(utilisateurEtNouveauLogin){
+				return $http({method:"PUT", url:"api/utilisateur/update/login/", data: utilisateurEtNouveauLogin});
+			},
+			updateLoginCode : function(utilisateurEtNouveauLogin){
+				return $http({method:"PUT", url:"api/utilisateur/code/updateLogin/", data: utilisateurEtNouveauLogin});
+			},
 			supprimer : function(id){
 				return $http({method:"DELETE", url:"api/utilisateur/"+id});
 			},

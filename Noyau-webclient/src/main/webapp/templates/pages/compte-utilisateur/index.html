@@ -22,11 +22,12 @@
 				</tr>
 			</tbody>
 		</table>
-		<button class="btn btn-info" ng-click="UtilisateurCtrl.toogleLogin()">
+		<button class="btn btn-info"
+			ng-click="UtilisateurCtrl.ouvrirOngletChangerLogin()">
 			<span>Changer mon identifiant</span>
 		</button>
 		<button class="btn btn-info"
-			ng-click="UtilisateurCtrl.tooglePassword()">
+			ng-click="UtilisateurCtrl.ouvrirOngletChangerMdP()">
 			<span>Changer mon mot de passe</span>
 		</button>
 		<div id="modif-identifiant" class="panel panel-default"
@@ -40,15 +41,30 @@
 						<label style="width: 400px">Ancien identifiant : </label> <span
 							style="width: 400px">{{UtilisateurCtrl.getLogin()}}</span>
 					</div>
+					<input type="hidden" style="width: 400px"
+						ng-model="UtilisateurCtrl.loginForm.utilisateur.id"></input> <input
+						type="hidden" style="width: 400px"
+						ng-model="UtilisateurCtrl.loginForm.utilisateur.version"></input>
+					<input type="hidden" style="width: 400px"
+						ng-model="UtilisateurCtrl.loginForm.utilisateur.login"></input> <input
+						type="hidden" style="width: 400px"
+						ng-model="UtilisateurCtrl.loginForm.utilisateur.droits"></input>
 					<div class="form-group">
 						<label style="width: 400px">Nouvel identifiant : </label> <input
-							style="width: 400px" ng-model="UtilisateurCtrl.login" required></input>
+							type="text" style="width: 400px"
+							ng-model="UtilisateurCtrl.loginForm.nouveauLogin" required></input>
 					</div>
-					<button class="btn btn-success" type="submit">
+					<div class="form-group">
+						<label style="width: 400px">Mot de passe : </label> <input
+							type="password" style="width: 400px"
+							ng-model="UtilisateurCtrl.loginForm.utilisateur.password"
+							required></input>
+					</div>
+					<button class="btn btn-success" type="submit" ng-click="UtilisateurCtrl.changerLogin()">
 						<span class="glyphicon glyphicon-ok"></span>
 					</button>
 					<button class="btn btn-warning"
-						ng-click="UtilisateurCtrl.toogleLogin()">
+						ng-click="UtilisateurCtrl.fermerOngletChangerLogin()">
 						<span class="glyphicon glyphicon-arrow-left"></span>
 					</button>
 				</form>
