@@ -11,19 +11,19 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import jsonviews.Common;
 import recettes.model.Ingredient;
-import recettes.repository.IngredientRepository;
+import recettes.service.IngredientService;
 
 @RestController
 public class TrouverIngredientController {
 
 	@Autowired
-	private IngredientRepository ingRepo;
+	private IngredientService ingService;
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/ingredients/{id}")
 	@JsonView(Common.class)
 	public ResponseEntity find(@PathVariable("id") Long id){
-		Ingredient tmp = ingRepo.findOne(id);
+		Ingredient tmp = ingService.find(id);
 		
 		if(tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

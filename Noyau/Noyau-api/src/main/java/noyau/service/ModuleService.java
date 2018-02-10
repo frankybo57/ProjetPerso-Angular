@@ -2,6 +2,7 @@ package noyau.service;
 
 import java.util.List;
 
+import exception.ModuleException;
 import noyau.model.Etat;
 import noyau.model.Module;
 
@@ -13,58 +14,55 @@ import noyau.model.Module;
 public interface ModuleService {
 	
 	/**
-	 * Méthode de recherche de tous les modules en base.
+	 * Méthode de recherche de tous les Module en base.
 	 * @author frankybo57
-	 * @return la liste de tous les modules en base.
+	 * @return la List de tous les Module en base.
 	 */
-	@SuppressWarnings("rawtypes")
-	public List findAll();
+	public List<Module> findAll();
 
 	/**
-	 * Méthode de recherche de tous les modules en base triés par identifiant croissant.
+	 * Méthode de recherche de tous les Module en base triés par identifiant croissant.
 	 * @author frankybo57
-	 * @return la liste des modules triés par ordre d'identifiant croissant.
+	 * @return la List des Module triés par ordre d'identifiant croissant.
 	 */
-	@SuppressWarnings("rawtypes")
-	public List findAllOrderByIdAsc();
+	public List<Module> findAllOrderByIdAsc();
 
 	/**
-	 * Méthode de recherche de tous les modules en base par leur etat.
+	 * Méthode de recherche de tous les Module en base par leur Etat.
 	 * @author frankybo57
-	 * @param etat l'état des modules à chercher en base.
-	 * @return la liste des modules trouvés.
+	 * @param etat l'Etat des Module à chercher en base.
+	 * @return la List des Module trouvés.
 	 */
-	@SuppressWarnings("rawtypes")
-	public List findAllByEtat(final Etat etat);
+	public List<Module> findAllByEtat(final Etat etat);
 
 	/**
-	 * Méthode de recherche d'un module en base par son identifiant.
+	 * Méthode de recherche d'un Module en base par son identifiant.
 	 * @author frankybo57
-	 * @param id l'identifiant du module à chercher en base.
-	 * @return le module sauvegardé.
+	 * @param id l'identifiant du Module à chercher en base.
+	 * @return le Module renvoyé.
 	 */
 	public Module findOne(final Long id);
 
 	/**
-	 * Méthode de sauvegarde d'un module en base.
+	 * Méthode de sauvegarde d'un Module en base.
 	 * @author frankybo57
-	 * @param module le module à sauvegarder en base.
-	 * @return le module sauvegardé.
+	 * @param module le Module à sauvegarder en base.
+	 * @return le Module sauvegardé.
 	 */
-	public Module save(final Module module);
+	public Module save(final Module module) throws ModuleException;
 
 	/**
-	 * Méthode de mise à jour d'un module en base.
+	 * Méthode de mise à jour d'un Module en base.
 	 * @author frankybo57
-	 * @param module la version à jour du module.
-	 * @return le module à jour.
+	 * @param module la version à jour du Module.
+	 * @return le Module à jour.
 	 */
-	public Module update(final Module module);
+	public Module update(final Module module) throws ModuleException;
 
 	/**
-	 * Méthode de suppression d'un module en base à partir de son identifiant.
+	 * Méthode de suppression d'un Module en base à partir de son identifiant.
 	 * @author frankybo57
-	 * @param id l'identifiant du module à supprimer.
+	 * @param id l'identifiant du Module à supprimer.
 	 */
 	public void delete(final Long id);
 }

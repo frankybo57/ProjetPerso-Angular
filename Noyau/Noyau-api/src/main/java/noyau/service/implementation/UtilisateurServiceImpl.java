@@ -1,4 +1,4 @@
-package noyau.service;
+package noyau.service.implementation;
 
 import java.util.List;
 import java.util.Map;
@@ -11,12 +11,16 @@ import exception.UtilisateurException;
 import noyau.model.Droit;
 import noyau.model.Utilisateur;
 import noyau.repository.UtilisateurRepository;
+import noyau.service.HashService;
+import noyau.service.UtilisateurService;
 
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService{
 	
 	@Autowired
 	UtilisateurRepository utiRepo;
+	@Autowired
+	HashService hService;
 	
 	/**
 	 * Méthode de création d'un utilisateur à partir de son nom d'utilisateur et de son mot de passe avec ou sans hashage du mot de passe.
@@ -49,7 +53,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 
 		// Hashage du mot de passe si nécessaire.
 		if(hash) {
-			obj.setPassword(Verrou.cryptage(obj.getPassword()));
+			obj.setPassword(hService.cryptage(obj.getPassword()));
 		}
 
 		obj.setDroits(Droit.UTILISATEUR);
@@ -60,8 +64,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	}
 	
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List findAll() {
+	public List<Utilisateur> findAll() {
 		return utiRepo.findAll();
 	}
 	
@@ -84,7 +87,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	public Utilisateur findOne(final String login, final String password, final boolean hash) throws UtilisateurException{
 		Utilisateur tmp;
 		if(hash) {
-			tmp = utiRepo.findOneByLoginAndByPassword(login,Verrou.cryptage(password));
+			tmp = utiRepo.findOneByLoginAndByPassword(login,hService.cryptage(password));
 		}
 		else {
 			tmp = utiRepo.findOneByLoginAndByPassword(login,password);
@@ -96,15 +99,15 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 		}
 	}
 	
-	@Override
 	@SuppressWarnings("rawtypes")
+	@Override
 	public Utilisateur getUtilisateurFromJson(final Map map) {
 		final Utilisateur utilisateur = new Utilisateur();
 
-		utilisateur.setId(Long.valueOf(((Integer) map.get("id"))));
-		utilisateur.setVersion((int) map.get("version"));
-		utilisateur.setLogin((String) map.get(UtilisateurService.LOGIN));
-		utilisateur.setPassword((String) map.get(UtilisateurService.MOT_DE_PASSE));
+		utilisateur.setId(Long.valueOf((Integer)map.get("id")));
+		utilisateur.setVersion((int)map.get("version"));
+		utilisateur.setLogin((String) map.get(Constantes.LOGIN));
+		utilisateur.setPassword((String) map.get(Constantes.MOT_DE_PASSE));
 		utilisateur.setDroits(Droit.valueOf((String) map.get("droits")));
 
 		return utilisateur;
@@ -137,16 +140,16 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 
 			// Hashage du mot de passe si nécessaire.
 			if(hash) {
-				obj.setPassword(Verrou.cryptage(obj.getPassword()));
+				obj.setPassword(hService.cryptage(obj.getPassword()));
 			}
 			if (!temp.equals(obj))  throw new UtilisateurException(Constantes.UTILISATEUR_NON_CORRESPONDANT);
 			
 			switch(typePropriete) {
-			case UtilisateurService.LOGIN:
+			case Constantes.LOGIN:
 				obj.setLogin((String) propriete);
 				break;
-			case UtilisateurService.MOT_DE_PASSE:
-				if(hash)obj.setPassword(Verrou.cryptage((String) propriete));
+			case Constantes.MOT_DE_PASSE:
+				if(hash)obj.setPassword(hService.cryptage((String) propriete));
 				else obj.setPassword((String) propriete);
 				break;
 			case "droit":

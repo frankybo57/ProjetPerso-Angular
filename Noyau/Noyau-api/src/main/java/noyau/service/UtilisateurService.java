@@ -8,12 +8,8 @@ import noyau.model.Utilisateur;
 
 public interface UtilisateurService {
 
-	public static final String UTILISATEUR = "utilisateur";
-	public static final String LOGIN = "login";
-	public static final String MOT_DE_PASSE = "password";
-	
 	/**
-	 * Méthode de création d'un utilisateur à partir de son nom d'utilisateur et de son mot de passe avec ou sans hashage du mot de passe.
+	 * Méthode de création d'un Utilisateur à partir de son nom d'utilisateur et de son mot de passe avec ou sans hashage du mot de passe.
 	 * Si l'utilisateur est créé il reçoit des droits d'utilisateur de base.
 	 * 
 	 * @author frankybo57
@@ -28,9 +24,11 @@ public interface UtilisateurService {
 	 */
 	public Utilisateur createOne(Utilisateur obj, final boolean hash) throws UtilisateurException;
 	
-	
-	@SuppressWarnings("rawtypes")
-	public List findAll();
+	/**
+	 * Méthode renvoyant la liste de tous les Utilisateur en base.
+	 * @return List de tous les Utilisateur en base.
+	 */
+	public List<Utilisateur> findAll();
 	
 	/**
 	 * Méthode de récupération d'un utilisateur à partir de son nom d'utilisateur et de son mot de passe avec ou sans hashage du mot de passe.

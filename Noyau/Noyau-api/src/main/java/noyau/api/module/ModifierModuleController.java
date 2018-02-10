@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import exception.ModuleException;
 import noyau.model.Module;
 import noyau.model.Views;
 import noyau.service.ModuleService;
@@ -18,13 +19,13 @@ public class ModifierModuleController {
 
 	@Autowired
 	ModuleService modService;
-	
+
 	/**
-	 * MÃ©thode de mise Ã  jour en base d'un module.
+	 * Méthode de mise à jour en base d'un module.
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @param obj module mis Ã  jour
+	 * @param obj module mis à jour
 	 * @return
 	 * 		HttpStatus.OK + Module module.
 	 * 		
@@ -32,10 +33,14 @@ public class ModifierModuleController {
 	@PutMapping("/modules")
 	@JsonView(Views.Module.class)
 	public ResponseEntity<Module> update(@RequestBody Module obj) {
-		if (obj.getId() == null) {
-			return new ResponseEntity<> (modService.save(obj), HttpStatus.CREATED);
+		try {
+			if (obj.getId() == null) {
+				return new ResponseEntity<> (modService.save(obj), HttpStatus.CREATED);
+			}
+			obj = modService.update(obj);
+		} catch (ModuleException e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		obj = modService.update(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}

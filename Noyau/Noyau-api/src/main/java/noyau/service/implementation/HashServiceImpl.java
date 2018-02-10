@@ -1,31 +1,40 @@
-package noyau.service;
+package noyau.service.implementation;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.springframework.stereotype.Service;
+
+import noyau.service.HashService;
+
 /**
- * Classe permettant le hashage des mots de passe.
+ * Classe implémentant l'interface HashService.
  * 
  * @author frankybo57
  * @since 1.0
  * @version 1.0
  *
  */
-public abstract class Verrou {
+@Service
+public class HashServiceImpl implements HashService {
 	
 	private static final String SEL = "sel";
 	private static final String UTF_8 = "UTF-8";
 	
-	protected Verrou() {
-		
-	}
-	
-	public static String cryptage(final String password) {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String cryptage(final String password) {
 		return cryptage(password,SEL,TypeHashage.SHA512.toString());
 	}
 	
-	public static String cryptage(final String password, final TypeHashage type) {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String cryptage(final String password, final TypeHashage type) {
 		switch(type) {
 		case MD5 :
 			return cryptage(password,SEL,TypeHashage.MD5.toString());
@@ -40,7 +49,7 @@ public abstract class Verrou {
 		}
 	}
 	
-	private static String cryptage(final String password, final String salt, final String algorithme) {
+	private String cryptage(final String password, final String salt, final String algorithme) {
 		String generatedPassword = null;
 	    try {
 	         final MessageDigest md = MessageDigest.getInstance(algorithme);

@@ -26,7 +26,7 @@ import constantes.Constantes;
 import noyau.model.Droit;
 import noyau.model.Utilisateur;
 import noyau.repository.UtilisateurRepository;
-import noyau.service.Verrou;
+import noyau.service.HashService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration("classpath*:/web-test.xml")
@@ -41,6 +41,8 @@ public class ModifierUtilisateurControllerTest {
     
     @Autowired
     private UtilisateurRepository utiRepo;
+    @Autowired
+    private HashService hService;
     
     @Before
     public void setup() {
@@ -88,7 +90,7 @@ public class ModifierUtilisateurControllerTest {
 	public void testUpdateLoginCode() throws Exception  {
 		final Map map = new HashMap();
 		final String login = "nouveaulogin";
-		Utilisateur utilisateur = new Utilisateur("ancienlogin",Verrou.cryptage("password"),Droit.UTILISATEUR);
+		Utilisateur utilisateur = new Utilisateur("ancienlogin",hService.cryptage("password"),Droit.UTILISATEUR);
 		utilisateur = utiRepo.save(utilisateur);
 	
 		utilisateur.setPassword("password");
@@ -140,7 +142,7 @@ public class ModifierUtilisateurControllerTest {
 	public void testUpdateLoginCodeNouveauLoginNull() throws Exception  {
 		final Map map = new HashMap();
 		final String login = null;
-		Utilisateur utilisateur = new Utilisateur("ancienlogin",Verrou.cryptage("password"),Droit.UTILISATEUR);
+		Utilisateur utilisateur = new Utilisateur("ancienlogin",hService.cryptage("password"),Droit.UTILISATEUR);
 		utilisateur = utiRepo.save(utilisateur);
 	
 		utilisateur.setPassword("password");
@@ -192,7 +194,7 @@ public class ModifierUtilisateurControllerTest {
 	public void testUpdatePasswordCode() throws Exception  {
 		final Map map = new HashMap();
 		final String password = "nouveaupassword";
-		Utilisateur utilisateur = new Utilisateur("login",Verrou.cryptage("ancienpassword"),Droit.UTILISATEUR);
+		Utilisateur utilisateur = new Utilisateur("login",hService.cryptage("ancienpassword"),Droit.UTILISATEUR);
 		utilisateur = utiRepo.save(utilisateur);
 	
 		utilisateur.setPassword("ancienpassword");
@@ -210,7 +212,7 @@ public class ModifierUtilisateurControllerTest {
 		
 		final Utilisateur temp = utiRepo.findOne(utilisateur.getId());
 		Assert.assertNotNull(temp);
-		Assert.assertEquals(Verrou.cryptage(password), temp.getPassword());
+		Assert.assertEquals(hService.cryptage(password), temp.getPassword());
 		
 	}
 	
@@ -244,7 +246,7 @@ public class ModifierUtilisateurControllerTest {
 	public void testUpdatePasswordCodeNouveauPasswordNull() throws Exception  {
 		final Map map = new HashMap();
 		final String password = null;
-		Utilisateur utilisateur = new Utilisateur("login",Verrou.cryptage("ancienpassword"),Droit.UTILISATEUR);
+		Utilisateur utilisateur = new Utilisateur("login",hService.cryptage("ancienpassword"),Droit.UTILISATEUR);
 		utilisateur = utiRepo.save(utilisateur);
 	
 		utilisateur.setPassword("ancienpassword");
@@ -261,7 +263,7 @@ public class ModifierUtilisateurControllerTest {
 		
 		final Utilisateur temp = utiRepo.findOne(utilisateur.getId());
 		Assert.assertNotNull(temp);
-		Assert.assertEquals(Verrou.cryptage("ancienpassword"), temp.getPassword());
+		Assert.assertEquals(hService.cryptage("ancienpassword"), temp.getPassword());
 		
 	}
 

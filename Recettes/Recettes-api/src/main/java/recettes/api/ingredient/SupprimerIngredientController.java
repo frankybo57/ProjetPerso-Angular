@@ -9,21 +9,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import exception.IngredientException;
 import jsonviews.Common;
-import recettes.repository.IngredientRepository;
+import recettes.service.IngredientService;
 
 @RestController
 public class SupprimerIngredientController {
 	
 	@Autowired
-	private IngredientRepository ingRepo;
+	private IngredientService ingService;
 	
 	@SuppressWarnings("rawtypes")
 	@DeleteMapping("/ingredients/{id}")
 	@JsonView(Common.class)
-	public ResponseEntity delete(@PathVariable("id") Long id){
-		ingRepo.delete(id);
-		return new ResponseEntity<>(HttpStatus.OK);
+	public ResponseEntity delete(@PathVariable("id") final Long id){
+		try {
+			ingService.delete(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		catch(final IngredientException e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	

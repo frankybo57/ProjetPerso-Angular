@@ -12,6 +12,7 @@ import exception.UtilisateurException;
 import noyau.model.Droit;
 import noyau.model.Utilisateur;
 import noyau.repository.UtilisateurRepository;
+import noyau.service.implementation.UtilisateurServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationtestContext.xml")
@@ -19,9 +20,11 @@ public class UtilisateurServiceTest {
 
 	@Autowired
 	private UtilisateurRepository utiRepo;
-
 	@Autowired
 	private UtilisateurService utiSer;
+	@Autowired
+	private HashService hService;
+	
 
 	@Before
 	public void setup() {
@@ -33,6 +36,7 @@ public class UtilisateurServiceTest {
 	public void test() {
 		Assert.assertNotNull(utiRepo);
 		Assert.assertNotNull(utiSer);
+		Assert.assertNotNull(hService);
 	}
 
 	@Test
@@ -59,7 +63,7 @@ public class UtilisateurServiceTest {
 		final Utilisateur result = utiRepo.findOne(id);
 		Assert.assertNotNull(result);
 		Assert.assertEquals("login", result.getLogin());
-		Assert.assertEquals(Verrou.cryptage("password"), result.getPassword());
+		Assert.assertEquals(hService.cryptage("password"), result.getPassword());
 		utiRepo.delete(id);
 
 

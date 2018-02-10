@@ -22,7 +22,7 @@ import constantes.Constantes;
 import noyau.model.Droit;
 import noyau.model.Utilisateur;
 import noyau.repository.UtilisateurRepository;
-import noyau.service.Verrou;
+import noyau.service.HashService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration("classpath*:/web-test.xml")
@@ -36,6 +36,8 @@ public class UtilisateurControllerTest {
     
     @Autowired
     private UtilisateurRepository utiRepo;
+    @Autowired
+    private HashService hService;
     
     @Before
     public void setup() {
@@ -67,7 +69,7 @@ public class UtilisateurControllerTest {
 	
 	@Test
     public void testFindOneCode() throws Exception {
-		Utilisateur utilisateur = new Utilisateur("admin",Verrou.cryptage("admin"),Droit.ADMINISTRATEUR);
+		Utilisateur utilisateur = new Utilisateur("admin",hService.cryptage("admin"),Droit.ADMINISTRATEUR);
 		utiRepo.save(utilisateur);
 		
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/utilisateur/code/"
@@ -90,7 +92,7 @@ public class UtilisateurControllerTest {
 	
 	@Test
     public void testFindOneCodeSansUtilisateur() throws Exception {
-		Utilisateur utilisateur = new Utilisateur("admin",Verrou.cryptage("admin"),Droit.ADMINISTRATEUR);
+		Utilisateur utilisateur = new Utilisateur("admin",hService.cryptage("admin"),Droit.ADMINISTRATEUR);
 		utiRepo.save(utilisateur);
 		
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/utilisateur/code/"

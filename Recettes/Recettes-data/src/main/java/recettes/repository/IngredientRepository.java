@@ -12,28 +12,22 @@ import recettes.model.Recette;
 import recettes.model.TypeIngredient;
 
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
-	@SuppressWarnings("rawtypes")
 	@Transactional(readOnly = true)
 	@Query("select distinct i from Ingredient i left join fetch i.listeRecetteIngredient r where r.recette = :recette")
-	public List findAllIngredientByRecette(@Param("recette") Recette recette);
+	public List<Ingredient> findAllIngredientByRecette(@Param("recette") Recette recette);
 	
-	@SuppressWarnings("rawtypes")
 	@Transactional(readOnly = true)
-	public List findAllIngredientByTypeIngredient(TypeIngredient ti);
+	public List<Ingredient> findAllIngredientByTypeIngredient(TypeIngredient ti);
 
-	@SuppressWarnings("rawtypes")
 	@Transactional(readOnly = true)
-	public List findAllByTypeIngredient(TypeIngredient typeIngredient);
+	public List<Ingredient> findAllByTypeIngredient(TypeIngredient typeIngredient);
 
-	@SuppressWarnings("rawtypes")
 	@Transactional(readOnly = true)
-	public List findAllByCout(Short cout);
+	public List<Ingredient> findAllByCout(Short cout);
 	
-	@SuppressWarnings("rawtypes")
 	@Transactional(readOnly = true)
-	public List findAllByCoutLessThan(Short cout);
+	public List<Ingredient> findAllByCoutLessThan(Short cout);
 	
-	@SuppressWarnings("rawtypes")
 	@Transactional(readOnly = true)
-	public List findAllByCoutGreaterThan(Short cout);
+	public List<Ingredient> findAllByCoutGreaterThan(Short cout);
 }

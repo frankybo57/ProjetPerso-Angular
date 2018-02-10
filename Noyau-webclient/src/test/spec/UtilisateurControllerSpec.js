@@ -4,8 +4,9 @@ describe('UtilisateurController', function() {
 	beforeEach(angular.mock.module('ValueUtilisateurConnecte'));
 	beforeEach(angular.mock.module('utilisateurs'));
 
-	var $controller;
 	var $value;
+	var $controller;
+	
 
 	beforeEach(inject(function(_$controller_){
 		// The injector unwraps the underscores (_) from around the parameter names when matching

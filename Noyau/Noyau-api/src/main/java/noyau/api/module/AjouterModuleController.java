@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import exception.ModuleException;
 import noyau.model.Module;
 import noyau.model.Views;
 import noyau.service.ModuleService;
@@ -20,15 +21,15 @@ public class AjouterModuleController {
 	ModuleService modService;
 	
 	/**
-	 * MÃ©thode de crÃ©ation en base d'un nouveau module.
+	 * Méthode de création en base d'un nouveau module.
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @param obj module a crÃ©er
+	 * @param obj module a créer
 	 * @return
 	 * 		HttpStatus.CREATED + Module
 	 * 		ou
-	 * 		HttpStatus.BAD_REQUEST si le module n'est pas crÃ©Ã©.
+	 * 		HttpStatus.BAD_REQUEST si le module n'est pas créé.
 	 * 		
 	 */
 	@PostMapping("/modules")
@@ -37,7 +38,11 @@ public class AjouterModuleController {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		obj = modService.save(obj);
+		try {
+			obj = modService.save(obj);
+		} catch (ModuleException e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 
 		return new ResponseEntity<>(obj, HttpStatus.CREATED);
 	}

@@ -261,13 +261,12 @@ public class UtilisateurTest {
 		Assert.assertEquals(false, utilisateur.equals(utilisateur2));
 	}
 	
-//	@Test
-//	public void testEqualsIdsNullLoginNull1(){
-//		Utilisateur utilisateur = new Utilisateur();
-//		Utilisateur utilisateur2 = new Utilisateur();
-//		utilisateur2.setLogin("login");
-//		
-//		Assert.assertEquals(false, utilisateur.equals(utilisateur2));
-//	}
+	@Test
+	public void testEqualsMdpNullEtNonNull(){
+		Utilisateur utilisateur = new Utilisateur("module1", null, Droit.ADMINISTRATEUR);
+		Utilisateur utilisateur2 = new Utilisateur("module1", "mdp", Droit.ADMINISTRATEUR);
+		
+		Assert.assertEquals(false, utilisateur.equals(utilisateur2));
+	}
 	
 }

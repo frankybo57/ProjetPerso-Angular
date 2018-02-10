@@ -11,28 +11,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jsonviews.Common;
-import recettes.repository.TypeIngredientRepository;
-import recettes.service.ListeTypeIngredient;
+import recettes.service.TypeIngredientService;
 
 
 @RestController
 public class ListerTypeIngredientController {
 	@Autowired
-	private TypeIngredientRepository tiRepo;
-	@Autowired
-	private ListeTypeIngredient listeTypeIngredient;
+	private TypeIngredientService tiService;
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/type-ingredient/liste/")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAll() {
-		return new ResponseEntity<>(tiRepo.findAll(), HttpStatus.OK);
+		return new ResponseEntity<>(tiService.findAll(), HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/type-ingredient/liste/hierarchisee/")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAllHierarchie() {
-		return new ResponseEntity<>(listeTypeIngredient.getListe(), HttpStatus.OK);
+		return new ResponseEntity<>(tiService.getListe(), HttpStatus.OK);
 	}
 }

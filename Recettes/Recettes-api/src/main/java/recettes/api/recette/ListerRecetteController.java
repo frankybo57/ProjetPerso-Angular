@@ -15,39 +15,39 @@ import com.fasterxml.jackson.annotation.JsonView;
 import jsonviews.Common;
 import recettes.model.Ingredient;
 import recettes.model.TypePlat;
-import recettes.repository.RecetteRepository;
+import recettes.service.RecetteService;
 
 @RestController
 public class ListerRecetteController {
 	@Autowired
-	private RecetteRepository recRepo;
+	private RecetteService recService;
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/recettes/liste/")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAll() {
-		return new ResponseEntity<>(recRepo.findAll(), HttpStatus.OK);
+		return new ResponseEntity<>(recService.findAll(), HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/recettes/liste/type-plat")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAll(@RequestBody TypePlat typePlat) {
-		return new ResponseEntity<>(recRepo.findAllByTypePlat(typePlat), HttpStatus.OK);
+		return new ResponseEntity<>(recService.findAllByTypePlat(typePlat), HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/recettes/liste/ingredient")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAll(@RequestBody Ingredient ingredient) {
-		return new ResponseEntity<>(recRepo.findAll(), HttpStatus.OK);
+		return new ResponseEntity<>(recService.findAll(), HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/recettes/{difficulte}")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAllByDifficulte(@PathVariable("difficulte") Short difficulte){
-		List tmp = recRepo.findAllByDifficulte(difficulte);
+		List tmp = recService.findAllByDifficulte(difficulte);
 		
 		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -45,6 +45,12 @@ public class Constantes {
 	public static final ResultMatcher CREATED = status().isCreated();
 	public static final ResultMatcher JSON = content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 	public static final ResultMatcher NO_CONTENT = status().isNoContent();
+
+	public static final String UTILISATEUR = "utilisateur";
+
+	public static final String LOGIN = "login";
+
+	public static final String MOT_DE_PASSE = "password";
 	
 	private Constantes() {
 		

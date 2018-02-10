@@ -13,21 +13,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jsonviews.Common;
+import recettes.model.Ingredient;
 import recettes.model.Recette;
 import recettes.model.TypeIngredient;
-import recettes.repository.IngredientRepository;
+import recettes.service.IngredientService;
 
 @RestController
 public class ListerIngredientController {
 
 	@Autowired
-	private IngredientRepository ingRepo;
+	private IngredientService ingService;
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("/ingredients/liste/")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAll(){
-		List tmp = ingRepo.findAll();
+		List<Ingredient> tmp = ingService.findAll();
 		
 		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -41,7 +42,7 @@ public class ListerIngredientController {
 	@GetMapping("/ingredients/liste/type-ingredient")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAllByTypeIngredient(@RequestBody TypeIngredient typeIngredient){
-		List tmp = ingRepo.findAllByTypeIngredient(typeIngredient);
+		List<Ingredient> tmp = ingService.findAllByTypeIngredient(typeIngredient);
 		
 		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -55,7 +56,7 @@ public class ListerIngredientController {
 	@GetMapping("/ingredients/liste/recette")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAllByRecette(@RequestBody Recette recette){
-		List tmp = ingRepo.findAllIngredientByRecette(recette);
+		List<Ingredient> tmp = ingService.findAllByRecette(recette);
 		
 		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -69,7 +70,7 @@ public class ListerIngredientController {
 	@GetMapping("/ingredients/{cout}")
 	@JsonView(Common.class)
 	public ResponseEntity<List> findAllByPrix(@PathVariable("cout") Short cout){
-		List tmp = ingRepo.findAllByCout(cout);
+		List<Ingredient> tmp = ingService.findAllByPrix(cout);
 		
 		if(tmp.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

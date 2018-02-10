@@ -1,5 +1,6 @@
 package recettes.repository;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import recettes.model.RecetteIngredient;
