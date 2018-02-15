@@ -12,4 +12,7 @@ public interface TypePlatRepository extends JpaRepository<TypePlat, Long> {
 	@Transactional(readOnly = true)
 	@Query("from TypePlat tp order by tp.id asc")
 	public List<TypePlat> findAllOrderByIdAsc();
+	
+	@Transactional(readOnly = true)
+	public TypePlat findByLabel(String label);
 }

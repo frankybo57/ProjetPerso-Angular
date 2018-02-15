@@ -50,9 +50,9 @@ public class Recette extends EntitePossedee{
 	@JsonView(Views.Recette.class)
 	private List<RecetteIngredient> listeRecetteIngredient;
 	
-	@Column(name="instructions")
+	@OneToMany(mappedBy="recette")
 	@JsonView(Views.Recette.class)
-	private String instructions;
+	private List<LigneInstruction> instructions;
 	
 	@Column(name="conseils")
 	@JsonView(Views.Recette.class)
@@ -134,12 +134,21 @@ public class Recette extends EntitePossedee{
 		this.listeRecetteIngredient = listeRecetteIngredient;
 	}
 
-	public String getInstructions() {
+	public List<LigneInstruction> getInstructions() {
 		return instructions;
 	}
 
-	public void setInstructions(String instructions) {
+	public void setInstructions(List<LigneInstruction> instructions) {
 		this.instructions = instructions;
+	}
+	
+	/**
+	 * Méthode d'ajout d'une LigneInstruction à la List des LigneInstruction de la Recette.
+	 * 
+	 * @param ligneInstruction LigneInstruction à ajouter.
+	 */
+	public void ajouterLigneInstruction(final LigneInstruction ligneInstruction) {
+		this.instructions.add(ligneInstruction);
 	}
 
 	public String getConseils() {
@@ -166,11 +175,17 @@ public class Recette extends EntitePossedee{
 		this.video = video;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int hashCode() {
 		return super.hashCode();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		return super.equals(obj);

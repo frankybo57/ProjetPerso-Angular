@@ -14,24 +14,26 @@ import jsonviews.Common;
 
 
 /**
- * 
+ * Classe mère dont héritent les entités JPA.
  * @author frankybo57
  *
  */
 @MappedSuperclass
 public abstract class Entite {
 	
+	/** Identifiant de l'Entite. */
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "default_gen")
 	@Column(name="id")
 	@JsonView(Common.class)
 	protected Long id;
 	
+	/** Version de l'Entite. */
 	@Version
 	@Column(name="version", nullable=false)
 	@JsonView(Common.class)
 	protected int version;
 	
-	public Entite() {
+	protected Entite() {
 		
 	}
 
@@ -52,7 +54,7 @@ public abstract class Entite {
 	}
 	
 	/** 
-	 * @see java.lang.Object#hashCode()
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int hashCode() {
@@ -63,7 +65,7 @@ public abstract class Entite {
 	}
 	
 	/**
-	 * @see java.lang.Object#equals(java.lang.Object)
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {

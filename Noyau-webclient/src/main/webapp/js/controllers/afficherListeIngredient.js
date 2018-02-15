@@ -4,7 +4,7 @@
 
 	.controller('ControllerAfficherListeIngredient',ControllerAfficherListeIngredient);
 
-	function ControllerAfficherListeIngredient(TypeIngredientFactory,IngredientFactory,ingredientEdite){
+	function ControllerAfficherListeIngredient(TypeIngredientFactory,IngredientFactory,ingredientEdite,UtilitaireFactory){
 		var ctrl = this;
 
 		ctrl.initialise = false;
@@ -12,12 +12,13 @@
 		ctrl.liste = [];
 
 		ctrl.creer = creer;
+		ctrl.creerCollection = UtilitaireFactory.creerCollection;
 		ctrl.editer = editer;
 		ctrl.initialisation = initialisation;
 		ctrl.listeTypesIngredients = listeTypesIngredients;
 		ctrl.listeIngredients = listeIngredients;
 		ctrl.supprimer = supprimer;
-		ctrl.creerCollection = creerCollection;
+
 
 		function creer(){
 
@@ -77,12 +78,6 @@
 			);
 
 		}
-
-		function creerCollection(entier){
-			var collection=[];
-			for(var i=1;i<=entier;i++){
-				collection.push(i);}
-			return collection;}
 
 		ctrl.initialisation();
 

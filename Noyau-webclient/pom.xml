@@ -97,6 +97,10 @@
 					</preloadSources>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.phasebash.jsdoc</groupId>
+				<artifactId>jsdoc3-maven-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
 </project>

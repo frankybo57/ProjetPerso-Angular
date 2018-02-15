@@ -143,11 +143,32 @@ public class RecetteTest {
 	
 	@Test
 	public void testAccesseursInstructions() {
-		String instruction = "consigne";
-		Recette recette = new Recette();
-		recette.setInstructions(instruction);
+		List<LigneInstruction> instructions = new ArrayList<LigneInstruction>();
+		LigneInstruction ligneInstruction = new LigneInstruction("consigne");
+		instructions.add(ligneInstruction);
 		
-		Assert.assertEquals(instruction,recette.getInstructions());
+		Recette recette = new Recette();
+		recette.setInstructions(instructions);
+		
+		Assert.assertEquals(instructions,recette.getInstructions());
+	}
+	
+	@Test
+	public void testAjouterInstruction() {
+		List<LigneInstruction> instructions = new ArrayList<LigneInstruction>();
+		LigneInstruction ligneInstruction = new LigneInstruction("consigne");
+		instructions.add(ligneInstruction);
+		ligneInstruction.setInstruction("consigne2");
+		instructions.add(ligneInstruction);
+	
+		Recette recette = new Recette();
+		recette.setInstructions(instructions);
+		
+		LigneInstruction instruction = new LigneInstruction("autre consigne");
+		recette.ajouterLigneInstruction(instruction);
+		
+		Assert.assertNotNull(recette.getInstructions());
+		Assert.assertEquals(3, recette.getInstructions().size());
 	}
 	
 	@Test

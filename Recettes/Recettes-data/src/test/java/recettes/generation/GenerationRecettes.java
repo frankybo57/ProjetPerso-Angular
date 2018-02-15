@@ -7,26 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import recettes.model.Recette;
 import recettes.model.TypePlat;
-import recettes.repository.IngredientRepository;
-import recettes.repository.RecetteIngredientRepository;
-import recettes.repository.RecetteRepository;
 import recettes.repository.TypePlatRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
 public class GenerationRecettes {
-	@Autowired
-	private RecetteRepository recRepo;
-	
-	@Autowired
-	private IngredientRepository ingRepo;
 	
 	@Autowired
 	private TypePlatRepository tpRepo;
-	
-	@Autowired
-	private RecetteIngredientRepository riRepo;
 	
 	@Test
 	public void generationTypePlat() {
@@ -42,7 +32,7 @@ public class GenerationRecettes {
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Oeufs / Fromage","oeufs_fromage");
 		tpRepo.save(typePlat);
-		typePlat = new TypePlat("PÃ¢tes / Riz / Pommes de terre","pates_riz_pdt");
+		typePlat = new TypePlat("Pâtes / Riz / Pommes de terre","pates_riz_pdt");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Poisson / Fruits de mer","poisson_fdm");
 		tpRepo.save(typePlat);
@@ -56,11 +46,11 @@ public class GenerationRecettes {
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Gibier","gibier");
 		tpRepo.save(typePlat);
-		typePlat = new TypePlat("CrÃªme / Flanc / Glace","creme_flanc_glace");
+		typePlat = new TypePlat("Crême / Flanc / Glace","creme_flanc_glace");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Fruits","fruits");
 		tpRepo.save(typePlat);
-		typePlat = new TypePlat("GÃ¢teau","gateau");
+		typePlat = new TypePlat("Gâteau","gateau");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Tarte","tarte");
 		tpRepo.save(typePlat);
@@ -72,11 +62,23 @@ public class GenerationRecettes {
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Pain","pain");
 		tpRepo.save(typePlat);
-		typePlat = new TypePlat("Recette de base / PÃ¢te","recette_base_pate");
+		typePlat = new TypePlat("Recette de base / Pâte","recette_base_pate");
 		tpRepo.save(typePlat);
 		typePlat = new TypePlat("Sauce","sauce");
 		tpRepo.save(typePlat);
 		
 		Assert.assertEquals((Integer) 23, (Integer)tpRepo.findAll().size());
+	}
+	
+	@Test
+	public void generationEntreesFroides() {
+		final TypePlat entreeFroide = tpRepo.findByLabel("Entrée froide");
+		
+		final Recette recetteCoquillesStJacques = new Recette();
+		recetteCoquillesStJacques.setLabel("Coquilles St Jacques");
+		recetteCoquillesStJacques.setTypePlat(entreeFroide);
+		recetteCoquillesStJacques.setCout((short) 3);
+		recetteCoquillesStJacques.setDifficulte((short) 2);
+		recetteCoquillesStJacques.setNombreCouverts((short) 6);
 	}
 }

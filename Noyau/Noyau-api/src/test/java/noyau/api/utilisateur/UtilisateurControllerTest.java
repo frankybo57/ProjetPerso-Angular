@@ -16,8 +16,6 @@ import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import constantes.Constantes;
 import noyau.model.Droit;
 import noyau.model.Utilisateur;
@@ -31,8 +29,6 @@ public class UtilisateurControllerTest {
 	@Autowired
     private WebApplicationContext wac;
     private MockMvc mockMvc;
-    
-    private static final ObjectMapper MAPPER = new ObjectMapper();
     
     @Autowired
     private UtilisateurRepository utiRepo;

@@ -9,7 +9,9 @@
 
 		ctrl.listeUtilisateurs = [];
 
-		ctrl.liste = function(){
+		ctrl.liste = liste;
+
+		function liste(){
 			UtilisateurFactory.findAll()
 			.then(
 					function success(response) {
@@ -19,7 +21,7 @@
 
 					}
 			);
-		};
+		}
 
 		ctrl.liste();
 

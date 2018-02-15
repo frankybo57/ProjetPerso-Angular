@@ -1,9 +1,8 @@
-/**
-Service module
-*/
-
 (function(){
 	angular.module('ModuleService',[])
+	/**
+	 * Service module
+	 */
 	.factory('ModuleFactory', serviceModuleFactory);
 
 	function serviceModuleFactory($http){

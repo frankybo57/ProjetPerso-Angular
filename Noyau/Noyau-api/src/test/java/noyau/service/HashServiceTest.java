@@ -29,14 +29,14 @@ public class HashServiceTest {
 	public void testSha512SansPreciserTypeHashage() {
 		final String password = "test";
 		Assert.assertEquals(128, hService.cryptage(password).length());
-//		Assert.assertEquals("45EAA1CA28B4EACAAA5AAB9C5C75AFAC0C8F766F6C0B1F7076B8228555F07599BCA26F0057A43A939A985C1A5363E54A9CE4833FAC823D745AE02504EDB98A6E", Verrou.cryptage(password));
+		Assert.assertEquals("6e53ad5ec6b814794f88e661d18583000ef589216f3e6fe90a60a5ea6f3bbff9e8b8e1b376b847facf69b7bfc965a3d62f2ed392683fac8a671be909364be3f6", hService.cryptage(password));
 	}
 	
 	@Test
 	public void testSha512() {
 		final String password = "test";
 		Assert.assertEquals(128, hService.cryptage(password,TypeHashage.SHA512).length());
-//		Assert.assertEquals("45EAA1CA28B4EACAAA5AAB9C5C75AFAC0C8F766F6C0B1F7076B8228555F07599BCA26F0057A43A939A985C1A5363E54A9CE4833FAC823D745AE02504EDB98A6E", Verrou.cryptage(password,TypeHashage.SHA512));
+		Assert.assertEquals("6e53ad5ec6b814794f88e661d18583000ef589216f3e6fe90a60a5ea6f3bbff9e8b8e1b376b847facf69b7bfc965a3d62f2ed392683fac8a671be909364be3f6", hService.cryptage(password,TypeHashage.SHA512));
 	}
 	
 	@Test

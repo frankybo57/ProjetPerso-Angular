@@ -30,6 +30,7 @@
 				'TypeIngredientService',
 				'TypePlatService',
 				'UtilisateurService',
+				'UtilitaireService',
 
 				/* Values */
 				'ValueIngredientEdite',

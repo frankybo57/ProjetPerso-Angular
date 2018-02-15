@@ -10,40 +10,49 @@ import jsonviews.Common;
 
 
 /**
- * 
+ * Classe mère dont héritent les entités JPA possédées par un Utilisateur.
  * @author frankybo57
  *
  */
 @MappedSuperclass
 public abstract class EntitePossedee extends Entite {
+	/**
+	 * Label de l'EntitePossedee.
+	 */
 	@Column(name="label", nullable=false)
 	@JsonView(Common.class)
 	private String label;
 	
+	/**
+	 * Hashcode de l'Utilisateur possédant l'EntitePossedee.
+	 */
 	@Column(name="utilisateur")
 	@JsonView(Common.class)
 	private Integer utilisateur;
 	
+	/**
+	 * Attribut de l'EntitePossedee précisant sa visibilité par les Utilisateur ne la possédant pas.
+	 */
 	@Column(name="visibilite")
 	@JsonView(Common.class)
 	private Boolean prive;
 	
-	public EntitePossedee() {
+	protected EntitePossedee() {
 		super();
 	}
 	
-	public EntitePossedee(String label) {
+	protected EntitePossedee(String label) {
 		super();
 		this.label = label;
 	}
 	
-	public EntitePossedee(String label, Integer utilisateur) {
+	protected EntitePossedee(String label, Integer utilisateur) {
 		super();
 		this.label = label;
 		this.utilisateur = utilisateur;
 	}
 	
-	public EntitePossedee(String label, Integer utilisateur, Boolean prive) {
+	protected EntitePossedee(String label, Integer utilisateur, Boolean prive) {
 		super();
 		this.label = label;
 		this.utilisateur = utilisateur;
@@ -78,6 +87,9 @@ public abstract class EntitePossedee extends Entite {
 		return !this.prive.booleanValue();
 	}
 	
+	/** 
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int hashCode() {
 		int result = super.hashCode();
@@ -85,6 +97,9 @@ public abstract class EntitePossedee extends Entite {
 		
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!super.equals(obj)) return false;

@@ -29,7 +29,6 @@ public class ListerUtilisateurController {
 	 * @return liste des utilisateurs
 	 * 		
 	 */
-	@SuppressWarnings("unchecked")
 	@GetMapping("/utilisateur/liste")
 	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<List<Utilisateur>> findAll(){
