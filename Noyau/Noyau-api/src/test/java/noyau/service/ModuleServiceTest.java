@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import exception.ModuleException;
 import noyau.model.Etat;
 import noyau.model.Module;
 import noyau.repository.ModuleRepository;
@@ -95,14 +96,15 @@ public class ModuleServiceTest {
 		final Iterator<Module> it = liste.iterator();
 		Module moduleTemp;
 		Long id = null;
-
-		while(it.hasNext()) {
+		boolean estOrdonne = true;
+		while(it.hasNext() && estOrdonne) {
 			moduleTemp = it.next();
 			if(id != null) {
-				Assert.assertTrue(id < moduleTemp.getId());
+				estOrdonne = id < moduleTemp.getId();
 			}
 			id = moduleTemp.getId();
 		}
+		Assert.assertTrue(estOrdonne);
 	}
 
 	@Test
@@ -140,5 +142,38 @@ public class ModuleServiceTest {
 
 		Assert.assertNotNull(liste);
 		Assert.assertEquals(3, liste.size());
+	}
+	
+	@Test
+	public void testUpdate() throws ModuleException {
+		Module module = new Module("module1", "module1", Etat.ACTIF);
+		module = modRepo.save(module);
+
+		module.setEtat(Etat.INACTIF);
+		Module result;
+		modSer.update(module);
+		result = modRepo.findOne(module.getId());
+		Assert.assertEquals(Etat.INACTIF, result.getEtat());
+	}
+	
+	@Test(expected=ModuleException.class)
+	public void testUpdateSansId() throws ModuleException {
+		Module module = new Module("module1", "module1", Etat.ACTIF);
+		modSer.update(module);
+	}
+	
+	@Test
+	public void testSave() throws ModuleException {
+		Module module = new Module("module1", "module1", Etat.ACTIF);
+		module = modSer.save(module);
+		Assert.assertNotNull(module.getId());
+		Assert.assertNotNull(modRepo.findOne(module.getId()));
+	}
+	
+	@Test(expected=ModuleException.class)
+	public void testSaveAvecId() throws ModuleException {
+		Module module = new Module("module1", "module1", Etat.ACTIF);
+		module.setId(375982L);
+		module = modSer.save(module);
 	}
 }

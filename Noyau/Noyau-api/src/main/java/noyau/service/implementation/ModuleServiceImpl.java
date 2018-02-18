@@ -56,19 +56,17 @@ public class ModuleServiceImpl implements ModuleService {
 
 	/**
 	 * {@inheritDoc}
-	 * @throws ModuleException 
 	 */
 	@Override
 	public Module save(final Module module) throws ModuleException {
-		if(module.getId()!=null && modRepo.findOne(module.getId())!=null) {
+		if(module.getId()!=null) {
 			throw new ModuleException(Constantes.NOUVEAU_MODULE_AVEC_ID);
 		}
 		return modRepo.save(module);
 	}
 
 	/**
-	 * {@inheritDoc}
-	 * @throws ModuleException 
+	 * {@inheritDoc} 
 	 */
 	@Override
 	public Module update(final Module module) throws ModuleException {

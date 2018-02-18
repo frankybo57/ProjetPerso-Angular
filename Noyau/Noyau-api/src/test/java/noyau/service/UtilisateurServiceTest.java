@@ -28,8 +28,9 @@ public class UtilisateurServiceTest {
 
 	@Before
 	public void setup() {
-		utiRepo.save(new Utilisateur("loginSetup","passwordSetup",Droit.ADMINISTRATEUR));
-		utiRepo.deleteAll();
+		if(utiRepo.count()>0) {
+			utiRepo.deleteAll();
+		}
 	}
 
 	@Test
@@ -71,22 +72,22 @@ public class UtilisateurServiceTest {
 
 	@Test(expected=UtilisateurException.class)
 	public void creerUtilisateurExistantTest() throws UtilisateurException {
+		// PREPARE
 		final Utilisateur utilisateur = new Utilisateur("login","password",Droit.ADMINISTRATEUR);
 		utiRepo.save(utilisateur);
-
 		final Utilisateur utilisateur2 = new Utilisateur("login","password2",Droit.UTILISATEUR);
-
+		// WHEN
 		utiSer.createOne(utilisateur2,false);
 
 	}
 
 	@Test(expected=UtilisateurException.class)
 	public void creerUtilisateurAvecIdTest() throws UtilisateurException {
+		// PREPARE
 		final Utilisateur utilisateur = new Utilisateur("login","password",Droit.ADMINISTRATEUR);
 		utilisateur.setId(3L);
-
+		// WHEN
 		utiSer.createOne(utilisateur,false);
-
 	}
 	
 	@Test
@@ -94,5 +95,104 @@ public class UtilisateurServiceTest {
 		UtilisateurServiceImpl utiSerImpl = new UtilisateurServiceImpl();
 		Assert.assertEquals("L'utilisateur lulu938 n'a pas pu être mis à jour.", utiSerImpl.messageNonMaJ("lulu938"));
 	}
-
+	
+	public Utilisateur preparationPourTestUpdate(boolean hash) {
+		Utilisateur utilisateur = new Utilisateur("ancienlogin","ancienpassword",Droit.ADMINISTRATEUR);
+		if(hash) {
+			utilisateur.setPassword(hService.cryptage("ancienpassword"));
+			utilisateur = utiRepo.save(utilisateur);
+			utilisateur.setPassword("ancienpassword");
+		} else {
+			utilisateur = utiRepo.save(utilisateur);
+		}
+		return utilisateur;
+	}
+	
+	@Test
+	public void testUpdateLoginAvecHash() throws UtilisateurException {
+		// PREPARE
+		final Utilisateur utilisateur = preparationPourTestUpdate(true);
+		final String propriete = "nouveaulogin";
+		final String typePropriete = "login";
+		final boolean hash = true;
+		// WHEN
+		final Utilisateur result = utiSer.update(utilisateur, propriete, typePropriete, hash);
+		// ASSERT
+		Assert.assertNotNull(result);
+		Assert.assertNotNull(result.getId());
+		Assert.assertNotNull(result.getVersion());
+		Assert.assertEquals(1, result.getVersion());
+		Assert.assertNotNull(result.getLogin());
+		Assert.assertEquals("nouveaulogin", result.getLogin());
+		Assert.assertNotNull(result.getPassword());
+		Assert.assertEquals("", result.getPassword());
+		Assert.assertNotNull(result.getDroits());
+		Assert.assertEquals(Droit.ADMINISTRATEUR, result.getDroits());
+	}
+	
+	@Test
+	public void testUpdateLoginSansHash() throws UtilisateurException {
+		// PREPARE
+		final Utilisateur utilisateur = preparationPourTestUpdate(false);
+		final String propriete = "nouveaulogin";
+		final String typePropriete = "login";
+		final boolean hash = false;
+		// WHEN
+		final Utilisateur result = utiSer.update(utilisateur, propriete, typePropriete, hash);
+		// ASSERT
+		Assert.assertNotNull(result);
+		Assert.assertNotNull(result.getId());
+		Assert.assertNotNull(result.getVersion());
+		Assert.assertEquals(1, result.getVersion());
+		Assert.assertNotNull(result.getLogin());
+		Assert.assertEquals("nouveaulogin", result.getLogin());
+		Assert.assertNotNull(result.getPassword());
+		Assert.assertEquals("", result.getPassword());
+		Assert.assertNotNull(result.getDroits());
+		Assert.assertEquals(Droit.ADMINISTRATEUR, result.getDroits());
+	}
+	
+	@Test
+	public void testUpdatePasswordAvecHash() throws UtilisateurException {
+		// PREPARE
+		final Utilisateur utilisateur = preparationPourTestUpdate(true);
+		final String propriete = "nouveaupassword";
+		final String typePropriete = "password";
+		final boolean hash = true;
+		// WHEN
+		final Utilisateur result = utiSer.update(utilisateur, propriete, typePropriete, hash);
+		// ASSERT
+		Assert.assertNotNull(result);
+		Assert.assertNotNull(result.getId());
+		Assert.assertNotNull(result.getVersion());
+		Assert.assertEquals(1, result.getVersion());
+		Assert.assertNotNull(result.getLogin());
+		Assert.assertEquals("ancienlogin", result.getLogin());
+		Assert.assertNotNull(result.getPassword());
+		Assert.assertEquals("", result.getPassword());
+		Assert.assertNotNull(result.getDroits());
+		Assert.assertEquals(Droit.ADMINISTRATEUR, result.getDroits());
+	}
+	
+	@Test
+	public void testUpdatePasswordSansHash() throws UtilisateurException {
+		// PREPARE
+		final Utilisateur utilisateur = preparationPourTestUpdate(false);
+		final String propriete = "nouveaupassword";
+		final String typePropriete = "password";
+		final boolean hash = false;
+		// WHEN
+		final Utilisateur result = utiSer.update(utilisateur, propriete, typePropriete, hash);
+		// ASSERT
+		Assert.assertNotNull(result);
+		Assert.assertNotNull(result.getId());
+		Assert.assertNotNull(result.getVersion());
+		Assert.assertEquals(1, result.getVersion());
+		Assert.assertNotNull(result.getLogin());
+		Assert.assertEquals("ancienlogin", result.getLogin());
+		Assert.assertNotNull(result.getPassword());
+		Assert.assertEquals("", result.getPassword());
+		Assert.assertNotNull(result.getDroits());
+		Assert.assertEquals(Droit.ADMINISTRATEUR, result.getDroits());
+	}
 }

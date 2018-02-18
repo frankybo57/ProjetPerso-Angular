@@ -1,6 +1,7 @@
 package noyau.model;
 
 /**
+ * Enumération des types de droits que peuvent avoir les utilisateurs.
  * @author Francois 2
  * @version 0.0.1-Snapshot
  */

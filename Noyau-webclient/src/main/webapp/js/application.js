@@ -27,6 +27,8 @@
 				'IngredientService',
 				'ModuleService',
 				'RecetteService',
+				'RecetteHttpService',
+				'SessionService',
 				'TypeIngredientService',
 				'TypePlatService',
 				'UtilisateurService',
@@ -34,7 +36,6 @@
 
 				/* Values */
 				'ValueIngredientEdite',
-				'ValueUtilisateurConnecte',
 
 				'utilisateurs',
 				]);

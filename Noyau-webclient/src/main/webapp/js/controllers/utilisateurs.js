@@ -1,10 +1,10 @@
 (function(){
 
-	angular.module('utilisateurs', ['ValueUtilisateurConnecte'])
+	angular.module('utilisateurs', [])
 
 	.controller("UtilisateurController", UtilisateurController);
 
-	function UtilisateurController(utilisateurConnecte){
+	function UtilisateurController(SessionFactory){
 		var ctrl = this;
 
 		ctrl.changerLogin = null;
@@ -14,7 +14,7 @@
 		ctrl.passwordForm;
 
 		ctrl.fermerOngletChangerLogin = fermerOngletChangerLogin;
-		ctrl.fermerOngletChangerMdP =fermerOngletChangerMdP;
+		ctrl.fermerOngletChangerMdP = fermerOngletChangerMdP;
 		ctrl.getDroits = getDroits;
 		ctrl.getLogin = getLogin;
 		ctrl.initialisation = initialisation;
@@ -25,8 +25,8 @@
 		ctrl.toogleLogin = toogleLogin;
 		ctrl.tooglePassword = tooglePassword;
 
-		function getDroits(){return utilisateurConnecte.droits;}
-		function getLogin(){return utilisateurConnecte.login;}
+		function getDroits(){return SessionFactory.getDroits();}
+		function getLogin(){return SessionFactory.getLogin();}
 
 		function fermerOngletChangerLogin(){
 			ctrl.changerLogin = false;
@@ -60,7 +60,7 @@
 			else{
 				if(ctrl.changerPassword) ctrl.fermerOngletChangerMdP();
 				ctrl.changerLogin = true;
-				ctrl.loginForm.utilisateur = utilisateurConnecte;
+				ctrl.loginForm.utilisateur = SessionFactory.getUtilisateur();
 			}
 		}
 

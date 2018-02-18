@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import noyau.service.HashService;
@@ -18,7 +20,7 @@ import noyau.service.HashService;
  */
 @Service
 public class HashServiceImpl implements HashService {
-	
+	private static final Logger LOGGER = LogManager.getLogger(HashServiceImpl.class);
 	private static final String SEL = "sel";
 	private static final String UTF_8 = "UTF-8";
 	
@@ -62,10 +64,14 @@ public class HashServiceImpl implements HashService {
 	         generatedPassword = sb.toString();
 	    } 
 	    catch (final NoSuchAlgorithmException e) {
-	    	
+	    	if(LOGGER.isDebugEnabled()) {
+	    		LOGGER.debug("L'algorithme de hashage n'a pas été trouvé.", e);
+	    	}
 	    }
 	    catch (final UnsupportedEncodingException e){
-	    	
+	    	if(LOGGER.isDebugEnabled()) {
+	    		LOGGER.debug("L'encodage n'est pas supporté par l'environnement.", e);
+	    	}
 	    }
 	    
 	    return generatedPassword;

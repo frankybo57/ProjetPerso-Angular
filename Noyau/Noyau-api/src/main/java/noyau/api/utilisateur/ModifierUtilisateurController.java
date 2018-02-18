@@ -28,8 +28,7 @@ public class ModifierUtilisateurController {
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @param obj Utilisateur à créer.
-	 * @param login nouveau login.
+	 * @param obj objet Json transportant l'Utilisateur à mettre à jour ainsi que son nouveau login.
 	 * @return
 	 * 		HttpStatus.CREATED + Utilisateur si l'utilisateur est trouvé.
 	 * 		ou
@@ -64,8 +63,7 @@ public class ModifierUtilisateurController {
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @param obj Utilisateur à créer.
-	 * @param login nouveau login.
+	 * @param obj objet Json transportant l'Utilisateur à mettre à jour ainsi que son nouveau login.
 	 * @return
 	 * 		HttpStatus.CREATED + Utilisateur si l'utilisateur est trouvé.
 	 * 		ou
@@ -96,12 +94,11 @@ public class ModifierUtilisateurController {
 	}
 	
 	/**
-	 * Méthode d'update du login d'un utilisateur sans hashage.
+	 * Méthode d'update du mot de passe d'un utilisateur sans hashage.
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @param obj Utilisateur à créer.
-	 * @param login nouveau login.
+	 * @param obj objet Json transportant l'Utilisateur à mettre à jour ainsi que son nouveau mot de passe.
 	 * @return
 	 * 		HttpStatus.CREATED + Utilisateur si l'utilisateur est trouvé.
 	 * 		ou
@@ -132,12 +129,11 @@ public class ModifierUtilisateurController {
 	}
 
 	/**
-	 * Méthode d'update du login d'un utilisateur avec hashage.
+	 * Méthode d'update du mot de passe d'un utilisateur avec hashage.
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @param obj Utilisateur à créer.
-	 * @param login nouveau login.
+	 * @param obj objet Json transportant l'Utilisateur à mettre à jour ainsi que son nouveau login.
 	 * @return
 	 * 		HttpStatus.CREATED + Utilisateur si l'utilisateur est trouvé.
 	 * 		ou

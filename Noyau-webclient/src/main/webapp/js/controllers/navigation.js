@@ -4,7 +4,7 @@
 
 	.controller('ControllerNavigation', ControllerNavigation);
 
-	function ControllerNavigation(ModuleFactory,utilisateurConnecte){
+	function ControllerNavigation(ModuleFactory,SessionFactory){
 
 		var ctrl = this;
 
@@ -14,7 +14,7 @@
 		ctrl.modulesActifs = [];
 
 		// Méthodes de classe
-		ctrl.getDroitsUtilisateur = getDroitsUtilisateur;
+		ctrl.getDroitsUtilisateur = SessionFactory.getDroits;
 		ctrl.initialisation = initialisation;
 		ctrl.isActif = isActif;
 		ctrl.isOnglet = isOnglet;
@@ -24,10 +24,6 @@
 		ctrl.setSousOnglet = setSousOnglet;
 
 		// Implémentation
-		function getDroitsUtilisateur(){
-			return utilisateurConnecte.droits;
-		}
-
 		function initialisation(){
 			ctrl.listeActifs();
 			ctrl.onglet = "Accueil";

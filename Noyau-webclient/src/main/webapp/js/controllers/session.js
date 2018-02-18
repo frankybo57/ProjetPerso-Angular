@@ -3,7 +3,7 @@
 	angular.module('sessionController',[])
 	.controller('SessionController', SessionController);
 
-	function SessionController(UtilisateurFactory, utilisateurConnecte){
+	function SessionController(UtilisateurFactory,SessionFactory){
 		var ctrl = this;
 
 		// Variables
@@ -19,6 +19,7 @@
 		ctrl.creerUtilisateur = creerUtilisateur;
 		ctrl.deconnexion = deconnexion;
 		ctrl.effacer = effacer;
+		ctrl.getDroits = SessionFactory.getDroits;
 		ctrl.retourConnexion = retourConnexion;
 		ctrl.saveUtilisateur = saveUtilisateur;
 
@@ -28,11 +29,7 @@
 			.then(function success(response) {
 				ctrl.utilisateur = response.data;
 
-				utilisateurConnecte.id = response.data.id;
-				utilisateurConnecte.version = response.data.version;
-				utilisateurConnecte.login = response.data.login;
-				utilisateurConnecte.password = response.data.password;
-				utilisateurConnecte.droits = response.data.droits;
+				SessionFactory.setUtilisateur(response.data);
 
 				ctrl.droits = ctrl.utilisateur.droits;
 				ctrl.utilisateurNonTrouve = false;
@@ -56,11 +53,7 @@
 		function deconnexion(){
 			ctrl.utilisateur = null;
 
-			utilisateurConnecte.id = null;
-			utilisateurConnecte.version = null;
-			utilisateurConnecte.login = null;
-			utilisateurConnecte.password = null;
-			utilisateurConnecte.droits = null;
+			SessionFactory.clearUtilisateur();
 
 			ctrl.utilisateurTemporaireCreation = null;
 			ctrl.utilisateurTemporaireLogin = null;
@@ -88,11 +81,7 @@
 			.then(function success(response) {
 				ctrl.utilisateur = response.data;
 
-				utilisateurConnecte.id = response.data.id;
-				utilisateurConnecte.version = response.data.version;
-				utilisateurConnecte.login = response.data.login;
-				utilisateurConnecte.password = response.data.password;
-				utilisateurConnecte.droits = response.data.droits;
+				SessionFactory.setUtilisateur();
 
 				ctrl.droits = ctrl.utilisateur.droits;
 				ctrl.utilisateurTemporaireCreation = null;

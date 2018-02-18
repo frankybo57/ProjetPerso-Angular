@@ -9,7 +9,7 @@ import noyau.model.Utilisateur;
 public interface UtilisateurService {
 
 	/**
-	 * Méthode de création d'un Utilisateur à partir de son nom d'utilisateur et de son mot de passe avec ou sans hashage du mot de passe.
+	 * Méthode de création d'un utilisateur à partir de son nom d'utilisateur et de son mot de passe avec ou sans hashage du mot de passe.
 	 * Si l'utilisateur est créé il reçoit des droits d'utilisateur de base.
 	 * 
 	 * @author frankybo57
@@ -20,6 +20,7 @@ public interface UtilisateurService {
 	 * 		Si true alors hashage du mot de passe.
 	 * @return
 	 * 		Utilisateur créé.
+	 * @throws UtilisateurException
 	 * 		
 	 */
 	public Utilisateur createOne(Utilisateur obj, final boolean hash) throws UtilisateurException;
@@ -36,13 +37,14 @@ public interface UtilisateurService {
 	 * @author frankybo57
 	 * @since 1.0
 	 * @throws UtilisateurException
-	 * @param propriete
+	 * @param login
 	 * 		Nom d'utilisateur.
 	 * @param password
 	 * 		Mot de passe.
 	 * @param hash
 	 * 		Si true alors hashage.
 	 * @return Utilisateur
+	 * @throws UtilisateurException
 	 * 		
 	 */
 	public Utilisateur findOne(final String login, final String password, final boolean hash) throws UtilisateurException;
@@ -55,14 +57,19 @@ public interface UtilisateurService {
 	 * 
 	 * @author frankybo57
 	 * @since 1.0
-	 * @param obj
-	 * 		Utilisateur à créer.
+	 * @param utilisateur
+	 * 		Utilisateur à mettre à jour.
+	 * @param propriete
+	 * 		Propriété à mettre à jour.
+	 * @param typePropriete
+	 * 		Le type de la propriété à mettre à jour.
 	 * @param hash
 	 * 		Si true alors hashage.
 	 * @return
 	 * 		Utilisateur mis à jour.
+	 * @throws UtilisateurException
 	 * 		
 	 */
-	public Utilisateur update(final Utilisateur obj, final Object propriete, final String typePropriete, final boolean hash) throws UtilisateurException;
+	public Utilisateur update(final Utilisateur utilisateur, final Object propriete, final String typePropriete, final boolean hash) throws UtilisateurException;
 	
 }

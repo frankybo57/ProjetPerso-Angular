@@ -52,5 +52,4 @@ public class HashServiceTest {
 		Assert.assertEquals(64, hService.cryptage(password,TypeHashage.SHA256).length());
 //		Assert.assertEquals("45EAA1CA28B4EACAAA5AAB9C5C75AFAC0C8F766F6C0B1F7076B8228555F07599BCA26F0057A43A939A985C1A5363E54A9CE4833FAC823D745AE02504EDB98A6E", Verrou.cryptage(password,TypeHashage.SHA512));
 	}
-	
 }

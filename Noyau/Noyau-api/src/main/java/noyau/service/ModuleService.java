@@ -48,6 +48,7 @@ public interface ModuleService {
 	 * @author frankybo57
 	 * @param module le Module à sauvegarder en base.
 	 * @return le Module sauvegardé.
+	 * @throws ModuleException
 	 */
 	public Module save(final Module module) throws ModuleException;
 
@@ -56,6 +57,7 @@ public interface ModuleService {
 	 * @author frankybo57
 	 * @param module la version à jour du Module.
 	 * @return le Module à jour.
+	 * @throws ModuleException
 	 */
 	public Module update(final Module module) throws ModuleException;
 
