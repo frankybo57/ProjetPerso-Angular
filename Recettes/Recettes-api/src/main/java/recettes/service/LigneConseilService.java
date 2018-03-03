@@ -6,7 +6,6 @@ package recettes.service;
 import java.util.List;
 
 import recettes.model.LigneConseil;
-import recettes.model.PossedeLignes;
 
 /**
  * Service de gestion des LigneConseil.

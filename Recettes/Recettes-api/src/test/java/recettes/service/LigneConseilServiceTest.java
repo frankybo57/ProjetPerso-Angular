@@ -14,7 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import entites.Entite;
 import recettes.model.Ingredient;
 import recettes.model.LigneConseil;
-import recettes.model.LigneInstruction;
 import recettes.model.Recette;
 import recettes.repository.IngredientRepository;
 import recettes.repository.LigneConseilRepository;
