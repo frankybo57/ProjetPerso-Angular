@@ -13,7 +13,7 @@ import entites.Entite;
 
 @Entity
 @SequenceGenerator(name = "default_gen",sequenceName="SequenceLigneInstruction")
-public class LigneInstruction extends Entite {
+public class LigneInstruction extends Entite implements Balayable {
 	@Column(name="instruction")
 	@JsonView(Views.Recette.class)
 	private String instruction;

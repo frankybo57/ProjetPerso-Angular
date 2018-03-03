@@ -2,8 +2,8 @@ package recettes.service;
 
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,8 @@ import recettes.model.Recette;
 import recettes.model.RecetteIngredient;
 import recettes.model.TypeIngredient;
 import recettes.repository.IngredientRepository;
+import recettes.repository.LigneConseilRepository;
+import recettes.repository.LigneInstructionRepository;
 import recettes.repository.RecetteIngredientRepository;
 import recettes.repository.RecetteRepository;
 import recettes.repository.TypeIngredientRepository;
@@ -34,13 +36,23 @@ public class IngredientServiceTest {
 	RecetteIngredientRepository riRepo;
 	@Autowired
 	RecetteRepository recRepo;
+	@Autowired
+	LigneInstructionRepository liRepo;
+	@Autowired
+	LigneConseilRepository lcRepo;
 	
 	Long id;
 	TypeIngredient typeIngredientReference;
 	Recette recette;
 	
-	@After
+	@Before
 	public void deleteAll() {
+		if(!lcRepo.findAll().isEmpty()) {
+			lcRepo.deleteAll();
+		}
+		if(!liRepo.findAll().isEmpty()) {
+			liRepo.deleteAll();
+		}
 		if(!riRepo.findAll().isEmpty()) {
 			riRepo.deleteAll();
 		}
@@ -260,5 +272,32 @@ public class IngredientServiceTest {
 		// ASSERT
 		Assert.assertNotNull(resultList);
 		Assert.assertEquals(0, resultList.size());
+	}
+	
+	@Test
+	public void testSaveIngredientSansAttributComplexe() {
+		// PREPARE
+		final Ingredient ingredient = new Ingredient();
+		ingredient.setLabel("ingredient");
+		// WHEN
+		final Ingredient result = ingService.save(ingredient);
+		// ASSERT
+		Assert.assertNotNull(result);
+		final Ingredient sauvegarde = ingRepo.findOne(result.getId());
+		Assert.assertNotNull(sauvegarde);
+	}
+	
+	@Test
+	public void testSaveIngredientAvecTypeIngredient() {
+		// PREPARE
+		final TypeIngredient typeIngredient = new TypeIngredient("typeingredient");
+		final Ingredient ingredient = new Ingredient("ingredient",typeIngredient);
+		// WHEN
+		final Ingredient result = ingService.save(ingredient);
+		// ASSERT
+		Assert.assertNotNull(result);
+		final Ingredient sauvegarde = ingRepo.findOne(result.getId());
+		Assert.assertNotNull(sauvegarde);
+		Assert.assertNotNull(tiRepo.findOne(result.getTypeIngredient().getId()));
 	}
 }

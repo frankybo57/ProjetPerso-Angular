@@ -13,6 +13,7 @@ import recettes.model.Recette;
 import recettes.model.TypeIngredient;
 import recettes.repository.IngredientRepository;
 import recettes.service.IngredientService;
+import recettes.service.TypeIngredientService;
 
 /**
  * Implémentation du service de gestion des Ingredient.
@@ -24,6 +25,9 @@ public class IngredientServiceImpl implements IngredientService {
 	
 	@Autowired
 	IngredientRepository ingRepo;
+	
+	@Autowired
+	TypeIngredientService tiService;
 
 	/**
 	 * {@inheritDoc}
@@ -77,6 +81,21 @@ public class IngredientServiceImpl implements IngredientService {
 	@Override
 	public Ingredient find(final Long id) {
 		return ingRepo.findOne(id);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Ingredient save(final Ingredient ingredient) {
+		if(ingredient.getTypeIngredient() != null) {
+			TypeIngredient typeIngredient = ingredient.getTypeIngredient();
+			if(typeIngredient.getId() == null) {
+				typeIngredient = tiService.save(typeIngredient);
+				ingredient.setTypeIngredient(typeIngredient);
+			}	
+		}	
+		return ingRepo.save(ingredient);
 	}
 
 }

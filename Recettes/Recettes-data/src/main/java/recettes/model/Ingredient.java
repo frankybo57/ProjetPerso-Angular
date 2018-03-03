@@ -16,7 +16,7 @@ import jsonviews.Common;
 
 @Entity
 @SequenceGenerator(name = "default_gen", sequenceName="SequenceIngredient")
-public class Ingredient extends EntitePossedee{
+public class Ingredient extends EntitePossedee implements PossedeLignes{
 	@Column(name="cout")
 	@JsonView(Common.class)
 	private Short cout;
@@ -30,9 +30,9 @@ public class Ingredient extends EntitePossedee{
 	@JsonView(Common.class)
 	private TypeIngredient typeIngredient;
 	
-	@Column(name="conseils")
-	@JsonView(Common.class)
-	private String conseils;
+	@OneToMany(mappedBy="ingredient")
+	@JsonView(Views.Ingredient.class)
+	private List<LigneConseil> conseils;
 	
 	@Column(name="image")
 	@JsonView(Views.Ingredient.class)
@@ -75,11 +75,11 @@ public class Ingredient extends EntitePossedee{
 		this.typeIngredient = typeIngredient;
 	}
 
-	public String getConseils() {
+	public List<LigneConseil> getConseils() {
 		return conseils;
 	}
 
-	public void setConseils(String conseils) {
+	public void setConseils(List<LigneConseil> conseils) {
 		this.conseils = conseils;
 	}
 

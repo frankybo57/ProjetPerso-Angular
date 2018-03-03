@@ -1,6 +1,7 @@
 package recettes.service;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -61,6 +62,37 @@ public class TypePlatServiceTest {
 		// PREPARE
 		// WHEN
 		List<TypePlat> resultListe = tpService.findAll();
+		// ASSERT
+		Assert.assertNotNull(resultListe);
+		Assert.assertTrue(resultListe.isEmpty());
+	}
+	
+	@Test
+	public void testFindAllOrderById() {
+		// PREPARE
+		preparation();
+		// WHEN
+		List<TypePlat> resultListe = tpService.findAllOrderByIdAsc();
+		// ASSERT
+		Assert.assertEquals(expectedNbTypePlat, resultListe.size());
+		ListIterator<TypePlat> it = resultListe.listIterator();
+		TypePlat typePlat;
+		Long idPrec = -1L;
+		Long id;
+		
+		while(it.hasNext()) {
+			typePlat = it.next();
+			id = typePlat.getId();
+			Assert.assertTrue(idPrec <= id);
+			idPrec = id;
+		}
+	}
+	
+	@Test
+	public void testFindAllOrderByIdBaseVide() {
+		// PREPARE
+		// WHEN
+		List<TypePlat> resultListe = tpService.findAllOrderByIdAsc();
 		// ASSERT
 		Assert.assertNotNull(resultListe);
 		Assert.assertTrue(resultListe.isEmpty());

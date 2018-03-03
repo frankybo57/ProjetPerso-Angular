@@ -16,7 +16,7 @@ import jsonviews.Common;
 
 @Entity
 @SequenceGenerator(name = "default_gen",sequenceName="SequenceRecette")
-public class Recette extends EntitePossedee{	
+public class Recette extends EntitePossedee implements PossedeLignes{	
 	@ManyToOne
 	@JoinColumn(name="type_plat_id")
 	@JsonView(Common.class)
@@ -54,9 +54,9 @@ public class Recette extends EntitePossedee{
 	@JsonView(Views.Recette.class)
 	private List<LigneInstruction> instructions;
 	
-	@Column(name="conseils")
+	@OneToMany(mappedBy="recette")
 	@JsonView(Views.Recette.class)
-	private String conseils;
+	private List<LigneConseil> conseils;
 	
 	@Column(name="image")
 	@JsonView(Views.Recette.class)
@@ -151,11 +151,11 @@ public class Recette extends EntitePossedee{
 		this.instructions.add(ligneInstruction);
 	}
 
-	public String getConseils() {
+	public List<LigneConseil> getConseils() {
 		return conseils;
 	}
 
-	public void setConseils(String conseils) {
+	public void setConseils(List<LigneConseil> conseils) {
 		this.conseils = conseils;
 	}
 

@@ -53,4 +53,11 @@ public interface IngredientService {
 	 * @param id identifiant de l'Ingredient à supprimer en base.
 	 */
 	Ingredient find(final Long id);
+	
+	/**
+	 * Sauvegarde un ingrédient avec tout ses attributs
+	 * @param ingredient l'ingrédient à sauvegarder en base
+	 * @return l'ingredient sauvegardé
+	 */
+	Ingredient save(final Ingredient ingredient);
 }

@@ -63,4 +63,8 @@ public class Views {
 	public static class LigneInstruction extends Recette {
 		
 	}
+	
+	public static class LigneConseil extends Common {
+		
+	}
 }

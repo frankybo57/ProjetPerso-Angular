@@ -45,7 +45,7 @@ public class LigneInstructionServiceImpl implements LigneInstructionService {
 			LigneInstruction instruction;
 			while(it.hasNext()) {
 				instruction = it.next();
-				instructions.append(instruction);
+				instructions.append(instruction.getInstruction());
 				instructions.append(String.format("%n", ""));
 			}
 			return instructions.toString();

@@ -36,7 +36,14 @@ public class TypeIngredientServiceImpl implements TypeIngredientService {
 		return tiRepo.findAll();
 	}
 
-
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public TypeIngredient save(TypeIngredient typeIngredient) {
+		return tiRepo.save(typeIngredient);
+	}
+	
 
 	// Début méthodes de construction de la liste hiérarchisée des types d'ingrédient.
 	/**
@@ -144,5 +151,4 @@ public class TypeIngredientServiceImpl implements TypeIngredientService {
 	public void effacer() {
 		this.liste = null;
 	}
-
 }

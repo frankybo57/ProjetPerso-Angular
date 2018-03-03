@@ -174,10 +174,13 @@ public class RecetteTest {
 	@Test
 	public void testAccesseursConseils() {
 		String conseil = "conseil";
+		LigneConseil ligne = new LigneConseil(conseil);
+		List<LigneConseil> conseils = new ArrayList<LigneConseil>();
+		conseils.add(ligne);
 		Recette recette = new Recette();
-		recette.setConseils(conseil);
+		recette.setConseils(conseils);
 		
-		Assert.assertEquals(conseil,recette.getConseils());
+		Assert.assertEquals(conseils,recette.getConseils());
 	}
 	
 	@Test

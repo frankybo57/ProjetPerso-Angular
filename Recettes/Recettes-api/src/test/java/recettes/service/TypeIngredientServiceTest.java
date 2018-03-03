@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import recettes.model.TypeIngredient;
+import recettes.repository.IngredientRepository;
+import recettes.repository.RecetteIngredientRepository;
 import recettes.repository.TypeIngredientRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,6 +26,10 @@ public class TypeIngredientServiceTest {
 	private TypeIngredientRepository tiRepo;
 	@Autowired
 	private TypeIngredientService tiService;
+	@Autowired
+	private IngredientRepository ingRepo;
+	@Autowired
+	private RecetteIngredientRepository riRepo;
 	
 	private final Set<TypeIngredient> expected = new HashSet<TypeIngredient>();
 	private final Set<TypeIngredient> auxiliaire = new HashSet<TypeIngredient>();
@@ -31,9 +37,15 @@ public class TypeIngredientServiceTest {
 	private int expectedNbNiveauZero;
 	
 	
-	@After
+	@Before
 	public void deleteAll() {
-		if(!tiRepo.findAll().isEmpty()) {
+		if(riRepo.count()>0) {
+			riRepo.deleteAll();
+		}
+		if(ingRepo.count()>0) {
+			ingRepo.deleteAll();
+		}
+		if(tiRepo.count()>0) {
 			tiRepo.deleteAll();
 		}
 		tiService.effacer();

@@ -131,10 +131,13 @@ public class IngredientTest {
 	@Test
 	public void testAccesseursConseils() {
 		String conseil = "conseil";
+		LigneConseil ligne = new LigneConseil(conseil);
+		List<LigneConseil> conseils = new ArrayList<LigneConseil>();
+		conseils.add(ligne);
 		Ingredient ingredient = new Ingredient();
-		ingredient.setConseils(conseil);
+		ingredient.setConseils(conseils);
 		
-		Assert.assertEquals(conseil,ingredient.getConseils());
+		Assert.assertEquals(conseils,ingredient.getConseils());
 	}
 	
 	@Test

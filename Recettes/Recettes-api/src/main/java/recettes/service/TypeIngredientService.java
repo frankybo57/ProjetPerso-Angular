@@ -18,7 +18,10 @@ public interface TypeIngredientService {
 	 */
 	List<TypeIngredient> findAll();
 	
-	
+	/**
+	 * Méthode de sauvegarde d'un typeingredient.
+	 */
+	TypeIngredient save(TypeIngredient typeIngredient);
 	
 	
 	
